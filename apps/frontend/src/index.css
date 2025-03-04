@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Quicksand";
+    font-style: light;
+    font-weight: 300;
+    font-display: swap;
+    src: url(./fonts/Quicksand/Quicksand-Regular.ttf) format("opentype");
+  }
+  @font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(./fonts/Quicksand/Quicksand-Regular.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "Quicksand";
+    font-style: medium;
+    font-weight: 500;
+    font-display: swap;
+    src: url(./fonts/Quicksand/Quicksand-Medium.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "Quicksand";
+    font-style: semiBold;
+    font-weight: 600;
+    font-display: swap;
+    src: url(./fonts/Quicksand/Quicksand-SemiBold.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "Quicksand";
+    font-style: Bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url(./fonts/Quicksand/Quicksand-Bold.ttf) format("opentype");
+  }
+
+  @font-face {
+    font-family: "Jost";
+    font-style: Black;
+    font-weight: 900;
+    font-display: swap;
+    src: url(./fonts/Jost/Jost-Black.ttf) format("opentype");
+  }
+}
+
+html {
+}
+
+html.dark {
+}

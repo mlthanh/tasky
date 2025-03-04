@@ -1,82 +1,52 @@
-# Tasky
+# tasky - Full stack Task management Project
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Libraries/frameworks
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+This project includes a bunch of libraries to get you up and running quickly and improve developer experience.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+### Frontend
 
-## Finish your remote caching setup
+- [React](https://reactjs.org/) - main frontend library
+- [Vite](https://vitejs.dev/) - modern and fast build tool
+- [React Query](https://react-query-v3.tanstack.com/) - react hooks to facilitate fetching/updating/caching data on the server
+- [Zustand](https://github.com/pmndrs/zustand) - easy state-management
+- [React router](https://reactrouter.com/en/main) - for routing
+- [Cypress](https://www.cypress.io/) - end-to-end testing for your frontend
+- [Storybook](https://storybook.js.org/) - build your UI web components in isolation
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/RJZIJ99xTr)
+#### Frontend UI
 
+- [Tailwind](https://chakra-ui.com/) - UI library that lets you create beautiful interfaces quickly
+- [Framer Motion](https://www.framer.com/motion/) - create beautiful motion animations ([compatible with ChakraUI](https://chakra-ui.com/getting-started/with-framer))
 
-## Run tasks
+### Backend
 
-To run the dev server for your app, use:
+- [Fastify](https://www.fastify.io/) - fast web framework for NodeJS
+- [Prisma](https://www.prisma.io/) - new generation ORM for working with relational databases
+- [Zod](https://github.com/colinhacks/zod) - TypeScript-first schema validation with static type inference
+- [dotenv](https://www.npmjs.com/package/dotenv) - to load your configs from an .env file
+- [env-var](https://www.npmjs.com/package/env-var) - validate and sanitize your environmental variables
 
-```sh
-npx nx serve frontend
-```
+### Shared libraries
 
-To create a production bundle:
+- [tRPC](https://trpc.io/) - Remote Procedure Calls for your TypeScript applications. Move faster by removing the need of a traditional API-layer.
+- [NX](https://nx.dev/) - build system with first class monorepo support and powerful integrations
+- [Jest](https://jestjs.io/) - testing framework
+- [Eslint](https://eslint.org/) - static code analysis for identifying problematic patterns found in your code
 
-```sh
-npx nx build frontend
-```
+## Starting the app
 
-To see all available targets to run for a project, run:
+- Clone the repository
+- Copy `.env.example` and rename to `.env`
+- `npm run docker:env` - setup the database (postgresql) in docker
+- `npm install` - install dependencies
+- `npm run migrate:dev` - run migrations to create tables
+- `npm run backend:start` - run backend
+- `npm run frontend:start` - run frontend
 
-```sh
-npx nx show project frontend
-```
+## Scripts
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/react:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-monorepo-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- `npm run frontend:storybook` - start storybook to develop components in isolation
+- `npm run dep-graph` - see dependency graph
+- For more commands check `package.json`
+- To generate new apps in the monorepo, check out [NX documentation](https://nx.dev/packages/nx/documents/generate).
