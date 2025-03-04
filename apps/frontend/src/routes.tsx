@@ -3,7 +3,7 @@ import { RouteObject } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import { Layout } from '@components/Layout';
+import { Layout } from '@components/layout/Layout';
 
 const routes: RouteObject[] = [
   {
