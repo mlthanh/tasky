@@ -13,8 +13,16 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {}
+    "baseUrl": "apps/frontend/src",
+    "paths": {
+      "@api/*": ["./api/*"],
+      "@assets/*": ["./assets/*"],
+      "@common/*": ["./components/common/*"],
+      "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@pages/*": ["./pages/*"],
+      "@utils/*": ["./utils/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
