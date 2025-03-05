@@ -68,6 +68,7 @@ module.exports = {
       },
       padding: {
         auth: '60px',
+        app: '40px',
       },
     },
   },

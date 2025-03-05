@@ -4,7 +4,7 @@ import Header from './header/Header';
 
 export function Layout() {
   return (
-    <div>
+    <div className="font-Quicksand px-app">
       <Header />
       <AuthVerify />
       <Outlet />
