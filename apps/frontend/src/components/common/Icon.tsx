@@ -496,17 +496,38 @@ export function ChevronRight({ classname, ...rest }: IconProps): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="100"
+      height="100"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
-      className="w-5 h-5 text-gray-600"
+      {...rest}
+      className={`h-auto ${classname}`}
     >
       <path d="m9 18 6-6-6-6" />
+    </svg>
+  );
+}
+
+export function NotificationBell({
+  classname,
+  ...rest
+}: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      width="100"
+      height="100"
+      viewBox="0 0 24 24"
+      {...rest}
+      className={`h-auto ${classname}`}
+    >
+      <path d="M 12 0 C 10.894531 0 10 0.894531 10 2 C 10 2.042969 9.996094 2.082031 10 2.125 C 7.675781 2.429688 6 3.421875 6 6.03125 C 6 15.945313 1 14.035156 1 20 C 1 20 5.007813 21 12 21 C 18.992188 21 23 20 23 20 C 23 14.070313 18 16.003906 18 6.03125 C 18 3.398438 16.34375 2.421875 14 2.125 C 14.003906 2.082031 14 2.042969 14 2 C 14 0.894531 13.105469 0 12 0 Z M 9.15625 21.9375 C 9.550781 23.128906 10.675781 24 12 24 C 13.324219 24 14.449219 23.128906 14.84375 21.9375 C 13.960938 21.972656 13.007813 22 12 22 C 10.988281 22 10.042969 21.972656 9.15625 21.9375 Z"></path>
     </svg>
   );
 }

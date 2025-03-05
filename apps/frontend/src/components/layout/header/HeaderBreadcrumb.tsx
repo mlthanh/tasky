@@ -26,12 +26,12 @@ export function HeaderBreadcrumb() {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        <BreadcrumbItem>
+        <BreadcrumbItem className="text-base">
           <BreadcrumbLink href="/">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>
+          <BreadcrumbPage className="text-base font-semibold">
             {routingPath(location.pathname as pathType)}
           </BreadcrumbPage>
         </BreadcrumbItem>
