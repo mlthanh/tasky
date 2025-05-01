@@ -30,6 +30,7 @@
     "express": "^4.21.2",
     "fastify": "^5.2.1",
     "fastify-plugin": "~5.0.1",
+    "framer-motion": "^12.7.4",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.13.1",
     "pg": "^8.13.3",

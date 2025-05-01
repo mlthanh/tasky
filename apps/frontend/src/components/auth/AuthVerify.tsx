@@ -1,4 +1,4 @@
-import { useGlobalStateStore } from '@hooks/useGlobalStateStore';
+import { useUserStore } from '@hooks/stores/useUserStore';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const parseJwt = (token: string) => {
 
 const AuthVerify = () => {
   const location = useLocation();
-  const state = useGlobalStateStore((state) => state);
+  const state = useUserStore((state) => state);
 
   useEffect(() => {
     if (state.user) return;

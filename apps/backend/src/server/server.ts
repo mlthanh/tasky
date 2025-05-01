@@ -38,7 +38,7 @@ export function createServer(opts: ServerOptions) {
   });
 
   server.register(fastifyTRPCPlugin, {
-    prefix: '/trpc',
+    prefix: prefix,
     trpcOptions: { router: appRouter, createContext },
   });
 

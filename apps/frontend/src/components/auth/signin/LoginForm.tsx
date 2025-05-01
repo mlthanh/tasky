@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import LoginFormUI from './LoginFormUI';
-import { useGlobalStateStore } from '@hooks/useGlobalStateStore';
+import { useUserStore } from '@hooks/stores/useUserStore';
 import { useState } from 'react';
 import { trpc } from '@utils/trpc';
 import { EmailAndPassword } from '../signup/SignUpFormUI';
 const LoginForm = () => {
   const navigate = useNavigate();
-  const state = useGlobalStateStore((state) => state);
+  const state = useUserStore((state) => state);
 
   const [rememberMe, setRememberMe] = useState(false);
   const handleRememberMe = (value: boolean) => {

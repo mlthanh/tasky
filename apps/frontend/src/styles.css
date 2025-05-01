@@ -1,4 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* You can add global styles to this file, and also import other style files */
+
+@layer components {
+  .dark-mode {
+    @apply bg-light-mode text-dark-mode;
+  }
+
+  .light-mode {
+    @apply bg-dark-mode text-light-mode;
+  }
+}

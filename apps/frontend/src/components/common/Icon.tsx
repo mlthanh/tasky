@@ -1,17 +1,20 @@
+import { tailwindMerge } from '@utils/merge';
 import { JSX } from 'react';
 
 type IconProps = {
-  classname?: string;
+  className?: string;
 };
 
-export const SunIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
+const IconStyle = 'w-4 h-4 cursor-pointer';
+
+export const SunIcon = ({ className, ...rest }: IconProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
     viewBox="0 0 24 24"
     {...rest}
-    className={`w-full h-auto ${classname}`}
+    className={tailwindMerge(IconStyle, className)}
   >
     <g
       fill="none"
@@ -182,14 +185,14 @@ export const SunIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
   </svg>
 );
 
-export const MoonIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
+export const MoonIcon = ({ className, ...rest }: IconProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
     viewBox="0 0 24 24"
     {...rest}
-    className={`w-full h-auto ${classname}`}
+    className={tailwindMerge(IconStyle, className)}
   >
     <rect x="0" y="0" width="24" height="24" fill="rgba(255, 255, 255, 0)" />
     <g
@@ -338,7 +341,7 @@ export const MoonIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
   </svg>
 );
 
-export const GoogleIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
+export const GoogleIcon = ({ className, ...rest }: IconProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -347,7 +350,7 @@ export const GoogleIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
     height="100"
     viewBox="0 0 48 48"
     {...rest}
-    className={`w-full h-auto ${classname}`}
+    className={tailwindMerge(IconStyle, className)}
   >
     <path
       fill="#fbc02d"
@@ -368,7 +371,7 @@ export const GoogleIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
   </svg>
 );
 
-export const GithubIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
+export const GithubIcon = ({ className, ...rest }: IconProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -377,7 +380,7 @@ export const GithubIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
     height="100"
     viewBox="0 0 48 48"
     {...rest}
-    className={`w-full h-auto ${classname}`}
+    className={tailwindMerge(IconStyle, className)}
   >
     <linearGradient
       id="rL2wppHyxHVbobwndsT6Ca_AZOZNnY73haj_gr1"
@@ -409,7 +412,7 @@ export const GithubIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
   </svg>
 );
 
-export const CorrectIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
+export const CorrectIcon = ({ className, ...rest }: IconProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -418,7 +421,7 @@ export const CorrectIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
     height="100"
     viewBox="0 0 48 48"
     {...rest}
-    className={`h-auto ${classname}`}
+    className={tailwindMerge(IconStyle, className)}
   >
     <polyline
       fill="none"
@@ -430,7 +433,7 @@ export const CorrectIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
   </svg>
 );
 
-export const WrongIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
+export const WrongIcon = ({ className, ...rest }: IconProps): JSX.Element => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
@@ -439,7 +442,7 @@ export const WrongIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
     height="100"
     viewBox="0 0 48 48"
     {...rest}
-    className={`h-auto ${classname}`}
+    className={tailwindMerge(IconStyle, className)}
   >
     <path
       fill="#F44336"
@@ -454,7 +457,7 @@ export const WrongIcon = ({ classname, ...rest }: IconProps): JSX.Element => (
   </svg>
 );
 
-export function LoadingLoop({ classname, ...rest }: IconProps): JSX.Element {
+export function LoadingLoop({ className, ...rest }: IconProps): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -462,7 +465,7 @@ export function LoadingLoop({ classname, ...rest }: IconProps): JSX.Element {
       width="1em"
       height="1em"
       {...rest}
-      className={`h-auto ${classname}`}
+      className={tailwindMerge(IconStyle, className)}
     >
       <path
         fill="none"
@@ -492,7 +495,7 @@ export function LoadingLoop({ classname, ...rest }: IconProps): JSX.Element {
   );
 }
 
-export function ChevronRight({ classname, ...rest }: IconProps): JSX.Element {
+export function ChevronRight({ className, ...rest }: IconProps): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -501,11 +504,11 @@ export function ChevronRight({ classname, ...rest }: IconProps): JSX.Element {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       {...rest}
-      className={`h-auto ${classname}`}
+      className={tailwindMerge(IconStyle, className)}
     >
       <path d="m9 18 6-6-6-6" />
     </svg>
@@ -513,7 +516,7 @@ export function ChevronRight({ classname, ...rest }: IconProps): JSX.Element {
 }
 
 export function NotificationBell({
-  classname,
+  className,
   ...rest
 }: IconProps): JSX.Element {
   return (
@@ -524,10 +527,271 @@ export function NotificationBell({
       width="100"
       height="100"
       viewBox="0 0 24 24"
+      fill="currentColor"
       {...rest}
-      className={`h-auto ${classname}`}
+      className={tailwindMerge(IconStyle, className)}
     >
       <path d="M 12 0 C 10.894531 0 10 0.894531 10 2 C 10 2.042969 9.996094 2.082031 10 2.125 C 7.675781 2.429688 6 3.421875 6 6.03125 C 6 15.945313 1 14.035156 1 20 C 1 20 5.007813 21 12 21 C 18.992188 21 23 20 23 20 C 23 14.070313 18 16.003906 18 6.03125 C 18 3.398438 16.34375 2.421875 14 2.125 C 14.003906 2.082031 14 2.042969 14 2 C 14 0.894531 13.105469 0 12 0 Z M 9.15625 21.9375 C 9.550781 23.128906 10.675781 24 12 24 C 13.324219 24 14.449219 23.128906 14.84375 21.9375 C 13.960938 21.972656 13.007813 22 12 22 C 10.988281 22 10.042969 21.972656 9.15625 21.9375 Z"></path>
+    </svg>
+  );
+}
+
+export function MenuStack({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      {...rest}
+      className={tailwindMerge(IconStyle, className)}
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <path
+          d="M4 6H20M4 12H20M4 18H20"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></path>{' '}
+      </g>
+    </svg>
+  );
+}
+
+export function ImageIcon({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M0 96c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64zm323.8 106.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6l-26.5-33.1c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4S78.8 416 88 416h336c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7zM112 192a48 48 0 1 0 0-96a48 48 0 1 0 0 96"
+      ></path>
+    </svg>
+  );
+}
+
+export function MusicFill({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M19 15V4a1 1 0 0 0-.38-.78a1 1 0 0 0-.84-.2l-9 2A1 1 0 0 0 8 6v8.34a3.49 3.49 0 1 0 2 3.18a4 4 0 0 0 0-.52V6.8l7-1.55v7.09a3.49 3.49 0 1 0 2 3.17a5 5 0 0 0 0-.51"
+      ></path>
+    </svg>
+  );
+}
+
+export function BlockQuote({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M.78 8.89c0-3.07 1.53-4.3 4.3-4.34L5.38 6C3.78 6.17 3 7 3.1 8.31h1.44V12H.78Zm5.9 0c0-3.07 1.53-4.3 4.3-4.34l.3 1.45C9.68 6.17 8.89 7 9 8.31h1.44V12H6.68Zm10.26 6.22c0 3.07-1.53 4.3-4.3 4.34L12.35 18c1.6-.16 2.39-1 2.28-2.3h-1.45V12h3.76Zm5.9 0c0 3.07-1.53 4.3-4.3 4.34l-.3-1.45c1.6-.16 2.39-1 2.28-2.3h-1.44V12h3.76Z"
+      ></path>
+    </svg>
+  );
+}
+
+export function OpenInFullRounded({
+  className,
+  ...rest
+}: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M4 21q-.425 0-.712-.288T3 20v-6q0-.425.288-.712T4 13t.713.288T5 14v3.6L17.6 5H14q-.425 0-.712-.288T13 4t.288-.712T14 3h6q.425 0 .713.288T21 4v6q0 .425-.288.713T20 11t-.712-.288T19 10V6.4L6.4 19H10q.425 0 .713.288T11 20t-.288.713T10 21z"
+      ></path>
+    </svg>
+  );
+}
+
+export function ReadingTimeDuotone({
+  className,
+  ...rest
+}: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M1.75 4.25a.75.75 0 0 1 .75-.75h18a.75.75 0 0 1 0 1.5h-18a.75.75 0 0 1-.75-.75M16 9.5a4.75 4.75 0 1 0 0 9.5a4.75 4.75 0 0 0 0-9.5m-6.25 4.75a6.25 6.25 0 1 1 12.5 0a6.25 6.25 0 0 1-12.5 0m-8-5a.75.75 0 0 1 .75-.75H8A.75.75 0 0 1 8 10H2.5a.75.75 0 0 1-.75-.75m0 5a.75.75 0 0 1 .75-.75H8A.75.75 0 0 1 8 15H2.5a.75.75 0 0 1-.75-.75m0 5a.75.75 0 0 1 .75-.75H8A.75.75 0 0 1 8 20H2.5a.75.75 0 0 1-.75-.75"
+        clipRule="evenodd"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M16 11a3.249 3.249 0 1 0 2.298 5.548L16 14.25z"
+        opacity=".5"
+      ></path>
+    </svg>
+  );
+}
+
+export function Goal24({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M20.172 6.75h-1.861l-4.566 4.564a1.874 1.874 0 1 1-1.06-1.06l4.565-4.565V3.828a.94.94 0 0 1 .275-.664l1.73-1.73a.25.25 0 0 1 .25-.063c.089.026.155.1.173.191l.46 2.301l2.3.46c.09.018.164.084.19.173a.25.25 0 0 1-.062.249l-1.731 1.73a.94.94 0 0 1-.663.275"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M2.625 12A9.375 9.375 0 0 0 12 21.375A9.375 9.375 0 0 0 21.375 12c0-.898-.126-1.766-.361-2.587A.75.75 0 0 1 22.455 9c.274.954.42 1.96.42 3c0 6.006-4.869 10.875-10.875 10.875S1.125 18.006 1.125 12S5.994 1.125 12 1.125c1.015-.001 2.024.14 3 .419a.75.75 0 1 1-.413 1.442A9.4 9.4 0 0 0 12 2.625A9.375 9.375 0 0 0 2.625 12"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M7.125 12a4.874 4.874 0 1 0 9.717-.569a.748.748 0 0 1 1.047-.798c.251.112.42.351.442.625a6.373 6.373 0 0 1-10.836 5.253a6.376 6.376 0 0 1 5.236-10.844a.75.75 0 1 1-.17 1.49A4.876 4.876 0 0 0 7.125 12"
+      ></path>
+    </svg>
+  );
+}
+
+export function RoundClose({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59L7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12L5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4"
+      ></path>
+    </svg>
+  );
+}
+
+export function Pause({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 14 14"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M0 1.5A1.5 1.5 0 0 1 1.5 0H4a1.5 1.5 0 0 1 1.5 1.5v11A1.5 1.5 0 0 1 4 14H1.5A1.5 1.5 0 0 1 0 12.5zM10 0a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 10 14h2.5a1.5 1.5 0 0 0 1.5-1.5v-11A1.5 1.5 0 0 0 12.5 0z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+  );
+}
+
+export function Play({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M.001 1.165v21.669a1.275 1.275 0 0 0 1.891 1.017l-.006.003l21.442-10.8a1.172 1.172 0 0 0 .007-2.113l-.007-.003L1.886.138A1.273 1.273 0 0 0 .003 1.162v.004z"
+      ></path>
+    </svg>
+  );
+}
+
+export function SquareRounded({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 50 50"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+    >
+      <path
+        fill="currentColor"
+        d="M49 41c0 4.4-3.6 8-8 8H9c-4.4 0-8-3.6-8-8V9c0-4.4 3.6-8 8-8h32c4.4 0 8 3.6 8 8z"
+      ></path>
+    </svg>
+  );
+}
+
+export function Unchecked({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+    >
+      <path
+        fill="currentColor"
+        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8"
+      ></path>
+    </svg>
+  );
+}
+
+export function Checked({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+    >
+      <path
+        fill="currentColor"
+        d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m0-5C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8"
+      ></path>
     </svg>
   );
 }
