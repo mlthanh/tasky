@@ -1,36 +1,31 @@
 import { Card, CardContent } from '@common/Card';
-import {
-  BlockQuote,
-  ImageIcon,
-  MusicFill,
-  OpenInFullRounded,
-} from '@common/Icon';
 import { TooltipContent, TooltipRoot, TooltipTrigger } from '@common/Tooltip';
-import { ReactNode } from 'react';
+import { SVGProps } from 'react';
 
-type toolItemType = {
+export interface toolItemType {
   title: string;
-  icon?: ReactNode;
+  icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
   handler?: () => void;
-};
+}
 
-type StudyToolbarProps = {
+type ToolPanelProps = {
   className?: string;
   toolList: toolItemType[];
 };
 
-const StudyMenu = ({ className, toolList }: StudyToolbarProps) => {
+const ToolPanel = ({ className, toolList }: ToolPanelProps) => {
   return (
     <div className={className}>
       {toolList.map((tool) => (
-        <TooltipRoot>
+        <TooltipRoot key={tool.title}>
           <TooltipTrigger>
             <Card
               className="flex items-center justify-center cursor-pointer bg-white/55"
-              key={tool.title}
               onClick={tool.handler}
             >
-              <CardContent className="p-3">{tool.icon}</CardContent>
+              <CardContent className="p-3">
+                {tool.icon && <tool.icon />}
+              </CardContent>
             </Card>
           </TooltipTrigger>
 
@@ -41,4 +36,4 @@ const StudyMenu = ({ className, toolList }: StudyToolbarProps) => {
   );
 };
 
-export default StudyMenu;
+export default ToolPanel;

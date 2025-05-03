@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@common/Card';
 import { Label } from '@common/Label';
 import { useRef, useState } from 'react';
-import StudyToolbar from '../StudyToolbar';
+import StudyToolbar from '../../StudyToolbar';
 import { MusicFill, RoundClose, Pause, Play } from '@common/Icon';
 import { Player } from './Player';
 

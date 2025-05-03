@@ -600,7 +600,7 @@ export function MusicFill({ className, ...rest }: IconProps): JSX.Element {
   );
 }
 
-export function BlockQuote({ className, ...rest }: IconProps): JSX.Element {
+export const BlockQuote = ({ className, ...rest }: IconProps): JSX.Element => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -616,7 +616,7 @@ export function BlockQuote({ className, ...rest }: IconProps): JSX.Element {
       ></path>
     </svg>
   );
-}
+};
 
 export function OpenInFullRounded({
   className,
@@ -753,6 +753,7 @@ export function SquareRounded({ className, ...rest }: IconProps): JSX.Element {
       width="1em"
       height="1em"
       className={tailwindMerge(IconStyle, className)}
+      {...rest}
     >
       <path
         fill="currentColor"
@@ -770,6 +771,7 @@ export function Unchecked({ className, ...rest }: IconProps): JSX.Element {
       width="1em"
       height="1em"
       className={tailwindMerge(IconStyle, className)}
+      {...rest}
     >
       <path
         fill="currentColor"
@@ -787,10 +789,71 @@ export function Checked({ className, ...rest }: IconProps): JSX.Element {
       width="1em"
       height="1em"
       className={tailwindMerge(IconStyle, className)}
+      {...rest}
     >
       <path
         fill="currentColor"
         d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5m0-5C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8"
+      ></path>
+    </svg>
+  );
+}
+
+export function Shuffle({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M403.8 34.4c12-5 25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64c-9.2 9.2-22.9 11.9-34.9 6.9S384 204.8 384 191.8v-32h-32c-10.1 0-19.6 4.7-25.6 12.8L284 229.3L244 176l31.2-41.6C293.3 110.2 321.8 96 352 96h32V64c0-12.9 7.8-24.6 19.8-29.6M164 282.7l40 53.3l-31.2 41.6C154.7 401.8 126.2 416 96 416H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64c10.1 0 19.6-4.7 25.6-12.8zm274.6 188c-9.2 9.2-22.9 11.9-34.9 6.9S383.9 461 383.9 448v-32h-32c-30.2 0-58.7-14.2-76.8-38.4L121.6 172.8c-6-8.1-15.5-12.8-25.6-12.8H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64c30.2 0 58.7 14.2 76.8 38.4l153.6 204.8c6 8.1 15.5 12.8 25.6 12.8h32v-32c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l64 64c6 6 9.4 14.1 9.4 22.6s-3.4 16.6-9.4 22.6l-64 64z"
+      ></path>
+    </svg>
+  );
+}
+
+export function Show({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M12 9a3.02 3.02 0 0 0-3 3c0 1.642 1.358 3 3 3s3-1.358 3-3s-1.359-3-3-3"
+      ></path>
+      <path
+        fill="currentColor"
+        d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316l-.105-.316C21.927 11.617 19.633 5 12 5m0 12c-5.351 0-7.424-3.846-7.926-5C4.578 10.842 6.652 7 12 7c5.351 0 7.424 3.846 7.926 5c-.504 1.158-2.578 5-7.926 5"
+      ></path>
+    </svg>
+  );
+}
+
+export function Contract({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        d="M2 14h8v8m-9 1l9-9M23 1l-9 9m8 0h-8V2"
       ></path>
     </svg>
   );

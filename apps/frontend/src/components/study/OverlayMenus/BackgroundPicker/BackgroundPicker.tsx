@@ -1,6 +1,6 @@
 import { Card, CardContent, CardFooter, CardHeader } from '@common/Card';
 import { Label } from '@common/Label';
-import StudyToolbar from '../StudyToolbar';
+import StudyToolbar from '../../StudyToolbar';
 import { ImageIcon, RoundClose } from '@common/Icon';
 import { BackgroundList } from './BackgroundList';
 

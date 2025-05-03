@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from '@common/Card';
 import GoalSetting from './GoalSetting';
 import { Label } from '@common/Label';
 import { ReadingTimeDuotone, RoundClose } from '@common/Icon';
-import StudyToolbar from '../StudyToolbar';
+import StudyToolbar from '../../StudyToolbar';
 import { GoalList } from './GoalList';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 

@@ -7,7 +7,7 @@ import {
 } from '@common/Icon';
 import { Card, CardContent, CardFooter, CardHeader } from '@common/Card';
 import { Label } from '@common/Label';
-import StudyToolbar from '../StudyToolbar';
+import StudyToolbar from '../../StudyToolbar';
 import TimerSetting, { TimerConfigRef } from './TimerSetting';
 import { Button } from '@common/Button';
 import { useTimeStore } from '@hooks/stores/useTimeStore';
