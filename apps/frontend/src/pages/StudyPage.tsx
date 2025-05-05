@@ -14,7 +14,7 @@ const StudyPage = () => {
   const { setOpen } = useSidebar();
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { isQuoteShow, quote, background } = useUIStateStore();
+  const { background } = useUIStateStore();
   const { toggleFullscreen, isFullscreen } = useFullscreen(contentRef);
 
   const [menuState, setMenuState] = useState<MenuStatus | null>(null);

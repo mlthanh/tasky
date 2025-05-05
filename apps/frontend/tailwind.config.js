@@ -11,17 +11,17 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    backgroundSize: {
-      full: '100% 100%',
-    },
-    backgroundImage: {
-      auth_background: "url('/src/assets/auth/background.png')",
-    },
-    fontFamily: {
-      Jost: ['Jost', 'sans-serif'],
-      Quicksand: ['Quicksand', 'sans-serif'],
-    },
     extend: {
+      backgroundSize: {
+        full: '100% 100%',
+      },
+      backgroundImage: {
+        auth_background: "url('/src/assets/auth/background.png')",
+      },
+      fontFamily: {
+        Jost: ['Jost', 'sans-serif'],
+        Quicksand: ['Quicksand', 'sans-serif'],
+      },
       fontWeight: {
         display: {
           light: 300,

@@ -1,6 +1,6 @@
 import { useUserStore } from '@hooks/stores/useUserStore';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const parseJwt = (token: string) => {
   try {
@@ -12,6 +12,7 @@ const parseJwt = (token: string) => {
 
 const AuthVerify = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const state = useUserStore((state) => state);
 
   useEffect(() => {
@@ -21,7 +22,11 @@ const AuthVerify = () => {
       const user = JSON.parse(userJson);
       if (user?.accessToken && user?.username && user?.role) {
         state.signIn(user);
+      } else {
+        navigate('/login');
       }
+    } else {
+      navigate('/login');
     }
   }, [state]);
 
@@ -36,6 +41,7 @@ const AuthVerify = () => {
         localStorage.removeItem('user');
         console.log('Your token expired');
         state.signOut();
+        navigate('/login');
       }
     }
   }, [location, state]);

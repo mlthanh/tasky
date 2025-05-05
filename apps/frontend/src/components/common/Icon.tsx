@@ -858,3 +858,69 @@ export function Contract({ className, ...rest }: IconProps): JSX.Element {
     </svg>
   );
 }
+
+export function Medal({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      >
+        <path d="M7.21 15L2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15M11 12L5.12 2.2M13 12l5.88-9.8M8 7h8"></path>
+        <circle cx="12" cy="17" r="5"></circle>
+        <path d="M12 18v-2h-.5"></path>
+      </g>
+    </svg>
+  );
+}
+
+export function LapTimer({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 15 15"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M5.5.5A.5.5 0 0 1 6 0h3a.5.5 0 0 1 0 1H8v1.12a6.36 6.36 0 0 1 2.992 1.016a1 1 0 0 1 .066-.078l1-1a.625.625 0 0 1 .884.884l-.975.975A6.4 6.4 0 1 1 7 2.119V1H6a.5.5 0 0 1-.5-.5m-3.4 8a5.4 5.4 0 1 1 10.8 0a5.4 5.4 0 0 1-10.8 0m5.4 0V4.1a4.4 4.4 0 1 0 3.111 7.511z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+  );
+}
+
+export function BaselineSpaceDashboard({
+  className,
+  ...rest
+}: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z"
+      ></path>
+    </svg>
+  );
+}

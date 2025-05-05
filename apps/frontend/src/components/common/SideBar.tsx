@@ -63,8 +63,6 @@ const SidebarProvider = forwardRef<
   ) => {
     const [openMobile, setOpenMobile] = useState(false);
 
-    // This is the internal state of the sidebar.
-    // We use openProp and setOpenProp for control from outside the component.
     const [_open, _setOpen] = useState(defaultOpen);
     const open = openProp ?? _open;
     const setOpen = useCallback(
@@ -76,7 +74,6 @@ const SidebarProvider = forwardRef<
           _setOpen(openState);
         }
 
-        // This sets the cookie to keep the sidebar state.
         document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
       },
       [setOpenProp, open]

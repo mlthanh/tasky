@@ -23,7 +23,8 @@
       "@pages/*": ["./pages/*"],
       "@utils/*": ["./utils/*"],
       "@contexts/*": ["./contexts/*"],
-      "@constants/*": ["./constants/*"]
+      "@constants/*": ["./constants/*"],
+      "@layouts/*": ["./layouts/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

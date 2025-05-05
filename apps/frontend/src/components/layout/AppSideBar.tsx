@@ -13,20 +13,10 @@ import {
   useSidebar,
 } from '@common/SideBar';
 import Logo from '@components/Logo';
-import { NavLink, Link } from 'react-router-dom';
+import { getSideBarList } from '@constants/SideBarList';
+import { NavLink } from 'react-router-dom';
 
-const items = [
-  {
-    title: 'Dashboard',
-    url: '/dashboard',
-    icon: NotificationBell,
-  },
-  {
-    title: 'Study',
-    url: '/study',
-    icon: NotificationBell,
-  },
-];
+const sideBarList = getSideBarList();
 
 export function AppSidebar() {
   const { open } = useSidebar();
@@ -45,7 +35,7 @@ export function AppSidebar() {
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {sideBarList.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton tooltip={item.title}>
                     <NavLink
@@ -56,7 +46,7 @@ export function AppSidebar() {
                         }`
                       }
                     >
-                      <item.icon classname="w-4 h-auto" />
+                      {item.icon && <item.icon className="w-4 h-auto" />}
                       <span>{item.title}</span>
                     </NavLink>
                   </SidebarMenuButton>

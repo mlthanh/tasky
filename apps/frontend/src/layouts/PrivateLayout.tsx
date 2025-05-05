@@ -4,7 +4,7 @@ import { SidebarProvider, SidebarTrigger } from '@common/SideBar';
 import { AppSidebar } from '@components/layout/AppSideBar';
 import AuthVerify from '@components/auth/AuthVerify';
 
-const Layout = () => {
+const PrivateLayout = () => {
   const location = useLocation();
   const isStudyPage = location.pathname === '/study';
 
@@ -35,4 +35,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default PrivateLayout;

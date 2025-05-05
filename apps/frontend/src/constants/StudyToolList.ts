@@ -6,7 +6,6 @@ import {
   OpenInFullRounded,
 } from '@common/Icon';
 import { MenuStatus } from '@components/study/OverlayMenus/OverlayMenus';
-import { toolItemType } from '@components/study/ToolPanel';
 
 export const getToolList = ({
   isFullscreen,

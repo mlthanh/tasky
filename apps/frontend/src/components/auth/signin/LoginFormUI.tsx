@@ -67,7 +67,7 @@ const LoginFormUI = ({
           <p className="text-xs text-red">{errors.password.message}</p>
         )}
 
-        <Button className="uppercase text-light-mode w-[50%] mx-auto lg:mt-8 mt-5 rounded-[23px]">
+        <Button className="bg-primary uppercase text-light-mode w-[50%] mx-auto lg:mt-8 mt-5 rounded-[23px]">
           Login
         </Button>
         <span className="mt-2 text-sm text-center lg:mt-5 lg:text-base">
