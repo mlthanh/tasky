@@ -112,33 +112,33 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         <ul className="gap-1 text-2xs lg:text-sm">
           <li className="flex items-center">
             {score === 100 ? (
-              <CorrectIcon classname="w-4 h-4 mr-2" />
+              <CorrectIcon className="w-4 h-4 mr-2" />
             ) : (
-              <WrongIcon classname="w-4 h-4 mr-2" />
+              <WrongIcon className="w-4 h-4 mr-2" />
             )}
             Password strength
           </li>
           <li className="flex items-center">
             {conditions.length ? (
-              <CorrectIcon classname="w-4 h-4 mr-2" />
+              <CorrectIcon className="w-4 h-4 mr-2" />
             ) : (
-              <WrongIcon classname="w-4 h-4 mr-2" />
+              <WrongIcon className="w-4 h-4 mr-2" />
             )}
             At least 8 characters
           </li>
           <li className="flex items-center">
             {conditions.uppercase ? (
-              <CorrectIcon classname="w-4 h-4 mr-2" />
+              <CorrectIcon className="w-4 h-4 mr-2" />
             ) : (
-              <WrongIcon classname="w-4 h-4 mr-2" />
+              <WrongIcon className="w-4 h-4 mr-2" />
             )}
             At least 1 uppercase character
           </li>
           <li className="flex items-center">
             {conditions.specialChar ? (
-              <CorrectIcon classname="w-4 h-4 mr-2" />
+              <CorrectIcon className="w-4 h-4 mr-2" />
             ) : (
-              <WrongIcon classname="w-4 h-4 mr-2" />
+              <WrongIcon className="w-4 h-4 mr-2" />
             )}
             Contains a symbol
           </li>
@@ -146,7 +146,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
 
         <Button
           type="submit"
-          className="uppercase text-light-mode w-[50%] mx-auto lg:mt-8 mt-5 rounded-[23px] lg:text-xl text-2xs"
+          className="uppercase bg-primary text-light-mode w-[50%] mx-auto lg:mt-8 mt-5 rounded-[23px] lg:text-xl text-2xs"
         >
           {isSubmitting ?? <LoadingLoop />}
           {isSubmitting ? 'Please wait' : 'Create account'}

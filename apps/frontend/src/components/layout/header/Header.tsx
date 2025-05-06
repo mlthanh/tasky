@@ -8,7 +8,7 @@ const Header = () => {
       <HeaderBreadcrumb />
       <div className="flex items-center justify-center gap-8">
         <ThemeToggler />
-        <NotificationBell classname="w-5 h-5" />
+        <NotificationBell className="w-5 h-5" />
         <div className="flex items-start justify-center gap-2">
           <span className="text-sm">Username</span>
           <div className="bg-black w-7 h-7"></div>

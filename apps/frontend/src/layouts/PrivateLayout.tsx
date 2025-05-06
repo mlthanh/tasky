@@ -22,8 +22,6 @@ const PrivateLayout = () => {
             <Header />
           </div>
 
-          <AuthVerify />
-
           <div
             className={`${isStudyPage ? '' : 'mt-5'} light-mode dark:dark-mode`}
           >

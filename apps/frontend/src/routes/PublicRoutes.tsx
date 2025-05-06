@@ -1,4 +1,3 @@
-// routes/publicRoutes.ts
 import { RouteObject } from 'react-router-dom';
 import PublicLayout from '@layouts/PublicLayout';
 import LoginPage from '@pages/LoginPage';

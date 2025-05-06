@@ -1,8 +1,17 @@
 import { Button } from '@common/Button';
 import { Medal } from '@common/Icon';
-import { Link, NavLink } from 'react-router-dom';
+import Transition from '@components/effects/Transition';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const MarketingPage = () => {
+  const navigate = useNavigate();
+
+  const handleGoPage = () => {
+    navigate('/register');
+  };
+
   return (
     <div className="w-full h-screen pt-40 pb-20 bg-slate-100">
       <div className="flex flex-col items-center justify-center">
@@ -22,16 +31,14 @@ export const MarketingPage = () => {
           high rises to the home office, the way your team work is unique -
           accomplish it all with tasky.
         </div>
-        <Button className="mt-2">
-          <Link to="/register">
-            Get&nbsp;
-            <span className="font-bold underline">
-              task
-              <span className="text-primary">y</span>.
-            </span>
-            &nbsp;for free
-          </Link>
-        </Button>
+        <Link className="mt-2 bg-white" to="/register">
+          Get
+          <span className="font-bold underline transition hover:opacity-75">
+            task
+            <span className="text-primary">y</span>.
+          </span>
+          for free
+        </Link>
       </div>
     </div>
   );
