@@ -9,7 +9,7 @@ export const MarketingPage = () => {
   const navigate = useNavigate();
 
   const handleGoPage = () => {
-    navigate('/register');
+    navigate('/register', { state: { from: 'getting' } });
   };
 
   return (
@@ -31,14 +31,14 @@ export const MarketingPage = () => {
           high rises to the home office, the way your team work is unique -
           accomplish it all with tasky.
         </div>
-        <Link className="mt-2 bg-white" to="/register">
+        <Button className="mt-2 bg-white" onClick={handleGoPage}>
           Get
           <span className="font-bold underline transition hover:opacity-75">
             task
             <span className="text-primary">y</span>.
           </span>
           for free
-        </Link>
+        </Button>
       </div>
     </div>
   );

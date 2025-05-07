@@ -9,6 +9,7 @@ import {
 import { Button } from '@common/Button';
 import Input from '@common/Input';
 import { Label } from '@common/Label';
+import { Link } from 'react-router-dom';
 
 export type EmailAndPassword = {
   email: string;
@@ -164,12 +165,12 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         </div>
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
           Do have an account yet?
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="cursor-pointer text-red hover:text-primary"
           >
             Log in here
-          </a>
+          </Link>
         </span>
       </div>
     </form>

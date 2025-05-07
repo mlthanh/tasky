@@ -1,5 +1,5 @@
 import { trpc } from '@utils/trpc';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SignUpFormUI, { EmailAndPassword } from './SignUpFormUI';
 
 const SignUpForm = () => {

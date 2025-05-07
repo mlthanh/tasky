@@ -6,6 +6,7 @@ import { MarketingPage } from '@pages/MarketingPage';
 
 const publicRoutes: RouteObject = {
   element: <PublicLayout />,
+
   children: [
     { path: '/login', element: <LoginPage /> },
     { path: '/register', element: <RegisterPage /> },
