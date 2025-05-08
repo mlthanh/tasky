@@ -15,6 +15,7 @@ import { useRef, useState } from 'react';
 import { TimerCounter } from './TimerCounter';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
+import TimerDetail from './TimerDetail';
 
 type TimerSessionProps = {
   className?: string;
@@ -22,12 +23,8 @@ type TimerSessionProps = {
 };
 
 const TimerSession = ({ className, timer }: TimerSessionProps) => {
-  const fTimerRef = useRef<TimerConfigRef>(null);
-  const bTimerRef = useRef<TimerConfigRef>(null);
-
-  const [isSetting, setIsSetting] = useState(true);
-  const { bTime, fTime, setfocusTime, setbreakTime } = useTimeStore();
-  const { isTimerOpen, setIsTimerOpen } = useUIStateStore();
+  const { isTimerOpen, setIsTimerOpen, isTimerDetail, setIsTimerDetail } =
+    useUIStateStore();
 
   const toolBarList = [
     {
@@ -57,45 +54,8 @@ const TimerSession = ({ className, timer }: TimerSessionProps) => {
         <StudyToolbar toolBarList={toolBarList} />
       </CardHeader>
 
-      {isSetting ? (
-        <>
-          <CardContent className="flex flex-col items-center justify-center gap-2 text-white">
-            <span>Focus time (min)</span>
-            <TimerSetting
-              ref={fTimerRef}
-              step={5}
-              className="text-4xl font-extrabold"
-              initialMinute={Math.floor((fTime % 3600) / 60)}
-              initialHour={Math.floor(fTime / 3600)}
-            />
-            <span>Break time (min)</span>
-            <TimerSetting
-              ref={bTimerRef}
-              step={1}
-              maxHours={0}
-              initialMinute={Math.floor((bTime % 3600) / 60)}
-              initialHour={Math.floor(bTime / 3600)}
-              className="text-4xl font-extrabold"
-            />
-          </CardContent>
-          <CardFooter className="w-full my-1 ">
-            <Button
-              className="w-full rounded-lg bg-primary"
-              onClick={() => {
-                if (bTimerRef.current && fTimerRef.current) {
-                  setfocusTime(fTimerRef.current.getTimes());
-                  setbreakTime(bTimerRef.current.getTimes());
-
-                  setIsSetting(false);
-                  timer.reset();
-                  timer.start();
-                }
-              }}
-            >
-              Set time
-            </Button>
-          </CardFooter>
-        </>
+      {isTimerDetail ? (
+        <TimerDetail timer={timer} />
       ) : (
         <div className="w-full">
           <CardContent className="justify-between">
@@ -107,11 +67,11 @@ const TimerSession = ({ className, timer }: TimerSessionProps) => {
               <Button
                 className=" hover:bg-slate-600"
                 onClick={() => {
-                  setIsSetting(true);
+                  setIsTimerDetail(true);
                   timer.pause();
                 }}
               >
-                <SquareRounded classname="text-white" />
+                <SquareRounded className="text-white" />
               </Button>
               <Button
                 className=" hover:bg-slate-600"
@@ -120,9 +80,9 @@ const TimerSession = ({ className, timer }: TimerSessionProps) => {
                 }
               >
                 {timer.isRunning ? (
-                  <Pause classname="text-white" />
+                  <Pause className="text-white" />
                 ) : (
-                  <Play classname="text-white"></Play>
+                  <Play className="text-white"></Play>
                 )}
               </Button>
             </div>

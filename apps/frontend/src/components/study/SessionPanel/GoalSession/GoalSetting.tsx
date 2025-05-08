@@ -37,6 +37,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
           onChange={(e) => setInputValue(e.target.value)}
         ></Input>
         <Button
+          type="submit"
           className={`bg-primary ${
             inputValue === '' ? 'bg-gray-400 cursor-default hover:' : ''
           }`}
@@ -48,14 +49,14 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
 
       <div className="flex justify-between w-full p-4 bg-black rounded-lg">
         <div className="flex flex-col items-center justify-center">
-          <Label className="text-4xl">
+          <Label className="text-2xl">
             {taskList.filter((task) => task.status === TaskStatus.OPEN).length}
           </Label>
           <Label>Open</Label>
         </div>
         <span className="text-3xl">|</span>
         <div className="flex flex-col items-center justify-center font-extrabold text-primary">
-          <Label className="text-4xl font-extrabold">
+          <Label className="text-2xl font-extrabold">
             {
               taskList.filter((task) => task.status === TaskStatus.COMPLETED)
                 .length

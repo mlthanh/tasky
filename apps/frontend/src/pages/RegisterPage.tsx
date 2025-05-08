@@ -15,6 +15,7 @@ const RegisterPage = () => {
       const timer = setTimeout(() => setDelay(true), 800);
       return () => {
         clearTimeout(timer);
+        window.history.replaceState({}, '');
       };
     } else {
       setDelay(true);

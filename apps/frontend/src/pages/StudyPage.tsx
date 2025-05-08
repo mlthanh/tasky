@@ -9,6 +9,8 @@ import { QuickStatusPanel } from '@components/study/QuickStatusPanel';
 import { useFullscreen } from '@hooks/useFullScreen';
 import { getToolList } from '@constants/StudyToolList';
 import { QuotePanel } from '@components/study/QuotePanel';
+import { useTimeStore } from '@hooks/stores/useTimeStore';
+import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 
 const StudyPage = () => {
   const { setOpen } = useSidebar();
@@ -18,6 +20,8 @@ const StudyPage = () => {
   const { toggleFullscreen, isFullscreen } = useFullscreen(contentRef);
 
   const [menuState, setMenuState] = useState<MenuStatus | null>(null);
+  const { fTime, bTime } = useTimeStore();
+  const timer = usePomodoroTimer({ focusTime: fTime, breakTime: bTime });
 
   useEffect(() => {
     setOpen(false);
@@ -35,7 +39,7 @@ const StudyPage = () => {
       ref={contentRef}
     >
       <div className="flex items-center justify-between pt-5">
-        <QuickStatusPanel />
+        <QuickStatusPanel timer={timer} />
         <ToolPanel
           toolList={getToolList({
             isFullscreen,
@@ -47,8 +51,11 @@ const StudyPage = () => {
       </div>
 
       <div className="flex justify-between mt-[20px]">
-        <SessionPanel />
-        <QuotePanel />
+        <SessionPanel
+          className="w-[20vw] max-h-[calc(100vh-80px)]"
+          timer={timer}
+        />
+        <QuotePanel className="hidden md:block" />
         <OverlayMenus
           menuState={menuState}
           onClose={() => {

@@ -29,7 +29,7 @@ export const GoalList = ({ className }: GoalListProps) => {
               {task.status === TaskStatus.OPEN ? (
                 <Unchecked />
               ) : (
-                <Checked classname="text-primary" />
+                <Checked className="text-primary" />
               )}
             </Button>
             <strong>{task.content}</strong>

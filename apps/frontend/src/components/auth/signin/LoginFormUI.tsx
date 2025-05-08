@@ -4,6 +4,7 @@ import { Label } from '@common/Label';
 import { GithubIcon, GoogleIcon } from '@common/Icon';
 import { useForm } from 'react-hook-form';
 import { EmailAndPassword } from '../signup/SignUpFormUI';
+import { Link } from 'react-router-dom';
 
 type SignInFormProps = {
   rememberMe: boolean;
@@ -49,7 +50,7 @@ const LoginFormUI = ({
         <div className="flex justify-between mt-3">
           <Label htmlFor="password">Password</Label>
           <span className="text-xs font-light underline">
-            <a href="#">Forgot Password ?</a>
+            <Link to="/">Forgot Password ?</Link>
           </span>
         </div>
 
@@ -83,12 +84,12 @@ const LoginFormUI = ({
         </div>
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
           Don’t have an account yet?
-          <a
-            href="/register"
+          <Link
+            to="/register"
             className="cursor-pointer text-red hover:text-primary"
           >
             Sign up for free
-          </a>
+          </Link>
         </span>
       </div>
     </form>

@@ -11,7 +11,7 @@ type GoalSessionProps = {
 };
 
 export const GoalSession = ({ className }: GoalSessionProps) => {
-  const { isGoalOpen, setIsGoalOpen } = useUIStateStore();
+  const { isGoalOpen, isTimerOpen, setIsGoalOpen } = useUIStateStore();
   const toolBarList = [
     {
       title: 'infor',
@@ -40,8 +40,12 @@ export const GoalSession = ({ className }: GoalSessionProps) => {
       </CardHeader>
 
       <CardContent className="flex flex-col items-center justify-center gap-4 text-white">
-        <GoalSetting className="flex flex-col items-center justify-center w-full gap-4" />
-        <GoalList className="flex flex-col items-center justify-center w-full gap-2" />
+        <GoalSetting className="flex flex-col items-center justify-center w-full gap-2" />
+        <GoalList
+          className={`flex flex-col items-center justify-start w-full gap-2 overflow-y-auto ${
+            !isTimerOpen ? 'max-h-[calc(100% - 480px)]' : ''
+          }`}
+        />
       </CardContent>
     </Card>
   );

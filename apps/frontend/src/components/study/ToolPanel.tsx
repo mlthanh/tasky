@@ -1,5 +1,6 @@
 import { Card, CardContent } from '@common/Card';
 import { TooltipContent, TooltipRoot, TooltipTrigger } from '@common/Tooltip';
+import { tailwindMerge } from '@utils/merge';
 import { SVGProps } from 'react';
 
 export interface toolItemType {
@@ -10,20 +11,30 @@ export interface toolItemType {
 
 type ToolPanelProps = {
   className?: string;
+  classNameIcon?: string;
+  classNameButton?: string;
   toolList: toolItemType[];
 };
 
-const ToolPanel = ({ className, toolList }: ToolPanelProps) => {
+const ToolPanel = ({
+  className,
+  toolList,
+  classNameIcon,
+  classNameButton,
+}: ToolPanelProps) => {
   return (
     <div className={className}>
       {toolList.map((tool) => (
         <TooltipRoot key={tool.title}>
           <TooltipTrigger>
             <Card
-              className="flex items-center justify-center cursor-pointer bg-white/55"
+              className={tailwindMerge(
+                `flex items-center justify-center cursor-pointer bg-white/55`,
+                classNameButton
+              )}
               onClick={tool.handler}
             >
-              <CardContent className="p-3">
+              <CardContent className={tailwindMerge(`p-3`, classNameIcon)}>
                 {tool.icon && <tool.icon />}
               </CardContent>
             </Card>
