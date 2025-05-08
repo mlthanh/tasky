@@ -3,7 +3,7 @@ import { ReadingTimeDuotone, RoundClose } from '@common/Icon';
 import { Label } from '@common/Label';
 import StudyToolbar from '@components/study/StudyToolbar';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
-import TimerDetail from './TimerDetail';
+import TimerDetail from '../TimerDetail';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 
 interface TimerModalProps {

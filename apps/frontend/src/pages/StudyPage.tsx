@@ -52,7 +52,7 @@ const StudyPage = () => {
 
       <div className="flex justify-between mt-[20px]">
         <SessionPanel
-          className="w-[20vw] max-h-[calc(100vh-80px)]"
+          className="w-[60vw] sm:w-[20vw] max-h-[calc(100vh-80px)]"
           timer={timer}
         />
         <QuotePanel className="hidden md:block" />

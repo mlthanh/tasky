@@ -18,7 +18,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
   const bTimerRef = useRef<TimerConfigRef>(null);
 
   const { bTime, fTime, setfocusTime, setbreakTime } = useTimeStore();
-  const { setIsTimerOpen, isTimerOpen, setIsTimerDetail } = useUIStateStore();
+  const { setIsTimerOpen, setIsTimerDetail } = useUIStateStore();
   const { isMobile } = useDeviceStore();
 
   return (
