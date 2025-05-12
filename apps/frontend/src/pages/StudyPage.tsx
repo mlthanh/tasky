@@ -17,10 +17,10 @@ const StudyPage = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   const { background } = useUIStateStore();
+  const { fTime, bTime } = useTimeStore();
   const { toggleFullscreen, isFullscreen } = useFullscreen(contentRef);
 
   const [menuState, setMenuState] = useState<MenuStatus | null>(null);
-  const { fTime, bTime } = useTimeStore();
   const timer = usePomodoroTimer({ focusTime: fTime, breakTime: bTime });
 
   useEffect(() => {
@@ -50,9 +50,9 @@ const StudyPage = () => {
         />
       </div>
 
-      <div className="flex justify-between mt-[20px]">
+      <div className="flex justify-between mt-[20px] max-h-[calc(100vh-100px)]">
         <SessionPanel
-          className="w-[60vw] sm:w-[20vw] max-h-[calc(100vh-80px)]"
+          className="xl:w-[20vw] sm:w-[38vw] md:w-[32vw] lg:w-[25vw] h-full"
           timer={timer}
         />
         <QuotePanel className="hidden md:block" />

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader } from '@common/Card';
 import { Label } from '@common/Label';
-import { TimerCounter } from '../TimerCounter';
+import { TimerCounter } from '../Shared/TimerCounter';
 import { Button } from '@common/Button';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
@@ -18,7 +18,7 @@ interface TimerSessionMProps {
   timer: ReturnType<typeof usePomodoroTimer>;
 }
 
-const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
+export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
   const { isTimerOpen, setIsTimerOpen, setIsTimerDetail } = useUIStateStore();
 
   const toolBarList = [
@@ -39,14 +39,14 @@ const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
         </Label>
         <StudyToolbar toolBarList={toolBarList} />
       </CardHeader>
-      <CardContent className="flex justify-between">
+      <CardContent className="flex justify-between gap-4">
         <TimerCounter
-          className="text-3xl font-extrabold text-white"
+          className="text-3xl font-extrabold text-white sm:text-2xl"
           timer={timer}
         />
         <div className="flex gap-3">
           <Button
-            className="p-0 "
+            className="p-0"
             onClick={() => {
               setIsTimerDetail(true);
               timer.pause();
@@ -69,5 +69,3 @@ const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
     </Card>
   );
 };
-
-export default TimerSessionM;

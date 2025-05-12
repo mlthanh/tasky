@@ -2,10 +2,9 @@
 import { Card, CardContent, CardHeader } from '@common/Card';
 import { Label } from '@common/Label';
 import { Goal24, ReadingTimeDuotone } from '@common/Icon';
-import { TimerCounter } from '@components/study/SessionPanel/PersonalTimer/TimerCounter';
+import { TimerCounter } from '@components/study/SessionPanel/TimerSession/Shared/TimerCounter';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { useTaskStore, TaskStatus } from '@hooks/stores/useTaskStore';
-import { useTimeStore } from '@hooks/stores/useTimeStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import ToolPanel from './ToolPanel';
 
@@ -58,12 +57,18 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
           }}
         >
           <CardHeader>
-            <Label className="text-xs text-white" icon={<ReadingTimeDuotone />}>
+            <Label
+              className="text-xs text-white select-none"
+              icon={<ReadingTimeDuotone />}
+            >
               Personal Timer
             </Label>
           </CardHeader>
           <CardContent>
-            <TimerCounter timer={timer} className="text-xs font-semibold" />
+            <TimerCounter
+              timer={timer}
+              className="text-xs font-semibold select-none"
+            />
           </CardContent>
         </Card>
 
@@ -72,11 +77,11 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
           onClick={() => setIsGoalOpen(!isGoalOpen)}
         >
           <CardHeader>
-            <Label className="text-xs text-white" icon={<Goal24 />}>
+            <Label className="text-xs text-white select-none" icon={<Goal24 />}>
               Goal Sessions
             </Label>
           </CardHeader>
-          <CardContent className="text-xs font-semibold">
+          <CardContent className="text-xs font-semibold select-none">
             <span className="font-bold">{completedTask}</span>/{openTask}
           </CardContent>
         </Card>

@@ -21,8 +21,16 @@ export const TimerCounter = ({ className, timer }: TimerCounterProps) => {
   };
 
   return (
-    <div className={tailwindMerge('text-center text-white', className)}>
-      {formatTime(timeLeft)}
+    <div
+      className={tailwindMerge(
+        'text-center text-white relative inline-block',
+        className
+      )}
+    >
+      <span className="invisible">88:88:88</span>
+      <span className="absolute top-0 left-0 w-full h-full text-center">
+        {formatTime(timeLeft)}
+      </span>
     </div>
   );
 };

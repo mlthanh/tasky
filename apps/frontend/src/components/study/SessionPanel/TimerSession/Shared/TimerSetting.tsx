@@ -14,7 +14,7 @@ export interface TimerConfigRef {
   getTimes: () => number;
 }
 
-function TimerSetting({
+export function TimerSetting({
   initialMinute,
   initialHour,
   maxHours = 2,
@@ -67,5 +67,3 @@ function TimerSetting({
     </div>
   );
 }
-
-export default TimerSetting;

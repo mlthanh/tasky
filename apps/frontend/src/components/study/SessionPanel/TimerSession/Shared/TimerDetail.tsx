@@ -1,12 +1,10 @@
+import { useRef } from 'react';
 import { CardContent, CardFooter } from '@common/Card';
-import TimerSetting, { TimerConfigRef } from './TimerSetting';
 import { Button } from '@common/Button';
-import { useRef, useState } from 'react';
-import { useTimeStore } from '@hooks/stores/useTimeStore';
-import { useUIStateStore } from '@hooks/stores/useUIStateStore';
+import { TimerConfigRef, TimerSetting } from './TimerSetting';
+import { useTimeStore, useUIStateStore, useDeviceStore } from '@hooks/stores';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import { tailwindMerge } from '@utils/merge';
-import { useDeviceStore } from '@hooks/stores/useDeviceStore';
 
 type TimerDetailProps = {
   className?: string;
@@ -18,14 +16,14 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
   const bTimerRef = useRef<TimerConfigRef>(null);
 
   const { bTime, fTime, setfocusTime, setbreakTime } = useTimeStore();
-  const { setIsTimerOpen, setIsTimerDetail } = useUIStateStore();
+  const { setIsTimerDetail } = useUIStateStore();
   const { isMobile } = useDeviceStore();
 
   return (
     <>
       <CardContent
         className={tailwindMerge(
-          `flex flex-col items-center justify-center gap-2 text-white`,
+          `flex flex-col items-center justify-center gap-2 sm:text-white text-black`,
           className
         )}
       >
@@ -33,7 +31,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
         <TimerSetting
           ref={fTimerRef}
           step={5}
-          className="text-4xl font-extrabold"
+          className="text-4xl font-extrabold lg:text-3xl sm:text-2xl"
           initialMinute={Math.floor((fTime % 3600) / 60)}
           initialHour={Math.floor(fTime / 3600)}
         />
@@ -44,7 +42,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
           maxHours={0}
           initialMinute={Math.floor((bTime % 3600) / 60)}
           initialHour={Math.floor(bTime / 3600)}
-          className="text-4xl font-extrabold"
+          className="text-4xl font-extrabold lg:text-3xl sm:text-2xl"
         />
       </CardContent>
       <CardFooter className="w-full my-1 ">
@@ -56,7 +54,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
               setbreakTime(bTimerRef.current.getTimes());
 
               if (isMobile) {
-                setIsTimerOpen(false);
+                setIsTimerDetail(false);
               }
               setIsTimerDetail(false);
               timer.reset();

@@ -57,7 +57,12 @@ export const QuotesSession = ({
             Shuffle
           </Label>
         </div>
-        <div onClick={() => setIsQuoteShow(!isQuoteShow)}>
+        <div
+          onClick={() => {
+            console.log(isQuoteShow);
+            setIsQuoteShow(!isQuoteShow);
+          }}
+        >
           <Label
             className="text-white cursor-pointer hover:opacity-65"
             icon={<Show />}
