@@ -41,7 +41,7 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
       </CardHeader>
       <CardContent className="flex justify-between gap-4">
         <TimerCounter
-          className="text-3xl font-extrabold text-white sm:text-2xl"
+          className="text-4xl font-extrabold text-white sm:text-2xl"
           timer={timer}
         />
         <div className="flex gap-3">
@@ -52,16 +52,16 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
               timer.pause();
             }}
           >
-            <SquareRounded className="text-white " />
+            <SquareRounded className="w-6 h-6 text-white" />
           </Button>
           <Button
-            className="p-0"
+            className=""
             onClick={() => (timer.isRunning ? timer.pause() : timer.start())}
           >
             {timer.isRunning ? (
-              <Pause className="text-white " />
+              <Pause className="w-6 h-6 text-white" />
             ) : (
-              <Play className="text-white "></Play>
+              <Play className="w-6 h-6 text-white"></Play>
             )}
           </Button>
         </div>

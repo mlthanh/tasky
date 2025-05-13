@@ -15,7 +15,7 @@ interface OverlayMenusProps {
 
 export const OverlayMenus = ({ menuState, onClose }: OverlayMenusProps) => {
   return (
-    <div className="z-[999] sm:relative absolute">
+    <div className="z-[999]">
       <BackgroundPicker
         className={`px-3 py-2 text-sm bg-black/85 xl:p-7 lg:p-5 ${
           menuState !== MenuStatus.BACKGROUND ? 'hidden' : ''

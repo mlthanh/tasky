@@ -1,4 +1,8 @@
-import { BaselineSpaceDashboard, LapTimer } from '@common/Icon';
+import {
+  BaselineSpaceDashboard,
+  LapTimer,
+  ProjectsAltFill,
+} from '@common/Icon';
 import { SVGProps } from 'react';
 
 export interface MenuItemType {
@@ -7,11 +11,22 @@ export interface MenuItemType {
   icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
 }
 
+export enum SideBarUrl {
+  DASHBOARD = '/dashboard',
+  STUDY = '/study',
+  PROJECT = '/project',
+}
+
 export const getSideBarList = (): MenuItemType[] => [
   {
     title: 'Dashboard',
     url: '/dashboard',
     icon: BaselineSpaceDashboard,
+  },
+  {
+    title: 'Projects',
+    url: '/project',
+    icon: ProjectsAltFill,
   },
   {
     title: 'Study',

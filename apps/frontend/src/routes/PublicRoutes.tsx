@@ -10,7 +10,7 @@ const publicRoutes: RouteObject = {
   children: [
     { path: '/login', element: <LoginPage /> },
     { path: '/register', element: <RegisterPage /> },
-    { path: '/getting', element: <MarketingPage /> },
+    { path: '/', element: <MarketingPage /> },
   ],
 };
 

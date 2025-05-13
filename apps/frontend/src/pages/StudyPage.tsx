@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
+import { useUIStateStore, useTimeStore } from '@hooks/stores';
 import { useSidebar } from '@common/SideBar';
 import ToolPanel from '@components/study/ToolPanel';
-import { useUIStateStore } from '@hooks/stores/useUIStateStore';
-import { OverlayMenus } from '@components/study/OverlayMenus/OverlayMenus';
-import { MenuStatus } from '@components/study/OverlayMenus/OverlayMenus';
+import {
+  OverlayMenus,
+  MenuStatus,
+} from '@components/study/OverlayMenus/OverlayMenus';
 import SessionPanel from '@components/study/SessionPanel/SessionPanel';
 import { QuickStatusPanel } from '@components/study/QuickStatusPanel';
 import { useFullscreen } from '@hooks/useFullScreen';
 import { getToolList } from '@constants/StudyToolList';
 import { QuotePanel } from '@components/study/QuotePanel';
-import { useTimeStore } from '@hooks/stores/useTimeStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 
 const StudyPage = () => {
@@ -33,7 +34,6 @@ const StudyPage = () => {
       style={{
         backgroundImage: background ? `url(${background})` : undefined,
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
       ref={contentRef}

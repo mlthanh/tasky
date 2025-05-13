@@ -1,9 +1,9 @@
 import { Card, CardContent, CardHeader } from '@common/Card';
-import GoalSetting from './GoalSetting';
+import GoalSetting from '../Shared/GoalSetting';
 import { Label } from '@common/Label';
 import { ReadingTimeDuotone, RoundClose } from '@common/Icon';
-import StudyToolbar from '../../StudyToolbar';
-import { GoalList } from './Shared/GoalList';
+import StudyToolbar from '../../../StudyToolbar';
+import { GoalList } from '../Shared/GoalList';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 
 type GoalSessionProps = {

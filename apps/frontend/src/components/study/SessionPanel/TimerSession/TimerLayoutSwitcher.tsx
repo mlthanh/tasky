@@ -18,7 +18,10 @@ export const TimerLayoutSwitcher = ({ timer }: props) => {
     return isTimerDetail ? (
       <TimerModal timer={timer} />
     ) : (
-      <TimerSessionM timer={timer} className="p-5 bg-black" />
+      <TimerSessionM
+        timer={timer}
+        className="absolute p-5 transform -translate-x-1/2 -translate-y-1/2 bg-black top-1/2 left-1/2"
+      />
     );
   }
   return (

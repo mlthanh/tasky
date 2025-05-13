@@ -27,7 +27,7 @@ const LoginForm = () => {
       if (rememberMe) {
         localStorage.setItem('user', JSON.stringify({ ...user, accessToken }));
       }
-      navigate('/');
+      navigate('/dashboard');
     },
     onError(error: any) {
       alert(error.message);

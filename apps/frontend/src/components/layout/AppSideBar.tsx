@@ -14,7 +14,7 @@ import {
 } from '@common/SideBar';
 import Logo from '@components/Logo';
 import { getSideBarList } from '@constants/SideBarList';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const sideBarList = getSideBarList();
 
@@ -24,11 +24,13 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon" variant="sidebar">
       <SidebarHeader className="items-center justify-center py-1 overflow-hidden cursor-pointer">
-        {open ? (
-          <Logo />
-        ) : (
-          <span className="text-3xl font-extrabold text-primary">t.</span>
-        )}
+        <Link to={'/dashboard'} className="select-none">
+          {open ? (
+            <Logo />
+          ) : (
+            <span className="text-3xl font-extrabold text-primary">t.</span>
+          )}
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
