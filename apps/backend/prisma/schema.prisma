@@ -16,6 +16,17 @@ model User {
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @updatedAt @db.Timestamptz(3)
   email     String   @unique @db.VarChar(255)
-  role      String   @db.VarChar(255)
-  password  String   @db.VarChar(255)
+  name      String?
+  googleId  String?  @unique
+  githubId  String?  @unique
+  role      String   @default("user") @db.VarChar(255)
+
+  authType  AuthType @default(LOCAL)
+  password  String?   @db.VarChar(255)
+}
+
+enum AuthType {
+  LOCAL   
+  GOOGLE
+  GITHUB
 }

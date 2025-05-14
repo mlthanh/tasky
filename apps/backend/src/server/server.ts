@@ -3,6 +3,7 @@ import fastify from 'fastify';
 import { createContext } from './context';
 import { appRouter } from './router';
 import cors from '@fastify/cors';
+import { googleOAuth } from '../configs/oauth.config';
 
 export interface ServerOptions {
   dev?: boolean;
@@ -35,6 +36,14 @@ export function createServer(opts: ServerOptions) {
   server.register(cors, {
     origin: '*',
     methods: '*',
+  });
+
+  server.get('/auth/google', async (req, reply) => {
+    const url = googleOAuth.authorizeURL({
+      redirect_uri: 'http://localhost:4200/auth/google/callback',
+      scope: 'email profile',
+    });
+    reply.redirect(url);
   });
 
   server.register(fastifyTRPCPlugin, {

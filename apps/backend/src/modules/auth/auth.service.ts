@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { AuthType } from '@prisma/client';
 import { TRPCError } from '@trpc/server';
 import { SignInDto, SignUpDto } from './auth.dtos';
 import { sign } from 'jsonwebtoken';
@@ -6,7 +6,16 @@ import { authConfig } from '../../configs/auth.config';
 import { hash, compare } from 'bcryptjs';
 import { Context } from '../../server/context';
 
-type UserResponse = Omit<User, 'password'>;
+type UserResponse = {
+  id: number;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  name?: string;
+  role: string;
+  authType: AuthType;
+};
+
 type SignUpResult = UserResponse & { accessToken: string };
 
 export const signUp = async (
@@ -28,6 +37,7 @@ export const signUp = async (
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
     role: user.role,
+    authType: user.authType,
   };
 };
 
@@ -70,7 +80,9 @@ export const signIn = async (
     email: user.email,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
+    name: user.name,
     role: user.role,
     accessToken: token,
+    authType: user.authType,
   };
 };

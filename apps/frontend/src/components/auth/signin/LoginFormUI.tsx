@@ -75,7 +75,12 @@ const LoginFormUI = ({
           or continue with
         </span>
         <div className="flex justify-center gap-2">
-          <Button variant={'icon'}>
+          <Button
+            variant={'icon'}
+            onClick={() =>
+              (window.location.href = 'http://localhost:3000/auth/google')
+            }
+          >
             <GoogleIcon />
           </Button>
           <Button variant={'icon'}>
