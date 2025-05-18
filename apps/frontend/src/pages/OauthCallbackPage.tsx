@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useUserStore } from '@hooks/stores';
 
-export default function GoogleCallbackPage() {
+export default function OauthCallbackPage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const state = useUserStore((state) => state);
@@ -15,7 +15,6 @@ export default function GoogleCallbackPage() {
 
   const shouldFetch = Boolean(code);
 
-  // ✅ Tách useMutation ra
   const googleCallbackMutation = trpc.oauth.googleCallback.useMutation({
     onSuccess: (data) => {
       localStorage.setItem('token', data.token);
@@ -27,7 +26,7 @@ export default function GoogleCallbackPage() {
         avatarUrl,
       };
       state.signIn(user);
-      navigate('/dashboard');
+      navigate('/dashboard', { replace: true });
     },
   });
 

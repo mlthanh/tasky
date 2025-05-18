@@ -6,7 +6,8 @@
     "nx": "nx",
     "frontend:start": "nx run frontend:serve",
     "backend:start": "nx run backend:serve",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "dev": "nx run-many --target=serve --projects=frontend,backend --parallel"
   },
   "private": true,
   "dependencies": {

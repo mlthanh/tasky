@@ -38,13 +38,13 @@ export function createServer(opts: ServerOptions) {
     methods: '*',
   });
 
-  server.get('/auth/google', async (req, reply) => {
-    const url = googleOAuth.authorizeURL({
-      redirect_uri: 'http://localhost:4200/auth/google/callback',
-      scope: 'email profile',
-    });
-    reply.redirect(url);
-  });
+  // server.get('/auth/google', async (req, reply) => {
+  //   const url = googleOAuth.authorizeURL({
+  //     redirect_uri: 'http://localhost:4200/auth/google/callback',
+  //     scope: 'email profile',
+  //   });
+  //   reply.redirect(url);
+  // });
 
   server.register(fastifyTRPCPlugin, {
     prefix: prefix,

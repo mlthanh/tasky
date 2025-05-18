@@ -5,6 +5,7 @@ import { GithubIcon, GoogleIcon } from '@common/Icon';
 import { useForm } from 'react-hook-form';
 import { EmailAndPassword } from '../signup/SignUpFormUI';
 import { Link } from 'react-router-dom';
+import { OauthPanel } from '../oauth/OauthPanel';
 
 type SignInFormProps = {
   rememberMe: boolean;
@@ -74,19 +75,7 @@ const LoginFormUI = ({
         <span className="mt-2 text-sm text-center lg:mt-5 lg:text-base">
           or continue with
         </span>
-        <div className="flex justify-center gap-2">
-          <Button
-            variant={'icon'}
-            onClick={() =>
-              (window.location.href = 'http://localhost:3000/auth/google')
-            }
-          >
-            <GoogleIcon />
-          </Button>
-          <Button variant={'icon'}>
-            <GithubIcon />
-          </Button>
-        </div>
+        <OauthPanel className="flex justify-center gap-2" />
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
           Don’t have an account yet?
           <Link

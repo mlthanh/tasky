@@ -1,6 +1,7 @@
 import { router, noAuthProcedure } from '../../trpc';
 import { z } from 'zod';
 import { handleGoogleCallback } from './oauth.service';
+import { googleOAuth } from '../../../configs/oauth.config';
 
 export const oauthRouter = router({
   googleCallback: noAuthProcedure
@@ -16,4 +17,12 @@ export const oauthRouter = router({
       const { token, user } = await handleGoogleCallback(input);
       return { token, user };
     }),
+  googleAuth: noAuthProcedure.query(async () => {
+    const url = googleOAuth.authorizeURL({
+      redirect_uri: 'http://localhost:4200/auth/google/callback',
+      scope: 'email profile',
+    });
+
+    return { url };
+  }),
 });

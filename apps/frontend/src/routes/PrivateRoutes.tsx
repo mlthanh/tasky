@@ -1,8 +1,8 @@
 import { RouteObject } from 'react-router-dom';
 import PrivateLayout from '@layouts/PrivateLayout';
-import HomePage from '@pages/HomePage';
-import StudyPage from '@pages/StudyPage';
-import { ProjectPage } from '@pages/ProjectPage';
+import HomePage from '@pages/private/HomePage';
+import StudyPage from '@pages/private/StudyPage';
+import { ProjectPage } from '@pages/private/ProjectPage';
 
 const privateRoutes: RouteObject = {
   element: <PrivateLayout />,

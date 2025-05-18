@@ -1,9 +1,9 @@
 import { RouteObject } from 'react-router-dom';
 import PublicLayout from '@layouts/PublicLayout';
-import LoginPage from '@pages/LoginPage';
-import RegisterPage from '@pages/RegisterPage';
-import { MarketingPage } from '@pages/MarketingPage';
-import GoogleCallbackPage from '@pages/GoogleCallback';
+import LoginPage from '@pages/public/LoginPage';
+import RegisterPage from '@pages/public/RegisterPage';
+import { MarketingPage } from '@pages/public/MarketingPage';
+import OauthCallbackPage from '@pages/OauthCallbackPage';
 
 const publicRoutes: RouteObject = {
   element: <PublicLayout />,
@@ -12,7 +12,7 @@ const publicRoutes: RouteObject = {
     { path: '/login', element: <LoginPage /> },
     { path: '/register', element: <RegisterPage /> },
     { path: '/', element: <MarketingPage /> },
-    { path: '/auth/google/callback', element: <GoogleCallbackPage /> },
+    { path: '/auth/google/callback', element: <OauthCallbackPage /> },
   ],
 };
 

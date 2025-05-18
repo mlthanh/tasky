@@ -10,6 +10,7 @@ import { Button } from '@common/Button';
 import Input from '@common/Input';
 import { Label } from '@common/Label';
 import { Link } from 'react-router-dom';
+import { OauthPanel } from '../oauth/OauthPanel';
 
 export type EmailAndPassword = {
   email: string;
@@ -155,14 +156,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         <span className="mt-2 text-sm text-center lg:mt-5 lg:text-base">
           or continue with
         </span>
-        <div className="flex justify-center gap-2">
-          <Button variant={'icon'}>
-            <GoogleIcon />
-          </Button>
-          <Button variant={'icon'}>
-            <GithubIcon />
-          </Button>
-        </div>
+        <OauthPanel className="flex justify-center gap-2" />
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
           Do have an account yet?
           <Link
