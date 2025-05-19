@@ -80,6 +80,33 @@ module.exports = {
         border: 'hsl(var(--sidebar-border))',
         ring: 'hsl(var(--sidebar-ring))',
       },
+      keyframes: {
+        //Waterfill
+        wave: {
+          '0%': {
+            x: '-400px',
+          },
+          '100%': {
+            x: '0',
+          },
+        },
+        fillUp: {
+          '0%': {
+            height: 0,
+            y: '130px',
+          },
+          '100%': {
+            height: '160px',
+            y: '-30px',
+          },
+        },
+      },
+      animation: {
+        //Loading effect
+        waveFillUp:
+          'wave 0.7s infinite linear, fillUp 10s infinite ease-out alternate',
+        transitionTiming: 'cubic-bezier(0.36,0.55,0.63,0.48)',
+      },
     },
   },
   plugins: [],
