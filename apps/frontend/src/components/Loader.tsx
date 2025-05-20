@@ -1,8 +1,8 @@
 export default function Loader() {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center marker:text-center bg-[#00ADB5]">
       <svg
-        className="loading z-[0]"
+        className="loading"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
@@ -20,7 +20,7 @@ export default function Loader() {
             width="100%"
             height="100%"
             href="/loader_trans2.png"
-            className="bg-transparent"
+            className=""
           />
 
           <pattern
@@ -30,7 +30,7 @@ export default function Loader() {
             patternContentUnits="objectBoundingBox"
           >
             <path
-              fill="#00ADB5"
+              fill="#fff"
               fillRule="nonzero"
               d="M0.25,1H0c0,0,0-0.659,0-0.916c0.083-0.303,0.158,0.334,0.25,0C0.25,0.327,0.25,1,0.25,1z"
             />
@@ -43,7 +43,7 @@ export default function Loader() {
           x="-400"
           y="0"
           width="1600"
-          height="120"
+          height="100%"
         />
 
         <use x="0" y="0" xlinkHref="#image" opacity="1" />
