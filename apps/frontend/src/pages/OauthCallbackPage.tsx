@@ -26,7 +26,10 @@ export default function OauthCallbackPage() {
         avatarUrl,
       };
       state.signIn(user);
-      navigate('/dashboard', { replace: true });
+      if (code && window.opener) {
+        window.opener.postMessage({ type: 'oauth-google-success' }, '*');
+        window.close();
+      }
     },
   });
 
@@ -42,7 +45,7 @@ export default function OauthCallbackPage() {
   }, [shouldFetch]);
 
   if (!shouldFetch) return <div>Thiếu mã xác thực, vui lòng thử lại.</div>;
-  if (googleCallbackMutation.isPending) return <div>Đang đăng nhập...</div>;
+  if (googleCallbackMutation.isPending) <div>Loading...</div>;
   if (googleCallbackMutation.isError)
     return <div>Đăng nhập thất bại. Vui lòng thử lại.</div>;
 

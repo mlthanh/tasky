@@ -87,7 +87,7 @@ module.exports = {
             x: '-400px',
           },
           '100%': {
-            x: '0',
+            x: '0px',
           },
         },
         fillUp: {
