@@ -1,52 +1,58 @@
 import { useUserStore } from '@hooks/stores/useUserStore';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const parseJwt = (token: string) => {
   try {
     return JSON.parse(atob(token.split('.')[1]));
-  } catch (e) {
+  } catch {
     return null;
   }
 };
 
+const isTokenExpired = (token: string) => {
+  const decoded = parseJwt(token);
+  if (!decoded?.exp) return true;
+  return decoded.exp * 1000 < Date.now();
+};
+
 const AuthVerify = () => {
-  const location = useLocation();
+  const { user, signIn, signOut } = useUserStore();
   const navigate = useNavigate();
-  const state = useUserStore((state) => state);
+  const location = useLocation();
 
   useEffect(() => {
-    if (state.user) return;
-    const userJson = localStorage.getItem('user');
-    if (userJson) {
-      const user = JSON.parse(userJson);
-      if (user?.accessToken && user?.username && user?.role) {
-        state.signIn(user);
-      } else {
+    if (user) return;
+
+    const tryRefresh = async () => {
+      try {
+        const res = await axios.get('/api/auth/refresh-token', {
+          withCredentials: true,
+        });
+        const { accessToken, name, role, email } = res.data;
+        if (accessToken && name && role) {
+          signIn({ accessToken, name, role, email });
+        } else {
+          navigate('/login');
+        }
+      } catch {
+        signOut();
         navigate('/login');
       }
-    } else {
+    };
+
+    tryRefresh();
+  }, [user, signIn, signOut, navigate]);
+
+  useEffect(() => {
+    if (user?.accessToken && isTokenExpired(user.accessToken)) {
+      signOut();
       navigate('/login');
     }
-  }, [state]);
+  }, [location, user?.accessToken, signOut, navigate]);
 
-  // Check token expiration
-  useEffect(() => {
-    const userJson = localStorage.getItem('user');
-    if (!userJson) return;
-    const user = JSON.parse(userJson);
-    if (user && user.accessToken) {
-      const decodedJwt = parseJwt(user.accessToken);
-      if (decodedJwt.exp * 1000 < Date.now()) {
-        localStorage.removeItem('user');
-        console.log('Your token expired');
-        state.signOut();
-        navigate('/login');
-      }
-    }
-  }, [location, state]);
-
-  return <span style={{ position: 'absolute' }}></span>;
+  return <span style={{ position: 'absolute' }} />;
 };
 
 export default AuthVerify;

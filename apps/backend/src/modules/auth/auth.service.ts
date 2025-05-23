@@ -1,7 +1,7 @@
 import { AuthType } from '@prisma/client';
 import { TRPCError } from '@trpc/server';
 import { SignInDto, SignUpDto } from './auth.dtos';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import { authConfig } from '../../configs/auth.config';
 import { hash, compare } from 'bcryptjs';
 import { Context } from '../../server/context';
@@ -66,14 +66,31 @@ export const signIn = async (
     throw error;
   }
 
-  const token = sign(
+  const accessToken = sign(
     {
       id: user.id,
-      roles: user.role,
+      role: user.role,
     },
     authConfig.secretKey,
     { expiresIn: authConfig.jwtExpiresIn }
   );
+
+  const refreshToken = sign(
+    {
+      id: user.id,
+      role: user.role,
+    },
+    authConfig.refreshToken,
+    { expiresIn: authConfig.jwtExpiresIn }
+  );
+
+  ctx.res.setCookie('refresh_token', refreshToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7,
+  });
 
   return {
     id: user.id,
@@ -82,7 +99,39 @@ export const signIn = async (
     updatedAt: user.updatedAt,
     name: user.name,
     role: user.role,
-    accessToken: token,
     authType: user.authType,
+    accessToken,
   };
+};
+
+export const refreshToken = async (ctx: Context) => {
+  const refreshToken = ctx.req.cookies?.['refresh_token'];
+
+  if (!refreshToken) {
+    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'No refresh token' });
+  }
+
+  try {
+    const payload = verify(refreshToken, authConfig.refreshToken) as {
+      name: string;
+      role: string;
+    };
+
+    const accessToken = sign(
+      { username: payload.name, role: payload.role },
+      authConfig.secretKey,
+      { expiresIn: authConfig.jwtExpiresIn }
+    );
+
+    return {
+      accessToken,
+      username: payload.name,
+      role: payload.role,
+    };
+  } catch (error) {
+    throw new TRPCError({
+      code: 'FORBIDDEN',
+      message: 'Invalid refresh token',
+    });
+  }
 };

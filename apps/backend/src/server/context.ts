@@ -17,18 +17,31 @@ async function decodeAndVerifyJwtToken(token: string): Promise<User> {
 }
 
 export async function createContext({ req, res }: CreateFastifyContextOptions) {
+  const refreshToken = req.cookies['refresh_token'];
+
+  let user: User | undefined;
+
   if (req.headers.authorization) {
     try {
-      const user = await decodeAndVerifyJwtToken(
+      user = await decodeAndVerifyJwtToken(
         req.headers.authorization.split(' ')[1]
       );
-      return { req, res, prisma, user };
     } catch (err) {
       throw new TRPCError({ message: 'Unauthorized', code: 'UNAUTHORIZED' });
     }
   }
 
-  return { req, res, prisma };
+  if (!user && refreshToken) {
+    try {
+      user = await decodeAndVerifyJwtToken(refreshToken);
+    } catch {
+      throw new TRPCError({
+        message: 'Invalid refresh token',
+        code: 'UNAUTHORIZED',
+      });
+    }
+  }
+  return { req, res, prisma, user };
 }
 
 export type Context = inferAsyncReturnType<typeof createContext>;

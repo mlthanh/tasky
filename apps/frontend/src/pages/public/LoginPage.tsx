@@ -1,5 +1,4 @@
 import Logo from '@components/Logo';
-import women_character_img from '@assets/auth/woman-character.png';
 import LoginForm from '@components/auth/signin/LoginForm';
 
 export default function LoginPage() {
@@ -14,7 +13,7 @@ export default function LoginPage() {
       </div>
       <div className="items-end flex-1 hidden lg:flex">
         <img
-          src={women_character_img}
+          src="/auth/woman-character.png"
           className="bottom-0 w-auto max-h-[80%]"
           alt="women is working"
         />

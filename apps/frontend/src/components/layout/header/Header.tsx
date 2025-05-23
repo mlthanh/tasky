@@ -14,7 +14,7 @@ const Header = () => {
         <ThemeToggler />
         <NotificationBell className="w-5 h-5" />
         <div className="flex items-start justify-center gap-2">
-          <span className="text-sm">{user?.username}</span>
+          <span className="text-sm">{user?.name}</span>
           <div className="bg-black w-7 h-7"></div>
         </div>
       </div>

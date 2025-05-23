@@ -1,6 +1,5 @@
-import women_is_standing from '@assets/auth/woman-is-standing.png';
 import SignUpForm from '@components/auth/signup/SignUpForm';
-import Transition from '@components/effects/Transition';
+import Transition from '@components/transition/Transition';
 import { useEffect, useState } from 'react';
 import { MarketingPage } from './MarketingPage';
 import { useLocation } from 'react-router-dom';
@@ -41,7 +40,7 @@ const RegisterPage = () => {
           </div>
           <div className="items-end justify-center flex-1 hidden lg:flex">
             <img
-              src={women_is_standing}
+              src="/auth/woman-is-standing.png"
               className="bottom-0 w-auto max-h-[80%]"
               alt="women is standing"
             />

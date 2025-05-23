@@ -3,7 +3,7 @@ import PublicLayout from '@layouts/PublicLayout';
 import LoginPage from '@pages/public/LoginPage';
 import RegisterPage from '@pages/public/RegisterPage';
 import { MarketingPage } from '@pages/public/MarketingPage';
-import OauthCallbackPage from '@pages/OauthCallbackPage';
+import OauthCallbackPage from '@pages/plugin/OauthCallbackPage';
 import NotFoundPage from '@pages/public/NotFoundPage';
 
 const publicRoutes: RouteObject = {

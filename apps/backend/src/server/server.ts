@@ -3,7 +3,7 @@ import fastify from 'fastify';
 import { createContext } from './context';
 import { appRouter } from './router';
 import cors from '@fastify/cors';
-import { googleOAuth } from '../configs/oauth.config';
+import cookie from '@fastify/cookie';
 
 export interface ServerOptions {
   dev?: boolean;
@@ -42,6 +42,8 @@ export function createServer(opts: ServerOptions) {
     prefix: prefix,
     trpcOptions: { router: appRouter, createContext },
   });
+
+  server.register(cookie, {});
 
   const stop = () => server.close();
   const start = async () => {

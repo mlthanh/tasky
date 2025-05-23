@@ -15,7 +15,7 @@ const NotFoundPage = () => {
     <div className="flex m-auto bg-no-repeat lg:min-h-screen bg-full lg:bg-auth_background px-auth">
       <div className="items-end flex-1 hidden lg:flex">
         <img
-          src="./error_bg.png"
+          src="/auth/error_bg.png"
           className="bottom-0 w-auto max-h-[80%]"
           alt="women is working"
         />

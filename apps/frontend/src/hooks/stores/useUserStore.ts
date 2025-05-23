@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 
 export type User = {
-  username: string;
+  name?: string;
+  email: string;
   role: string;
-  avatarUrl: string;
+  accessToken: string;
 };
 
 type UserStore = {

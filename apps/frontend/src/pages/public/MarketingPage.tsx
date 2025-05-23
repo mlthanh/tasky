@@ -1,6 +1,6 @@
 import { Button } from '@common/Button';
 import { Medal } from '@common/Icon';
-import Transition from '@components/effects/Transition';
+import Transition from '@components/transition/Transition';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
