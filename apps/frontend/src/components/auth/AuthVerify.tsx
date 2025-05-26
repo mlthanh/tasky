@@ -1,7 +1,7 @@
-import { useUserStore } from '@hooks/stores/useUserStore';
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useUserStore } from '@hooks/stores/useUserStore';
+import { trpc } from '@utils/trpc';
 
 const parseJwt = (token: string) => {
   try {
@@ -22,37 +22,54 @@ const AuthVerify = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    if (user) return;
+  const { refetch } = trpc.auth.refreshToken.useQuery(undefined, {
+    enabled: false,
+    retry: false,
+  });
 
-    const tryRefresh = async () => {
-      try {
-        const res = await axios.get('/api/auth/refresh-token', {
-          withCredentials: true,
-        });
-        const { accessToken, name, role, email } = res.data;
-        if (accessToken && name && role) {
-          signIn({ accessToken, name, role, email });
+  useEffect(() => {
+    const initAuth = async () => {
+      const saved = localStorage.getItem('auth');
+      if (!saved) {
+        navigate('/login');
+        return;
+      }
+
+      const auth = JSON.parse(saved);
+
+      if (auth?.accessToken) {
+        if (!isTokenExpired(auth.accessToken)) {
+          signIn(auth);
         } else {
-          navigate('/login');
+          try {
+            const result = await refetch();
+            const refreshed = result.data;
+            if (refreshed?.accessToken) {
+              const { accessToken, username, email, role } = refreshed;
+              signIn({ accessToken, username, email, role });
+              localStorage.setItem(
+                'auth',
+                JSON.stringify({ accessToken, username, email, role })
+              );
+            } else {
+              throw new Error('Refresh failed');
+            }
+          } catch (err) {
+            console.error('Token refresh failed', err);
+            signOut();
+            localStorage.removeItem('auth');
+            navigate('/login');
+          }
         }
-      } catch {
-        signOut();
+      } else {
         navigate('/login');
       }
     };
 
-    tryRefresh();
+    if (!user) initAuth();
   }, [user, signIn, signOut, navigate]);
 
-  useEffect(() => {
-    if (user?.accessToken && isTokenExpired(user.accessToken)) {
-      signOut();
-      navigate('/login');
-    }
-  }, [location, user?.accessToken, signOut, navigate]);
-
-  return <span style={{ position: 'absolute' }} />;
+  return <span style={{ display: 'none' }} />;
 };
 
 export default AuthVerify;

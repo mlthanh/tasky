@@ -51,7 +51,7 @@ export const handleGoogleCallback = async (query: any) => {
     { id: user.id, roles: user.role },
     process.env.GOOGLE_CLIENT_SECRET,
     {
-      expiresIn: '7d',
+      expiresIn: '15m',
     }
   );
 

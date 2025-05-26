@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export type User = {
-  name?: string;
+  username?: string;
   email: string;
   role: string;
   accessToken: string;

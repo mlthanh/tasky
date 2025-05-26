@@ -22,18 +22,32 @@ export const signUp = async (
   input: SignUpDto,
   ctx: Context
 ): Promise<UserResponse> => {
+  const existingUser = await ctx.prisma.user.findUnique({
+    where: { email: input.email },
+  });
+
+  if (existingUser) {
+    throw new TRPCError({
+      code: 'CONFLICT',
+      message: 'Email already in use',
+    });
+  }
+
   const bcryptHash = await hash(input.password, 10);
+  const generateUsername = 'user' + Math.random().toString(36).substring(2, 8);
 
   const user = await ctx.prisma.user.create({
     data: {
       email: input.email,
       password: bcryptHash,
       role: 'user',
+      name: generateUsername,
     },
   });
   return {
     id: user.id,
     email: user.email,
+    name: user.name,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
     role: user.role,
@@ -79,9 +93,11 @@ export const signIn = async (
     {
       id: user.id,
       role: user.role,
+      email: user.email,
+      name: user.name,
     },
     authConfig.refreshToken,
-    { expiresIn: authConfig.jwtExpiresIn }
+    { expiresIn: authConfig.refreshExpiresIn }
   );
 
   ctx.res.setCookie('refresh_token', refreshToken, {
@@ -115,17 +131,19 @@ export const refreshToken = async (ctx: Context) => {
     const payload = verify(refreshToken, authConfig.refreshToken) as {
       name: string;
       role: string;
+      email: string;
     };
 
     const accessToken = sign(
       { username: payload.name, role: payload.role },
       authConfig.secretKey,
-      { expiresIn: authConfig.jwtExpiresIn }
+      { expiresIn: authConfig.refreshExpiresIn }
     );
 
     return {
       accessToken,
       username: payload.name,
+      email: payload.email,
       role: payload.role,
     };
   } catch (error) {

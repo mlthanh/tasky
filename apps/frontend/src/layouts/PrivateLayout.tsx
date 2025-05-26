@@ -10,6 +10,7 @@ const PrivateLayout = () => {
 
   return (
     <div className="light-mode dark:dark-mode font-Quicksand">
+      <AuthVerify />
       <SidebarProvider>
         <AppSidebar />
         <main className={`w-full  ${isStudyPage ? '' : 'px-app'} `}>
