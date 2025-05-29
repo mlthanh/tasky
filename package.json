@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "frontend:start": "nx run frontend:serve",
+    "frontend:start": "nx run frontend:serve --host",
+    "frontend:build": "nx run frontend:build",
     "backend:start": "nx run backend:serve",
     "prisma:migrate": "prisma migrate dev",
     "dev": "nx run-many --target=serve --projects=frontend,backend --parallel"

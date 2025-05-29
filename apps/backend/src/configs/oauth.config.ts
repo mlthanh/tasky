@@ -1,3 +1,4 @@
+// @ts-ignore
 import { AuthorizationCode } from 'simple-oauth2';
 
 export const googleOAuth = new AuthorizationCode({

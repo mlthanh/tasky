@@ -1,6 +1,8 @@
 import { googleOAuth } from '../../../configs/oauth.config';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { prisma } from '../../context';
+
+// @ts-ignore
 import { sign } from 'jsonwebtoken';
 
 const redirectUri = 'http://localhost:4200/auth/google/callback';
@@ -25,9 +27,10 @@ export const handleGoogleCallback = async (query: any) => {
       }
     );
   } catch (error) {
+    const axiosError = error as AxiosError;
     console.error(
       'Lỗi khi lấy userInfo từ Google:',
-      error?.response?.data || error
+      axiosError?.response?.data || axiosError
     );
     throw new Error('Không lấy được thông tin người dùng từ Google');
   }
