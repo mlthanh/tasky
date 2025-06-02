@@ -34,7 +34,6 @@ const AuthVerify = () => {
         navigate('/login');
         return;
       }
-
       const auth = JSON.parse(saved);
 
       if (auth?.accessToken) {
