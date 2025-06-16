@@ -13,18 +13,21 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "apps/frontend/src",
+    "baseUrl": ".",
     "paths": {
-      "@api/*": ["./api/*"],
-      "@assets/*": ["./assets/*"],
-      "@common/*": ["./components/common/*"],
-      "@components/*": ["./components/*"],
-      "@hooks/*": ["./hooks/*"],
-      "@pages/*": ["./pages/*"],
-      "@utils/*": ["./utils/*"],
-      "@contexts/*": ["./contexts/*"],
-      "@constants/*": ["./constants/*"],
-      "@layouts/*": ["./layouts/*"]
+      "@frontend/*": ["apps/frontend/src/*"],
+      "@backend/*": ["apps/backend/src/*"],
+      "@shared/*": ["libs/shared/src/*"],
+
+      // Aliases riêng cho frontend (dùng trong apps/frontend/src)
+      "@components/*": ["apps/frontend/src/components/*"],
+      "@hooks/*": ["apps/frontend/src/hooks/*"],
+      "@utils/*": ["apps/frontend/src/utils/*"],
+      "@pages/*": ["apps/frontend/src/pages/*"],
+      "@constants/*": ["apps/frontend/src/constants/*"],
+      "@contexts/*": ["apps/frontend/src/contexts/*"],
+      "@layouts/*": ["apps/frontend/src/layouts/*"],
+      "@assets/*": ["apps/frontend/src/assets/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,11 +1,11 @@
-import { Card, CardHeader } from '@common/Card';
-import { ReadingTimeDuotone, RoundClose } from '@common/Icon';
-import { Label } from '@common/Label';
+import { Card, CardHeader } from '@components/common/Card';
+import { ReadingTimeDuotone, RoundClose } from '@components/common/Icon';
+import { Label } from '@components/common/Label';
 import StudyToolbar from '@components/study/StudyToolbar';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import TimerDetail from '../Shared/TimerDetail';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
-import { Modal } from '@common/Modal';
+import { Modal } from '@components/common/Modal';
 import { useDeviceStore } from '@hooks/stores/useDeviceStore';
 
 interface TimerModalProps {

@@ -1,5 +1,4 @@
 import { useDeviceStore } from '@hooks/stores';
-import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import {
   GoalSession,
   GoalModal,

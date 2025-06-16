@@ -1,7 +1,7 @@
-import { Card, CardContent, CardFooter, CardHeader } from '@common/Card';
-import { Label } from '@common/Label';
+import { Card, CardContent, CardHeader } from '@components/common/Card';
+import { Label } from '@components/common/Label';
 import StudyToolbar from '../../StudyToolbar';
-import { ImageIcon, RoundClose } from '@common/Icon';
+import { ImageIcon, RoundClose } from '@components/common/Icon';
 import { BackgroundList } from './BackgroundList';
 
 type BackgroundPickerProps = {

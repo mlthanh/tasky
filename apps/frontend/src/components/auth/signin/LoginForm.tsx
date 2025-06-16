@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
-import LoginFormUI from './LoginFormUI';
-import { useUserStore } from '@hooks/stores/useUserStore';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '@hooks/stores/useUserStore';
 import { trpc } from '@utils/trpc';
-import { EmailAndPassword } from '../signup/SignUpFormUI';
+import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
+import LoginFormUI from './LoginFormUI';
 const LoginForm = () => {
   const navigate = useNavigate();
   const state = useUserStore((state) => state);

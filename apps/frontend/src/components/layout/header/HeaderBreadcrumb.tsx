@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from '@common/Breadcrumb';
+} from '@components/common/Breadcrumb';
 import { SideBarUrl } from '@constants/SideBarList';
 import { useLocation } from 'react-router-dom';
 

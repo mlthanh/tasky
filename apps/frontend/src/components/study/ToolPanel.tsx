@@ -1,5 +1,9 @@
-import { Card, CardContent } from '@common/Card';
-import { TooltipContent, TooltipRoot, TooltipTrigger } from '@common/Tooltip';
+import { Card, CardContent } from '@components/common/Card';
+import {
+  TooltipContent,
+  TooltipRoot,
+  TooltipTrigger,
+} from '@components/common/Tooltip';
 import { tailwindMerge } from '@utils/merge';
 import { SVGProps } from 'react';
 

@@ -1,9 +1,6 @@
-import { Button } from '@common/Button';
-import { Medal } from '@common/Icon';
-import Transition from '@components/transition/Transition';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button } from '@components/common/Button';
+import { Medal } from '@components/common/Icon';
+import { useNavigate } from 'react-router-dom';
 
 export const MarketingPage = () => {
   const navigate = useNavigate();

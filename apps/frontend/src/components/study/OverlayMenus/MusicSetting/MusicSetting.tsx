@@ -1,8 +1,8 @@
-import { Card, CardContent, CardHeader } from '@common/Card';
-import { Label } from '@common/Label';
+import { Card, CardContent, CardHeader } from '@components/common/Card';
+import { Label } from '@components/common/Label';
+import { MusicFill, RoundClose, Pause, Play } from '@components/common/Icon';
 import { useRef, useState } from 'react';
 import StudyToolbar from '../../StudyToolbar';
-import { MusicFill, RoundClose, Pause, Play } from '@common/Icon';
 import { Player } from './Player';
 
 type MusicSettingProps = {

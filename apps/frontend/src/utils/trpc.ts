@@ -1,6 +1,5 @@
-/* eslint-disable @nx/enforce-module-boundaries */
 import { createTRPCReact } from '@trpc/react-query';
-import type { AppRouter } from '../../../lib/api/type';
+import type { AppRouter } from '@shared/types/app.type';
 import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 
 export const trpc = createTRPCReact<AppRouter>();

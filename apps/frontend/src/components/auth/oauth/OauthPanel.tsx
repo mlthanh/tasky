@@ -1,5 +1,5 @@
-import { Button } from '@common/Button';
-import { GithubIcon, GoogleIcon } from '@common/Icon';
+import { Button } from '@components/common/Button';
+import { GithubIcon, GoogleIcon } from '@components/common/Icon';
 import { trpc } from '@utils/trpc';
 
 type OauthPanelProps = {

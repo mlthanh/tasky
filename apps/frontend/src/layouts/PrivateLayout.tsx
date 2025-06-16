@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '@components/layout/header/Header';
-import { SidebarProvider, SidebarTrigger } from '@common/SideBar';
+import { SidebarProvider, SidebarTrigger } from '@components/common/SideBar';
 import { AppSidebar } from '@components/layout/AppSideBar';
 import AuthVerify from '@components/auth/AuthVerify';
 

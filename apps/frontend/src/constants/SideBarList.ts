@@ -2,7 +2,7 @@ import {
   BaselineSpaceDashboard,
   LapTimer,
   ProjectsAltFill,
-} from '@common/Icon';
+} from '@components/common/Icon';
 import { SVGProps } from 'react';
 
 export interface MenuItemType {

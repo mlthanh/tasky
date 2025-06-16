@@ -4,11 +4,11 @@ import {
   ImageIcon,
   MusicFill,
   OpenInFullRounded,
-} from '@common/Icon';
+} from '@components/common/Icon';
 import { MenuStatus } from '@components/study/OverlayMenus/OverlayMenus';
 import { useDeviceStore } from '@hooks/stores';
 
-export const getToolList = ({
+export const GetToolList = ({
   isFullscreen,
   toggleFullscreen,
   setMenuState,

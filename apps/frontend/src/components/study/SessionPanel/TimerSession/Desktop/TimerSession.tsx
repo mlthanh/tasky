@@ -4,11 +4,11 @@ import {
   SquareRounded,
   Pause,
   Play,
-} from '@common/Icon';
-import { Card, CardContent, CardHeader } from '@common/Card';
-import { Label } from '@common/Label';
-import StudyToolbar from '../../../StudyToolbar';
-import { Button } from '@common/Button';
+} from '@components/common/Icon';
+import { Card, CardContent, CardHeader } from '@components/common/Card';
+import { Label } from '@components/common/Label';
+import StudyToolbar from '@components/study/StudyToolbar';
+import { Button } from '@components/common/Button';
 import { TimerCounter } from '../Shared/TimerCounter';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';

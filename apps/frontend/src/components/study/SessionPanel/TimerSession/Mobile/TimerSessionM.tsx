@@ -1,7 +1,7 @@
-import { Card, CardContent, CardHeader } from '@common/Card';
-import { Label } from '@common/Label';
+import { Card, CardContent, CardHeader } from '@components/common/Card';
+import { Label } from '@components/common/Label';
 import { TimerCounter } from '../Shared/TimerCounter';
-import { Button } from '@common/Button';
+import { Button } from '@components/common/Button';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import {
@@ -10,7 +10,7 @@ import {
   ReadingTimeDuotone,
   RoundClose,
   SquareRounded,
-} from '@common/Icon';
+} from '@components/common/Icon';
 import StudyToolbar from '@components/study/StudyToolbar';
 
 interface TimerSessionMProps {

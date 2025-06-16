@@ -19,9 +19,7 @@ const RegisterPage = () => {
     } else {
       setDelay(true);
     }
-  }, []);
-
-  useEffect(() => {});
+  }, [isFromGetting]);
 
   return (
     <>

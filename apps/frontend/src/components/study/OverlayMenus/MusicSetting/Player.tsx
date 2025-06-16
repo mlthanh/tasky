@@ -1,5 +1,5 @@
-import { Label } from '@common/Label';
-import Slider from '@common/Slider';
+import { Label } from '@components/common/Label';
+import Slider from '@components/common/Slider';
 import { ReactNode, useEffect, useRef } from 'react';
 
 type PlayerProps = {

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { CardContent, CardFooter } from '@common/Card';
-import { Button } from '@common/Button';
+import { CardContent, CardFooter } from '@components/common/Card';
+import { Button } from '@components/common/Button';
 import { TimerConfigRef, TimerSetting } from './TimerSetting';
 import { useTimeStore, useUIStateStore, useDeviceStore } from '@hooks/stores';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';

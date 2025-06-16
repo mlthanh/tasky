@@ -1,4 +1,4 @@
-import { NotificationBell } from '@common/Icon';
+import { NotificationBell } from '@components/common/Icon';
 import { HeaderBreadcrumb } from './HeaderBreadcrumb';
 import ThemeToggler from './ThemeToggler';
 

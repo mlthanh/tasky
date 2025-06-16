@@ -1,16 +1,10 @@
 import { useForm } from 'react-hook-form';
-import {
-  GithubIcon,
-  GoogleIcon,
-  CorrectIcon,
-  WrongIcon,
-  LoadingLoop,
-} from '@common/Icon';
-import { Button } from '@common/Button';
-import Input from '@common/Input';
-import { Label } from '@common/Label';
+import { CorrectIcon, WrongIcon, LoadingLoop } from '@components/common/Icon';
+import { Button } from '@components/common/Button';
+import Input from '@components/common/Input';
+import { Label } from '@components/common/Label';
+import { OauthPanel } from '@components/auth/oauth/OauthPanel';
 import { Link } from 'react-router-dom';
-import { OauthPanel } from '../oauth/OauthPanel';
 
 export type EmailAndPassword = {
   email: string;

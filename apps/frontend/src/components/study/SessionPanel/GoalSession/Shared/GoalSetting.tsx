@@ -1,9 +1,9 @@
 import { useTaskStore } from '@hooks/stores/useTaskStore';
 import { useState } from 'react';
 import { TaskStatus } from '@hooks/stores/useTaskStore';
-import { Label } from '@common/Label';
-import Input from '@common/Input';
-import { Button } from '@common/Button';
+import { Label } from '@components/common/Label';
+import Input from '@components/common/Input';
+import { Button } from '@components/common/Button';
 
 type GoalSettingProps = {
   className?: string;

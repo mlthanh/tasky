@@ -1,11 +1,10 @@
-import { Button } from '@common/Button';
-import Input from '@common/Input';
-import { Label } from '@common/Label';
-import { GithubIcon, GoogleIcon } from '@common/Icon';
+import { Button } from '@components/common/Button';
+import Input from '@components/common/Input';
+import { Label } from '@components/common/Label';
+import { OauthPanel } from '@components/auth/oauth/OauthPanel';
+import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import { useForm } from 'react-hook-form';
-import { EmailAndPassword } from '../signup/SignUpFormUI';
 import { Link } from 'react-router-dom';
-import { OauthPanel } from '../oauth/OauthPanel';
 
 type SignInFormProps = {
   rememberMe: boolean;

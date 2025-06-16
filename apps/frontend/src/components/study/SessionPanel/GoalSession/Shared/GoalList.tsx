@@ -1,5 +1,5 @@
-import { Button } from '@common/Button';
-import { Checked, RoundClose, Unchecked } from '@common/Icon';
+import { Button } from '@components/common/Button';
+import { Checked, RoundClose, Unchecked } from '@components/common/Icon';
 import { TaskStatus, useTaskStore } from '@hooks/stores/useTaskStore';
 type GoalListProps = {
   className?: string;

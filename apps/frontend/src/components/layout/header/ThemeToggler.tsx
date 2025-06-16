@@ -1,5 +1,5 @@
 import { useTheme } from '@contexts/ThemeProvider';
-import { SunIcon, MoonIcon } from '@common/Icon';
+import { SunIcon, MoonIcon } from '@components/common/Icon';
 
 export default function ThemeToggler() {
   const { CurrentTheme, ChangeTheme } = useTheme();

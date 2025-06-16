@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useUIStateStore, useTimeStore } from '@hooks/stores';
-import { useSidebar } from '@common/SideBar';
+import { useSidebar } from '@components/common/SideBar';
 import ToolPanel from '@components/study/ToolPanel';
 import {
   OverlayMenus,
@@ -9,7 +9,7 @@ import {
 import SessionPanel from '@components/study/SessionPanel/SessionPanel';
 import { QuickStatusPanel } from '@components/study/QuickStatusPanel';
 import { useFullscreen } from '@hooks/useFullScreen';
-import { getToolList } from '@constants/StudyToolList';
+import { GetToolList } from '@constants/StudyToolList';
 import { QuotePanel } from '@components/study/QuotePanel';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 
@@ -41,7 +41,7 @@ const StudyPage = () => {
       <div className="flex items-center justify-between pt-5">
         <QuickStatusPanel timer={timer} />
         <ToolPanel
-          toolList={getToolList({
+          toolList={GetToolList({
             isFullscreen,
             toggleFullscreen,
             setMenuState,

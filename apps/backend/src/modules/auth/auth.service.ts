@@ -1,22 +1,10 @@
-import { AuthType } from '@prisma/client';
 import { TRPCError } from '@trpc/server';
-import { SignInDto, SignUpDto } from './auth.dtos';
+import { SignInDto, SignUpDto } from '@shared/schemas/auth.schema';
 import { sign, verify } from 'jsonwebtoken';
-import { authConfig } from '../../configs/auth.config';
+import { authConfig } from '@backend/configs/auth.config';
 import { hash, compare } from 'bcryptjs';
-import { Context } from '../../server/context';
-
-type UserResponse = {
-  id: number;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  name?: string;
-  role: string;
-  authType: AuthType;
-};
-
-type SignUpResult = UserResponse & { accessToken: string };
+import { Context } from '@backend/server/context';
+import { UserResponse, SignInResponse } from '@shared/types/auth.type';
 
 export const signUp = async (
   input: SignUpDto,
@@ -58,7 +46,7 @@ export const signUp = async (
 export const signIn = async (
   input: SignInDto,
   ctx: Context
-): Promise<SignUpResult> => {
+): Promise<SignInResponse> => {
   const user = await ctx.prisma.user.findUnique({
     where: {
       email: input.email,

@@ -1,9 +1,6 @@
-import { GoalSession } from '@components/study/SessionPanel/GoalSession/Desktop/GoalSession';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
-import { useDeviceStore } from '@hooks/stores/useDeviceStore';
 import { TimerLayoutSwitcher } from './TimerSession/TimerLayoutSwitcher';
-import { useEffect, useRef, useState } from 'react';
 import { GoalLayoutSwitcher } from './GoalSession/GoalLayoutSwitcher';
 
 interface SessionPanelProps {

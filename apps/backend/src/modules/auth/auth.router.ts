@@ -1,5 +1,5 @@
-import { noAuthProcedure, router } from '../../server/trpc';
-import { userCredentialsSchema } from './auth.dtos';
+import { noAuthProcedure, router } from '@backend/server/trpc';
+import { userCredentialsSchema } from '@shared/schemas/auth.schema';
 import { refreshToken, signIn, signUp } from './auth.service';
 
 export const authRouter = router({

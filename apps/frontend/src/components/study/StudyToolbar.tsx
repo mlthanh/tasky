@@ -1,4 +1,4 @@
-import { Button } from '@common/Button';
+import { Button } from '@components/common/Button';
 import { ReactNode } from 'react';
 
 type ToolBarItem = {

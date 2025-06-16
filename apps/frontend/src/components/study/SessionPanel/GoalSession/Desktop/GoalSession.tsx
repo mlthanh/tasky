@@ -1,10 +1,10 @@
-import { Card, CardContent, CardHeader } from '@common/Card';
+import { Card, CardContent, CardHeader } from '@components/common/Card';
 import GoalSetting from '../Shared/GoalSetting';
-import { Label } from '@common/Label';
-import { ReadingTimeDuotone, RoundClose } from '@common/Icon';
-import StudyToolbar from '../../../StudyToolbar';
-import { GoalList } from '../Shared/GoalList';
+import { Label } from '@components/common/Label';
+import { ReadingTimeDuotone, RoundClose } from '@components/common/Icon';
+import StudyToolbar from '@components/study/StudyToolbar';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
+import { GoalList } from '../Shared/GoalList';
 
 type GoalSessionProps = {
   className?: string;

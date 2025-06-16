@@ -1,4 +1,3 @@
-import { NotificationBell } from '@common/Icon';
 import {
   Sidebar,
   SidebarContent,
@@ -11,7 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from '@common/SideBar';
+} from '@components/common/SideBar';
 import Logo from '@components/Logo';
 import { getSideBarList } from '@constants/SideBarList';
 import { Link, NavLink } from 'react-router-dom';
