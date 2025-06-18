@@ -27,7 +27,7 @@ export async function createContext({ req, res }: CreateFastifyContextOptions) {
         req.headers.authorization.split(' ')[1]
       );
     } catch (err) {
-      throw new TRPCError({ message: 'Unauthorized', code: 'UNAUTHORIZED' });
+      user = undefined;
     }
   }
 
@@ -35,10 +35,7 @@ export async function createContext({ req, res }: CreateFastifyContextOptions) {
     try {
       user = await decodeAndVerifyJwtToken(refreshToken);
     } catch {
-      throw new TRPCError({
-        message: 'Invalid refresh token',
-        code: 'UNAUTHORIZED',
-      });
+      user = undefined;
     }
   }
   return { req, res, prisma, user };

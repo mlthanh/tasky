@@ -20,7 +20,6 @@ const isTokenExpired = (token: string) => {
 const AuthVerify = () => {
   const { user, signIn, signOut } = useUserStore();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const { refetch } = trpc.auth.refreshToken.useQuery(undefined, {
     enabled: false,

@@ -20,7 +20,7 @@ model User {
   googleId  String?  @unique
   githubId  String?  @unique
   role      String   @default("user") @db.VarChar(255)
-
+  
   authType  AuthType @default(LOCAL)
   password  String?   @db.VarChar(255)
 }

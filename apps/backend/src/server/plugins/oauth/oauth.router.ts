@@ -13,8 +13,17 @@ export const oauthRouter = router({
         prompt: z.string().optional(),
       })
     )
-    .mutation(async ({ input }) => {
+    .mutation(async ({ input, ctx }) => {
       const { token, user } = await handleGoogleCallback(input);
+
+      ctx.res.setCookie('refresh_token', token, {
+        httpOnly: true,
+        secure: true,
+        path: '/',
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7, // 7 ngày
+      });
+
       return { token, user };
     }),
   googleAuth: noAuthProcedure.query(async () => {
