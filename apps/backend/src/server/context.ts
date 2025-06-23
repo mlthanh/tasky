@@ -12,7 +12,7 @@ export interface User {
 }
 
 async function decodeAndVerifyJwtToken(token: string): Promise<User> {
-  const decoded = verify(token, authConfig.secretKey);
+  const decoded = verify(token, authConfig.tokenKey);
   return decoded as User;
 }
 

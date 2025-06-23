@@ -22,14 +22,14 @@ export const signUp = async (
   }
 
   const bcryptHash = await hash(input.password, 10);
-  const generateUsername = 'user' + Math.random().toString(36).substring(2, 8);
+  const generatedUsername = 'user' + Math.random().toString(36).substring(2, 8);
 
   const user = await ctx.prisma.user.create({
     data: {
       email: input.email,
       password: bcryptHash,
       role: 'user',
-      name: generateUsername,
+      name: generatedUsername,
     },
   });
   return {
@@ -71,10 +71,11 @@ export const signIn = async (
   const accessToken = sign(
     {
       id: user.id,
+      email: user.email,
       role: user.role,
     },
-    authConfig.secretKey,
-    { expiresIn: authConfig.jwtExpiresIn }
+    authConfig.tokenKey,
+    { expiresIn: authConfig.tokenExpiresIn }
   );
 
   const refreshToken = sign(
@@ -82,9 +83,8 @@ export const signIn = async (
       id: user.id,
       role: user.role,
       email: user.email,
-      name: user.name,
     },
-    authConfig.refreshToken,
+    authConfig.refreshTokenKey,
     { expiresIn: authConfig.refreshExpiresIn }
   );
 
@@ -116,24 +116,18 @@ export const refreshToken = async (ctx: Context) => {
   }
 
   try {
-    const payload = verify(refreshToken, authConfig.refreshToken) as {
-      name: string;
-      role: string;
-      email: string;
-    };
+    const payload = verify(
+      refreshToken,
+      authConfig.refreshTokenKey
+    ) as SignInResponse;
 
     const accessToken = sign(
-      { username: payload.name, role: payload.role },
-      authConfig.secretKey,
-      { expiresIn: authConfig.refreshExpiresIn }
+      { email: payload.email, role: payload.role },
+      authConfig.tokenKey,
+      { expiresIn: authConfig.tokenExpiresIn }
     );
 
-    return {
-      accessToken,
-      username: payload.name,
-      email: payload.email,
-      role: payload.role,
-    };
+    return { ...payload, accessToken };
   } catch (error) {
     throw new TRPCError({
       code: 'FORBIDDEN',
