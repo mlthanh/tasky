@@ -16,7 +16,15 @@ const OauthCallbackPage = () => {
 
   const { mutate, isPending, isError } = trpc.oauth.googleCallback.useMutation({
     onSuccess: ({ user, token }) => {
-      signIn({ ...user, accessToken: token });
+      const auth = {
+        email: user.email,
+        username: user.name ?? user.email,
+        role: user.role,
+        accessToken: token,
+      };
+
+      signIn(auth);
+      localStorage.setItem('auth', JSON.stringify({ ...auth }));
 
       if (window.opener) {
         window.opener.postMessage({ type: 'oauth-google-success' }, '*');

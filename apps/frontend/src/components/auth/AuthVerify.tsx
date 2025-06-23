@@ -33,6 +33,7 @@ const AuthVerify = () => {
         navigate('/login');
         return;
       }
+
       const auth = JSON.parse(saved);
 
       if (auth?.accessToken) {
@@ -64,8 +65,29 @@ const AuthVerify = () => {
       }
     };
 
-    if (!user) initAuth();
-  }, [user, signIn, signOut, navigate]);
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'oauth-google-success') {
+        const saved = localStorage.getItem('auth');
+        if (saved) {
+          const auth = JSON.parse(saved);
+          if (auth?.accessToken) {
+            signIn(auth);
+            navigate('/dashboard');
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+
+    if (!user) {
+      initAuth();
+    }
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, [user, signIn, signOut, navigate, refetch]);
 
   return <span style={{ display: 'none' }} />;
 };

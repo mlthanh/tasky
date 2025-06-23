@@ -2,6 +2,8 @@ import { router, noAuthProcedure } from '../../trpc';
 import { z } from 'zod';
 import { handleGoogleCallback } from './oauth.service';
 import { googleOAuth } from '../../../configs/oauth.config';
+import { sign } from 'jsonwebtoken';
+import { authConfig } from '@backend/configs/auth.config';
 
 export const oauthRouter = router({
   googleCallback: noAuthProcedure
@@ -16,12 +18,23 @@ export const oauthRouter = router({
     .mutation(async ({ input, ctx }) => {
       const { token, user } = await handleGoogleCallback(input);
 
-      ctx.res.setCookie('refresh_token', token, {
+      const refreshToken = sign(
+        {
+          id: user.id,
+          role: user.role,
+          email: user.email,
+          name: user.name,
+        },
+        authConfig.refreshToken,
+        { expiresIn: authConfig.refreshExpiresIn }
+      );
+
+      ctx.res.setCookie('refresh_token', refreshToken, {
         httpOnly: true,
-        secure: true,
-        path: '/',
+        secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
-        maxAge: 60 * 60 * 24 * 7, // 7 ngày
+        path: '/',
+        maxAge: 60 * 60 * 24 * 7,
       });
 
       return { token, user };
