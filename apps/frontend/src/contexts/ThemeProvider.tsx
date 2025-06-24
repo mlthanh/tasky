@@ -41,6 +41,8 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setTheme('dark');
       document.documentElement.classList.add('dark');
+    } else {
+      window.localStorage.setItem('theme', 'light');
     }
   }, []);
 

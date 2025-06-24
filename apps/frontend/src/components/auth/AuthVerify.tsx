@@ -44,11 +44,11 @@ const AuthVerify = () => {
             const result = await refetch();
             const refreshed = result.data;
             if (refreshed?.accessToken) {
-              const { accessToken, username, email, role } = refreshed;
-              signIn({ accessToken, username, email, role });
+              const { accessToken, name, email, role } = refreshed;
+              signIn({ accessToken, username: name, email, role });
               localStorage.setItem(
                 'auth',
-                JSON.stringify({ accessToken, username, email, role })
+                JSON.stringify({ accessToken, username: name, email, role })
               );
             } else {
               throw new Error('Refresh failed');

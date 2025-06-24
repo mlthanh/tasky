@@ -6,9 +6,9 @@ export default function ThemeToggler() {
   return (
     <button
       className="flex items-center justify-center w-6 h-6 p-1 ml-3 rounded-full ease light-mode dark:dark-mode"
-      onClick={ChangeTheme}
+      onClick={() => ChangeTheme()}
     >
-      {CurrentTheme === 'light' ? <SunIcon /> : <MoonIcon />}
+      {CurrentTheme === 'light' ? <MoonIcon /> : <SunIcon />}
     </button>
   );
 }

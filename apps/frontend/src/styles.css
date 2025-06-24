@@ -4,10 +4,10 @@
 
 @layer components {
   .dark-mode {
-    @apply bg-light-mode text-dark-mode;
+    @apply bg-dark-mode text-light-mode;
   }
 
   .light-mode {
-    @apply bg-dark-mode text-light-mode;
+    @apply bg-light-mode text-dark-mode;
   }
 }

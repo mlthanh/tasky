@@ -15,7 +15,7 @@ const PublicLayout = () => {
   }, [navigate]);
 
   return (
-    <div className="relative light-mode dark:dark-mode font-Quicksand">
+    <div className="relative font-Quicksand">
       <Outlet />
     </div>
   );
