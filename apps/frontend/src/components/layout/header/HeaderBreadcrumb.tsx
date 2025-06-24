@@ -6,21 +6,24 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@components/common/Breadcrumb';
-import { SideBarUrl } from '@constants/SideBarList';
+import {
+  ApplicationSideBarUrl,
+  WorkspacesSideBarUrl,
+} from '@frontend/constants/sidebar';
 import { useLocation } from 'react-router-dom';
 
 export function HeaderBreadcrumb() {
   const location = useLocation();
-  type pathType = SideBarUrl;
+  type pathType = ApplicationSideBarUrl | WorkspacesSideBarUrl;
 
   const routingPath = (path: pathType) => {
     switch (path) {
-      case SideBarUrl.DASHBOARD:
+      case ApplicationSideBarUrl.DASHBOARD:
         return 'Dashboard';
-      case SideBarUrl.STUDY:
+      case ApplicationSideBarUrl.STUDY:
         return 'Study';
-      case SideBarUrl.PROJECT:
-        return 'Projects';
+      case WorkspacesSideBarUrl.PROJECT:
+        return 'Project';
       default:
         return '';
     }

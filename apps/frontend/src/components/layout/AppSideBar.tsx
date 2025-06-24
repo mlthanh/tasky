@@ -12,10 +12,8 @@ import {
   useSidebar,
 } from '@components/common/SideBar';
 import Logo from '@components/Logo';
-import { getSideBarList } from '@constants/SideBarList';
+import { SideBarList } from '@frontend/constants/sidebar';
 import { Link, NavLink } from 'react-router-dom';
-
-const sideBarList = getSideBarList();
 
 export function AppSidebar() {
   const { open } = useSidebar();
@@ -32,30 +30,32 @@ export function AppSidebar() {
         </Link>
       </SidebarHeader>
       <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {sideBarList.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton tooltip={item.title}>
-                    <NavLink
-                      to={item.url}
-                      className={({ isActive }) =>
-                        `flex justify-center gap-3 ${
-                          isActive ? 'text-primary font-bold' : ''
-                        }`
-                      }
-                    >
-                      {item.icon && <item.icon className="w-4 h-auto" />}
-                      <span>{item.title}</span>
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+        {SideBarList.map((group) => (
+          <SidebarGroup key={group.group}>
+            <SidebarGroupLabel>{group.group}</SidebarGroupLabel>
+            <SidebarGroupContent>
+              {group.items.map((item) => (
+                <SidebarMenu>
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton tooltip={item.title}>
+                      <NavLink
+                        to={item.url}
+                        className={({ isActive }) =>
+                          `flex justify-center gap-3 ${
+                            isActive ? 'text-primary font-bold' : ''
+                          }`
+                        }
+                      >
+                        {item.icon && <item.icon className="w-4 h-auto" />}
+                        <span>{item.title}</span>
+                      </NavLink>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
               ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ))}
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>

@@ -13,10 +13,10 @@ const PrivateLayout = () => {
       <AuthVerify />
       <SidebarProvider>
         <AppSidebar />
-        <main className={`w-full  ${isStudyPage ? '' : 'px-app'} `}>
+        <main className={`w-full`}>
           <div
-            className={`flex items-center justify-center ${
-              isStudyPage ? 'invisible h-0' : ''
+            className={`border-b-2 flex items-center justify-center ${
+              isStudyPage ? 'invisible h-0' : 'px-app'
             }`}
           >
             <SidebarTrigger className="inline-block" />
@@ -24,7 +24,9 @@ const PrivateLayout = () => {
           </div>
 
           <div
-            className={`${isStudyPage ? '' : 'mt-5'} light-mode dark:dark-mode`}
+            className={`${
+              isStudyPage ? '' : 'mt-5 px-app'
+            } light-mode dark:dark-mode`}
           >
             <Outlet />
           </div>
