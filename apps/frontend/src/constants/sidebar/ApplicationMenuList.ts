@@ -1,8 +1,4 @@
-import {
-  BaselineSpaceDashboard,
-  LapTimer,
-  ProjectsAltFill,
-} from '@components/common/Icon';
+import { BaselineSpaceDashboard, LapTimer } from '@components/common/Icon';
 import { MenuItemType } from '.';
 
 export enum ApplicationSideBarUrl {

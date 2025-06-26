@@ -13,7 +13,11 @@ const PrivateLayout = () => {
       <AuthVerify />
       <SidebarProvider>
         <AppSidebar />
-        <main className={`w-full`}>
+        <main
+          className={`w-full ${
+            isStudyPage ? 'overflow-y-hidden h-screen' : ''
+          }`}
+        >
           <div
             className={`border-b-2 flex items-center justify-center ${
               isStudyPage ? 'invisible h-0' : 'px-app'
