@@ -19,7 +19,7 @@ const LoginForm = () => {
         username: name,
         role,
         email,
-        accessToken,
+        accessToken
       };
       state.signIn(user);
 
@@ -35,7 +35,7 @@ const LoginForm = () => {
     },
     onError(error: any) {
       alert(error.message);
-    },
+    }
   });
   const onSubmit = (values: EmailAndPassword) => {
     signInMutation.mutate(values);

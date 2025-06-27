@@ -3,7 +3,7 @@ import {
   RoundClose,
   SquareRounded,
   Pause,
-  Play,
+  Play
 } from '@components/common/Icon';
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { Label } from '@components/common/Label';
@@ -29,8 +29,8 @@ export const TimerSession = ({ className, timer }: TimerSessionProps) => {
       icon: <RoundClose />,
       handler: () => {
         setIsTimerOpen(!isTimerOpen);
-      },
-    },
+      }
+    }
   ];
 
   return (

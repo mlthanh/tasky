@@ -2,7 +2,6 @@ import { googleOAuth } from '../../../configs/oauth.config';
 import axios, { AxiosError } from 'axios';
 import { prisma } from '../../context';
 
-// @ts-ignore
 import { sign } from 'jsonwebtoken';
 
 const redirectUri = 'http://localhost:4200/auth/google/callback';
@@ -13,7 +12,7 @@ export const handleGoogleCallback = async (query: any) => {
   const tokenParams = {
     code,
     redirect_uri: redirectUri,
-    scope: 'email profile',
+    scope: 'email profile'
   };
 
   const accessToken = await googleOAuth.getToken(tokenParams);
@@ -23,7 +22,7 @@ export const handleGoogleCallback = async (query: any) => {
     userInfo = await axios.get(
       'https://www.googleapis.com/oauth2/v2/userinfo',
       {
-        headers: { Authorization: `Bearer ${accessToken.token.access_token}` },
+        headers: { Authorization: `Bearer ${accessToken.token.access_token}` }
       }
     );
   } catch (error) {
@@ -46,15 +45,15 @@ export const handleGoogleCallback = async (query: any) => {
       googleId,
       role: 'user',
       authType: 'GOOGLE',
-      password: null,
-    },
+      password: null
+    }
   });
 
   const jwt = sign(
     { id: user.id, roles: user.role },
     process.env.GOOGLE_CLIENT_SECRET,
     {
-      expiresIn: '15m',
+      expiresIn: '15m'
     }
   );
 

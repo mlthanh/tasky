@@ -9,7 +9,7 @@ import {
   Play,
   ReadingTimeDuotone,
   RoundClose,
-  SquareRounded,
+  SquareRounded
 } from '@components/common/Icon';
 import StudyToolbar from '@components/study/StudyToolbar';
 
@@ -27,8 +27,8 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
       icon: <RoundClose />,
       handler: () => {
         setIsTimerOpen(!isTimerOpen);
-      },
-    },
+      }
+    }
   ];
 
   return (

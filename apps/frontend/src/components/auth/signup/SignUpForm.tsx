@@ -10,7 +10,7 @@ const SignUpForm = () => {
     },
     onError(error: any) {
       alert(error.message);
-    },
+    }
   });
 
   const onSubmit = (values: EmailAndPassword) => {

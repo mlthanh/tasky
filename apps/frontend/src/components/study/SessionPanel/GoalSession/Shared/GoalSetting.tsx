@@ -19,7 +19,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
       id: crypto.randomUUID(),
       status: TaskStatus.OPEN,
       content: inputValue.trim(),
-      date: new Date(),
+      date: new Date()
     };
 
     addTask(newTask);

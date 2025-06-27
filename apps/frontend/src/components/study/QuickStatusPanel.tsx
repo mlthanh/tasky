@@ -23,13 +23,13 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
     {
       title: 'Timer',
       icon: ReadingTimeDuotone,
-      handler: () => setIsTimerOpen(!isTimerOpen),
+      handler: () => setIsTimerOpen(!isTimerOpen)
     },
     {
       title: 'Goal',
       icon: Goal24,
-      handler: () => setIsGoalOpen(!isGoalOpen),
-    },
+      handler: () => setIsGoalOpen(!isGoalOpen)
+    }
   ];
 
   const completedTask = taskList.filter(

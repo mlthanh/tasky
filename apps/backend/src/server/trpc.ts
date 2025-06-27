@@ -11,7 +11,7 @@ const t = initTRPC.context<Context>().create({
       return { ...shape, message: 'Internal server error' };
     }
     return shape;
-  },
+  }
 });
 
 const isAuthenticated = t.middleware(({ next, ctx }) => {
@@ -20,8 +20,8 @@ const isAuthenticated = t.middleware(({ next, ctx }) => {
   }
   return next({
     ctx: {
-      user: ctx.user,
-    },
+      user: ctx.user
+    }
   });
 });
 
@@ -31,8 +31,8 @@ const isAdmin = t.middleware(({ next, ctx }) => {
   }
   return next({
     ctx: {
-      user: ctx.user,
-    },
+      user: ctx.user
+    }
   });
 });
 

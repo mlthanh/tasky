@@ -6,7 +6,7 @@ import { router } from './trpc';
 export const appRouter = router({
   auth: authRouter,
   quote: quoteRouter,
-  oauth: oauthRouter,
+  oauth: oauthRouter
 });
 
 export type AppRouter = typeof appRouter;

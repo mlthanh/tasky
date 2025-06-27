@@ -3,40 +3,40 @@ import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 const bgList = [
   {
     id: 'image1',
-    src: '/study/img/anime1.jpg',
+    src: '/study/img/anime1.jpg'
   },
   {
     id: 'image2',
-    src: '/study/img/anime2.jpg',
+    src: '/study/img/anime2.jpg'
   },
   {
     id: 'image3',
-    src: '/study/img/anime3.jpg',
+    src: '/study/img/anime3.jpg'
   },
   {
     id: 'image4',
-    src: '/study/img/anime4.jpg',
+    src: '/study/img/anime4.jpg'
   },
   {
     id: 'image5',
-    src: '/study/img/anime5.jpg',
+    src: '/study/img/anime5.jpg'
   },
   {
     id: 'image6',
-    src: '/study/img/anime6.jpg',
+    src: '/study/img/anime6.jpg'
   },
   {
     id: 'image7',
-    src: '/study/img/anime7.jpg',
+    src: '/study/img/anime7.jpg'
   },
   {
     id: 'image8',
-    src: '/study/img/anime8.jpg',
+    src: '/study/img/anime8.jpg'
   },
   {
     id: 'image9',
-    src: '/study/img/anime9.jpg',
-  },
+    src: '/study/img/anime9.jpg'
+  }
 ];
 
 export const BackgroundList = () => {

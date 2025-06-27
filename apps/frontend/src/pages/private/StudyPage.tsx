@@ -4,7 +4,7 @@ import { useSidebar } from '@components/common/SideBar';
 import ToolPanel from '@components/study/ToolPanel';
 import {
   OverlayMenus,
-  MenuStatus,
+  MenuStatus
 } from '@components/study/OverlayMenus/OverlayMenus';
 import SessionPanel from '@components/study/SessionPanel/SessionPanel';
 import { QuickStatusPanel } from '@components/study/QuickStatusPanel';
@@ -34,7 +34,7 @@ const StudyPage = () => {
       style={{
         backgroundImage: background ? `url(${background})` : undefined,
         backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
+        backgroundRepeat: 'no-repeat'
       }}
       ref={contentRef}
     >
@@ -44,7 +44,7 @@ const StudyPage = () => {
           toolList={GetToolList({
             isFullscreen,
             toggleFullscreen,
-            setMenuState,
+            setMenuState
           })}
           className="flex items-center justify-center gap-2"
         />

@@ -5,7 +5,7 @@
   "scripts": {
     "nx": "nx",
     "prepare": "husky install",
-    "lint": "eslint . --ext .js,.ts,.tsx",
+    "lint": "eslint \"apps/**/*.{js,ts,tsx}\"",
     "frontend:start": "nx run frontend:serve --host",
     "frontend:build": "nx run frontend:build",
     "backend:start": "nx run backend:serve",

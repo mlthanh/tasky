@@ -1,7 +1,7 @@
 import { useDeviceStore } from '@hooks/stores';
 import {
   GoalSession,
-  GoalModal,
+  GoalModal
 } from '@components/study/SessionPanel/GoalSession';
 
 export const GoalLayoutSwitcher = () => {

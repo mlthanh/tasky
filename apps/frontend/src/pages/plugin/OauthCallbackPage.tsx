@@ -18,9 +18,9 @@ const OauthCallbackPage = () => {
     onSuccess: ({ user, token }) => {
       const auth = {
         email: user.email,
-        username: user.name ?? user.email,
+        username: user.username ?? user.email,
         role: user.role,
-        accessToken: token,
+        accessToken: token
       };
 
       signIn(auth);
@@ -30,7 +30,7 @@ const OauthCallbackPage = () => {
         window.opener.postMessage({ type: 'oauth-google-success' }, '*');
         window.close();
       }
-    },
+    }
   });
 
   useEffect(() => {

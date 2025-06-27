@@ -15,7 +15,7 @@ export default function Slider({
   min = 0,
   max = 100,
   step = 1,
-  className,
+  className
 }: CustomSliderProps) {
   const percent = ((value - min) / (max - min)) * 100;
 
@@ -59,7 +59,7 @@ export default function Slider({
       )}
       style={{
         background: `linear-gradient(to right, #00ADB5 ${percent}%, white ${percent}%)`,
-        borderRadius: '9999px',
+        borderRadius: '9999px'
       }}
     />
   );

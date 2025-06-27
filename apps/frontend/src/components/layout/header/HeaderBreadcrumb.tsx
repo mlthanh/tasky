@@ -4,11 +4,11 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
+  BreadcrumbSeparator
 } from '@components/common/Breadcrumb';
 import {
   ApplicationSideBarUrl,
-  WorkspacesSideBarUrl,
+  WorkspacesSideBarUrl
 } from '@frontend/constants/sidebar';
 import { useLocation } from 'react-router-dom';
 

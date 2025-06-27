@@ -9,8 +9,8 @@ const privateRoutes: RouteObject = {
   children: [
     { path: '/dashboard', element: <HomePage /> },
     { path: '/study', element: <StudyPage /> },
-    { path: '/project', element: <ProjectPage /> },
-  ],
+    { path: '/project', element: <ProjectPage /> }
+  ]
 };
 
 export default privateRoutes;

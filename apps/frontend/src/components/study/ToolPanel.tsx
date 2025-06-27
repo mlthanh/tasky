@@ -33,12 +33,12 @@ const ToolPanel = ({
           <TooltipTrigger>
             <Card
               className={tailwindMerge(
-                `flex items-center justify-center cursor-pointer bg-white/55`,
+                'flex items-center justify-center cursor-pointer bg-white/55',
                 classNameButton
               )}
               onClick={tool.handler}
             >
-              <CardContent className={tailwindMerge(`p-3`, classNameIcon)}>
+              <CardContent className={tailwindMerge('p-3', classNameIcon)}>
                 {tool.icon && <tool.icon />}
               </CardContent>
             </Card>

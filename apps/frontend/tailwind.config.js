@@ -8,27 +8,27 @@ module.exports = {
       __dirname,
       '{src,pages,components,app}/**/*!(*.stories|*.spec).{ts,tsx,html}'
     ),
-    ...createGlobPatternsForDependencies(__dirname),
+    ...createGlobPatternsForDependencies(__dirname)
   ],
   theme: {
     extend: {
       backgroundSize: {
-        full: '100% 100%',
+        full: '100% 100%'
       },
       backgroundImage: {
-        auth_background: "url('/auth/background.png')",
+        auth_background: "url('/auth/background.png')"
       },
       fontFamily: {
         Jost: ['Jost', 'sans-serif'],
-        Quicksand: ['Quicksand', 'sans-serif'],
+        Quicksand: ['Quicksand', 'sans-serif']
       },
       fontWeight: {
         display: {
           light: 300,
           normal: 400,
           semibold: 600,
-          bold: 700,
-        },
+          bold: 700
+        }
       },
       colors: {
         'dark-mode': '#212332',
@@ -39,16 +39,16 @@ module.exports = {
         background: '#F5F5F5',
         primary: {
           DEFAULT: '#00ADB5',
-          100: '#C0DBEA',
-        },
+          100: '#C0DBEA'
+        }
       },
       boxShadow: {
         cardShadow:
-          'drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.04)) drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.04)) drop-shadow(0px 16px 24px rgba(0, 0, 0, 0.06))',
+          'drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.04)) drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.04)) drop-shadow(0px 16px 24px rgba(0, 0, 0, 0.06))'
       },
       dropShadow: {
         titleShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        inputShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)',
+        inputShadow: '0px 4px 10px rgba(0, 0, 0, 0.25)'
       },
       fontSize: {
         '2xs': '0.625rem', // Extra small
@@ -64,11 +64,11 @@ module.exports = {
         '6xl': '3.75rem', // Hexa extra large
         '7xl': '4.5rem', // Hepta extra large
         '8xl': '6rem', // Octa extra large
-        '9xl': '8rem', // Nona extra large
+        '9xl': '8rem' // Nona extra large
       },
       padding: {
         auth: '60px',
-        app: '40px',
+        app: '40px'
       },
       sidebar: {
         DEFAULT: 'hsl(var(--sidebar-background))',
@@ -78,37 +78,37 @@ module.exports = {
         accent: 'hsl(var(--sidebar-accent))',
         'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
         border: 'hsl(var(--sidebar-border))',
-        ring: 'hsl(var(--sidebar-ring))',
+        ring: 'hsl(var(--sidebar-ring))'
       },
       keyframes: {
         //Waterfill
         wave: {
           '0%': {
-            x: '-400px',
+            x: '-400px'
           },
           '100%': {
-            x: '0px',
-          },
+            x: '0px'
+          }
         },
         fillUp: {
           '0%': {
             height: 0,
-            y: '130px',
+            y: '130px'
           },
           '100%': {
             height: '160px',
-            y: '-30px',
-          },
-        },
+            y: '-30px'
+          }
+        }
       },
       animation: {
         //Loading effect
         waveFillUp:
           'wave 0.7s infinite linear, fillUp 10s infinite ease-out alternate',
-        transitionTiming: 'cubic-bezier(0.36,0.55,0.63,0.48)',
-      },
-    },
+        transitionTiming: 'cubic-bezier(0.36,0.55,0.63,0.48)'
+      }
+    }
   },
   plugins: [],
-  darkMode: 'class',
+  darkMode: 'class'
 };

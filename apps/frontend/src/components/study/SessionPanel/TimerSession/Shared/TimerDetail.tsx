@@ -23,7 +23,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
     <>
       <CardContent
         className={tailwindMerge(
-          `flex flex-col items-center justify-center gap-2 sm:text-white text-black`,
+          'flex flex-col items-center justify-center gap-2 sm:text-white text-black',
           className
         )}
       >

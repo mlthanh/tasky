@@ -23,8 +23,8 @@ export const TimerModal = ({ className, timer }: TimerModalProps) => {
       icon: <RoundClose />,
       handler: () => {
         setIsTimerDetail(false);
-      },
-    },
+      }
+    }
   ];
 
   return (

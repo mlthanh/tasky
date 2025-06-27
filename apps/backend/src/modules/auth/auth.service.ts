@@ -11,13 +11,13 @@ export const signUp = async (
   ctx: Context
 ): Promise<UserResponse> => {
   const existingUser = await ctx.prisma.user.findUnique({
-    where: { email: input.email },
+    where: { email: input.email }
   });
 
   if (existingUser) {
     throw new TRPCError({
       code: 'CONFLICT',
-      message: 'Email already in use',
+      message: 'Email already in use'
     });
   }
 
@@ -29,8 +29,8 @@ export const signUp = async (
       email: input.email,
       password: bcryptHash,
       role: 'user',
-      name: generatedUsername,
-    },
+      name: generatedUsername
+    }
   });
   return {
     id: user.id,
@@ -39,7 +39,7 @@ export const signUp = async (
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
     role: user.role,
-    authType: user.authType,
+    authType: user.authType
   };
 };
 
@@ -49,13 +49,13 @@ export const signIn = async (
 ): Promise<SignInResponse> => {
   const user = await ctx.prisma.user.findUnique({
     where: {
-      email: input.email,
-    },
+      email: input.email
+    }
   });
 
   const error = new TRPCError({
     message: 'Incorrect email or password',
-    code: 'UNAUTHORIZED',
+    code: 'UNAUTHORIZED'
   });
 
   if (!user) {
@@ -72,7 +72,7 @@ export const signIn = async (
     {
       id: user.id,
       email: user.email,
-      role: user.role,
+      role: user.role
     },
     authConfig.tokenKey,
     { expiresIn: authConfig.tokenExpiresIn }
@@ -82,7 +82,7 @@ export const signIn = async (
     {
       id: user.id,
       role: user.role,
-      email: user.email,
+      email: user.email
     },
     authConfig.refreshTokenKey,
     { expiresIn: authConfig.refreshExpiresIn }
@@ -93,7 +93,7 @@ export const signIn = async (
     secure: process.env.NODE_ENV === 'production',
     sameSite: 'lax',
     path: '/',
-    maxAge: 60 * 60 * 24 * 7,
+    maxAge: 60 * 60 * 24 * 7
   });
 
   return {
@@ -104,7 +104,7 @@ export const signIn = async (
     name: user.name,
     role: user.role,
     authType: user.authType,
-    accessToken,
+    accessToken
   };
 };
 
@@ -131,7 +131,7 @@ export const refreshToken = async (ctx: Context) => {
   } catch (error) {
     throw new TRPCError({
       code: 'FORBIDDEN',
-      message: 'Invalid refresh token',
+      message: 'Invalid refresh token'
     });
   }
 };

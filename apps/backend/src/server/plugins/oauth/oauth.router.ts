@@ -12,7 +12,7 @@ export const oauthRouter = router({
         code: z.string(),
         scope: z.string().optional(),
         authuser: z.string().optional(),
-        prompt: z.string().optional(),
+        prompt: z.string().optional()
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -22,7 +22,7 @@ export const oauthRouter = router({
         {
           id: user.id,
           role: user.role,
-          email: user.email,
+          email: user.email
         },
         authConfig.refreshTokenKey,
         { expiresIn: authConfig.refreshExpiresIn }
@@ -33,7 +33,7 @@ export const oauthRouter = router({
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
         path: '/',
-        maxAge: 60 * 60 * 24 * 7,
+        maxAge: 60 * 60 * 24 * 7
       });
 
       return { token, user };
@@ -41,9 +41,9 @@ export const oauthRouter = router({
   googleAuth: noAuthProcedure.query(async () => {
     const url = googleOAuth.authorizeURL({
       redirect_uri: 'http://localhost:4200/auth/google/callback',
-      scope: 'email profile',
+      scope: 'email profile'
     });
 
     return { url };
-  }),
+  })
 });

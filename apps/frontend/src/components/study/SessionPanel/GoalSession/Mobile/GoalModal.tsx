@@ -40,9 +40,7 @@ export const GoalModal = ({ className }: GoalModalProps) => {
         </CardHeader>
         <CardContent className="flex flex-col items-center justify-center h-full gap-4 ">
           <GoalSetting className="flex flex-col items-center justify-center w-full gap-2 text-white" />
-          <GoalList
-            className={`flex flex-col items-center justify-start w-full gap-2 overflow-y-auto pr-1 text-white max-h-[230px]`}
-          />
+          <GoalList className="flex flex-col items-center justify-start w-full gap-2 overflow-y-auto pr-1 text-white max-h-[230px]" />
         </CardContent>
       </Card>
     </Modal>

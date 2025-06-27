@@ -12,14 +12,14 @@ type BackgroundPickerProps = {
 
 export const BackgroundPicker = ({
   className,
-  closeHandler,
+  closeHandler
 }: BackgroundPickerProps) => {
   const toolBarList = [
     {
       title: 'close',
       icon: <RoundClose />,
-      handler: closeHandler,
-    },
+      handler: closeHandler
+    }
   ];
 
   return (

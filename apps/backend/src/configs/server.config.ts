@@ -9,5 +9,5 @@ export const serverConfig: ServerOptions = {
     .asEnum(['development', 'production', 'test', 'local']),
 
   port: get('APP_PORT').required().asPortNumber(),
-  prefix: get('API_PREFIX').required().asString(),
+  prefix: get('API_PREFIX').required().asString()
 };

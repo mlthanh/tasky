@@ -20,13 +20,13 @@ export function TimerSetting({
   maxHours = 2,
   step = 1,
   className,
-  ref,
+  ref
 }: TimerProps) {
   const [hours, setHours] = useState(initialHour);
   const [minutes, setMinutes] = useState(initialMinute);
 
   useImperativeHandle(ref, () => ({
-    getTimes: () => hours * 3600 + minutes * 60,
+    getTimes: () => hours * 3600 + minutes * 60
   }));
 
   return (

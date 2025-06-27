@@ -15,13 +15,13 @@ type SignInFormProps = {
 const LoginFormUI = ({
   onSubmit,
   rememberMe,
-  handleRememberMe,
+  handleRememberMe
 }: SignInFormProps) => {
   const {
     handleSubmit,
     register,
     trigger,
-    formState: { errors },
+    formState: { errors }
   } = useForm<EmailAndPassword>();
 
   return (
@@ -37,8 +37,8 @@ const LoginFormUI = ({
             required: 'Email is required',
             pattern: {
               value: /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: 'Email is not valid',
-            },
+              message: 'Email is not valid'
+            }
           })}
           onBlur={() => trigger('email')}
         />
@@ -59,7 +59,7 @@ const LoginFormUI = ({
           id="password"
           className="bg-primary-100"
           {...register('password', {
-            required: 'Password is required',
+            required: 'Password is required'
           })}
           onBlur={() => trigger('password')}
         />

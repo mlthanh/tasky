@@ -25,9 +25,9 @@ export function createServer(opts: ServerOptions) {
             options: {
               colorize: true,
               translateTime: 'HH:MM:ss Z',
-              ignore: 'pid,hostname',
-            },
-          },
+              ignore: 'pid,hostname'
+            }
+          }
         }
       : true;
 
@@ -36,18 +36,18 @@ export function createServer(opts: ServerOptions) {
   server.register(cors, {
     origin: '*',
     methods: '*',
-    credentials: true,
+    credentials: true
   });
 
   server.register(fastifyTRPCPlugin, {
     prefix: prefix,
-    trpcOptions: { router: appRouter, createContext },
+    trpcOptions: { router: appRouter, createContext }
   });
 
   server.register(cookie, {
     secret: 'my-secret',
     hook: 'onRequest',
-    parseOptions: {},
+    parseOptions: {}
   });
 
   const stop = () => server.close();

@@ -9,7 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar,
+  useSidebar
 } from '@components/common/SideBar';
 import Logo from '@components/Logo';
 import { SideBarList } from '@frontend/constants/sidebar';

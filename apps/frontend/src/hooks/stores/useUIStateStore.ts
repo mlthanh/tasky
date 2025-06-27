@@ -7,14 +7,14 @@ export type UIState = {
   isGoalOpen: boolean;
   isQuoteShow: boolean;
   background: string;
-  quote: { quote: any; author: any } | undefined;
+  quote: { quote: string; author: string } | undefined;
 
   setIsTimerOpen: (v: boolean) => void;
   setIsTimerDetail: (v: boolean) => void;
   setIsGoalOpen: (v: boolean) => void;
   setIsQuoteShow: (v: boolean) => void;
   setBackground: (img: string) => void;
-  setQuote: (q: { quote: any; author: any } | undefined) => void;
+  setQuote: (q: { quote: string; author: string } | undefined) => void;
 };
 
 export const useUIStateStore = create<UIState>()(

@@ -12,23 +12,23 @@ type QuotesSessionProps = {
 
 export const QuotesSession = ({
   className,
-  closeHandler,
+  closeHandler
 }: QuotesSessionProps) => {
   const { isQuoteShow, setIsQuoteShow, quote, setQuote } = useUIStateStore();
   const toolBarList = [
     {
       title: 'close',
       icon: <RoundClose />,
-      handler: closeHandler,
-    },
+      handler: closeHandler
+    }
   ];
 
   const {
     data: quoteData,
     refetch,
-    isFetching,
+    isFetching
   } = trpc.quote.getRandomQuote.useQuery(undefined, {
-    enabled: false,
+    enabled: false
   });
 
   const shuffleHandler = async () => {

@@ -5,7 +5,7 @@ import {
   useContext,
   ReactNode,
   useRef,
-  useEffect,
+  useEffect
 } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -53,7 +53,7 @@ type TooltipContentProps = {
 export const TooltipContent = ({
   children,
   side = 'top',
-  className,
+  className
 }: TooltipContentProps) => {
   const context = useContext(TooltipContext);
   const tooltipRef = useRef<HTMLDivElement>(null);

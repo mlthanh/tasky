@@ -14,7 +14,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useState
 } from 'react';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
@@ -111,7 +111,7 @@ const SidebarProvider = forwardRef<
         setOpen,
         openMobile,
         setOpenMobile,
-        toggleSidebar,
+        toggleSidebar
       }),
       [state, open, setOpen, openMobile, setOpenMobile, toggleSidebar]
     );
@@ -123,7 +123,7 @@ const SidebarProvider = forwardRef<
             {
               '--sidebar-width': SIDEBAR_WIDTH,
               '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
-              ...style,
+              ...style
             } as CSSProperties
           }
           className={tailwindMerge(
@@ -457,18 +457,18 @@ const sidebarMenuButtonVariants = cva(
       variant: {
         default: 'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',
         outline:
-          'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]',
+          'bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]'
       },
       size: {
         default: 'h-8 text-sm',
         sm: 'h-7 text-xs',
-        lg: 'h-12 text-sm group-data-[collapsible=icon]:!p-0',
-      },
+        lg: 'h-12 text-sm group-data-[collapsible=icon]:!p-0'
+      }
     },
     defaultVariants: {
       variant: 'default',
-      size: 'default',
-    },
+      size: 'default'
+    }
   }
 );
 
@@ -512,7 +512,7 @@ const SidebarMenuButton = forwardRef<
 
     if (typeof tooltip === 'string') {
       tooltip = {
-        children: tooltip,
+        children: tooltip
       };
     }
 
@@ -672,5 +672,5 @@ export {
   SidebarProvider,
   SidebarRail,
   SidebarTrigger,
-  useSidebar,
+  useSidebar
 };

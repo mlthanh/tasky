@@ -14,8 +14,8 @@ const publicRoutes: RouteObject = {
     { path: '/register', element: <RegisterPage /> },
     { path: '/', element: <MarketingPage /> },
     { path: '/auth/google/callback', element: <OauthCallbackPage /> },
-    { path: '*', element: <NotFoundPage /> },
-  ],
+    { path: '*', element: <NotFoundPage /> }
+  ]
 };
 
 export default publicRoutes;
