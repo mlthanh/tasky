@@ -14,12 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "paths": {
       "@frontend/*": ["apps/frontend/src/*"],
       "@backend/*": ["apps/backend/src/*"],
       "@shared/*": ["libs/shared/src/*"],
-
-      // Aliases riêng cho frontend (dùng trong apps/frontend/src)
       "@components/*": ["apps/frontend/src/components/*"],
       "@hooks/*": ["apps/frontend/src/hooks/*"],
       "@utils/*": ["apps/frontend/src/utils/*"],
@@ -30,5 +29,6 @@
       "@assets/*": ["apps/frontend/src/assets/*"]
     }
   },
+  "include": ["apps", "libs"],
   "exclude": ["node_modules", "tmp"]
 }

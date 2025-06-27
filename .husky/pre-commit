@@ -1,3 +1,5 @@
-npm run lint || exit 1
+set -e
+
+yarn lint 
 
 echo "All checks passed. Proceeding to commit."

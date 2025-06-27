@@ -1,9 +1,9 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './index.css';
 import routes from './routes/index';
 import Providers from './contexts';
+import { StrictMode } from 'react';
 
 const router = createBrowserRouter(routes);
 const root = document.getElementById('root');
@@ -13,9 +13,9 @@ if (!root) {
 }
 
 ReactDOM.createRoot(root).render(
-  <React.StrictMode>
+  <StrictMode>
     <Providers>
       <RouterProvider router={router} />
     </Providers>
-  </React.StrictMode>
+  </StrictMode>
 );
