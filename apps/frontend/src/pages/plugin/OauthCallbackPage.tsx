@@ -34,8 +34,8 @@ const OauthCallbackPage = () => {
   });
 
   useEffect(() => {
-    if (hasCode) {
-      mutate({ code: code!, scope, authuser, prompt });
+    if (hasCode && code) {
+      mutate({ code: code, scope, authuser, prompt });
     }
   }, [hasCode, code, scope, authuser, prompt, mutate]);
 

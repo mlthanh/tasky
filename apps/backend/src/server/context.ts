@@ -1,4 +1,4 @@
-import { inferAsyncReturnType, TRPCError } from '@trpc/server';
+import { inferAsyncReturnType } from '@trpc/server';
 import { CreateFastifyContextOptions } from '@trpc/server/adapters/fastify';
 import { verify } from 'jsonwebtoken';
 import { authConfig } from '../configs/auth.config';

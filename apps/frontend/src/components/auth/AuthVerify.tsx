@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores/useUserStore';
 import { trpc } from '@utils/trpc';
 
@@ -23,7 +23,7 @@ const AuthVerify = () => {
 
   const { refetch } = trpc.auth.refreshToken.useQuery(undefined, {
     enabled: false,
-    retry: false,
+    retry: false
   });
 
   useEffect(() => {
@@ -44,11 +44,11 @@ const AuthVerify = () => {
             const result = await refetch();
             const refreshed = result.data;
             if (refreshed?.accessToken) {
-              const { accessToken, name, email, role } = refreshed;
-              signIn({ accessToken, username: name, email, role });
+              const { accessToken, username, email, role } = refreshed;
+              signIn({ accessToken, username, email, role });
               localStorage.setItem(
                 'auth',
-                JSON.stringify({ accessToken, username: name, email, role })
+                JSON.stringify({ accessToken, username, email, role })
               );
             } else {
               throw new Error('Refresh failed');

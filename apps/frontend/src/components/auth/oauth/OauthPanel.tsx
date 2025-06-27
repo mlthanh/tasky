@@ -7,12 +7,9 @@ type OauthPanelProps = {
 };
 
 export const OauthPanel = ({ className }: OauthPanelProps) => {
-  const { data, refetch, isFetching } = trpc.oauth.googleAuth.useQuery(
-    undefined,
-    {
-      enabled: false,
-    }
-  );
+  const { refetch } = trpc.oauth.googleAuth.useQuery(undefined, {
+    enabled: false
+  });
 
   const oauthGoogleHandler = async () => {
     const result = await refetch();

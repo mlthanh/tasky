@@ -14,7 +14,7 @@ export const QuotesSession = ({
   className,
   closeHandler
 }: QuotesSessionProps) => {
-  const { isQuoteShow, setIsQuoteShow, quote, setQuote } = useUIStateStore();
+  const { isQuoteShow, setIsQuoteShow, setQuote } = useUIStateStore();
   const toolBarList = [
     {
       title: 'close',
@@ -23,11 +23,7 @@ export const QuotesSession = ({
     }
   ];
 
-  const {
-    data: quoteData,
-    refetch,
-    isFetching
-  } = trpc.quote.getRandomQuote.useQuery(undefined, {
+  const { refetch } = trpc.quote.getRandomQuote.useQuery(undefined, {
     enabled: false
   });
 
