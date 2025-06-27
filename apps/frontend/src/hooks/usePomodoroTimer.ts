@@ -5,7 +5,7 @@ export type TimerMode = 'focus' | 'break';
 export const usePomodoroTimer = ({
   focusTime = 25 * 60,
   breakTime = 5 * 60,
-  autoLoop = false,
+  autoLoop = false
 } = {}) => {
   const [timeLeft, setTimeLeft] = useState(focusTime);
   const [mode, setMode] = useState<TimerMode>('focus');
@@ -41,7 +41,12 @@ export const usePomodoroTimer = ({
       });
     }, 1000);
 
-    return () => clearInterval(intervalRef.current!);
+    return () => {
+      if (!intervalRef.current) {
+        throw new Error('Root element not found');
+      }
+      clearInterval(intervalRef.current);
+    };
   }, [isRunning, mode]);
 
   return {
@@ -50,6 +55,6 @@ export const usePomodoroTimer = ({
     mode,
     start,
     pause,
-    reset,
+    reset
   };
 };

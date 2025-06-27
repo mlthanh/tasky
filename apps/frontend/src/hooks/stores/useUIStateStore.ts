@@ -32,8 +32,8 @@ export const useUIStateStore = create<UIState>()(
       setIsGoalOpen: (v: boolean) => set(() => ({ isGoalOpen: v })),
       setIsQuoteShow: (v: boolean) => set(() => ({ isQuoteShow: v })),
       setBackground: (img: string) => set(() => ({ background: img })),
-      setQuote: (q: { quote: any; author: any } | undefined) =>
-        set(() => ({ quote: q })),
+      setQuote: (q: { quote: string; author: string } | undefined) =>
+        set(() => ({ quote: q }))
     }),
     {
       name: 'UI-state-storage',
@@ -43,8 +43,8 @@ export const useUIStateStore = create<UIState>()(
         isQuoteShow: state.isQuoteShow,
         isTimerDetail: state.isTimerDetail,
         background: state.background,
-        quote: state.quote,
-      }),
+        quote: state.quote
+      })
     }
   )
 );

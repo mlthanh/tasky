@@ -6,8 +6,13 @@ import routes from './routes/index';
 import Providers from './contexts';
 
 const router = createBrowserRouter(routes);
+const root = document.getElementById('root');
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+if (!root) {
+  throw new Error('Root element not found');
+}
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <Providers>
       <RouterProvider router={router} />

@@ -55,7 +55,6 @@ export default [
       'no-multiple-empty-lines': 'warn',
       'space-before-blocks': ['error', 'always'],
       'object-curly-spacing': ['warn', 'always'],
-      indent: ['warn', 2],
       quotes: ['error', 'single', { avoidEscape: true }],
       'array-bracket-spacing': 'warn',
       'linebreak-style': 'off',
