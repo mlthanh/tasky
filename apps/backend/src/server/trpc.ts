@@ -1,7 +1,6 @@
 import { initTRPC, TRPCError } from '@trpc/server';
 import superjson from 'superjson';
 import { Context } from './context';
-export { AppRouter } from './router';
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,

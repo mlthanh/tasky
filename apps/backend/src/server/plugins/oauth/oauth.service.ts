@@ -34,7 +34,7 @@ export const handleGoogleCallback = async (query: any) => {
     throw new Error('Không lấy được thông tin người dùng từ Google');
   }
 
-  const { email, name, id: googleId } = userInfo.data;
+  const { email, name, id: googleId, password } = userInfo.data;
 
   const user = await prisma.user.upsert({
     where: { email },
@@ -45,7 +45,7 @@ export const handleGoogleCallback = async (query: any) => {
       googleId,
       role: 'user',
       authType: 'GOOGLE',
-      password: null
+      password: password
     }
   });
 

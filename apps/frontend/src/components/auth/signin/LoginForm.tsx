@@ -14,9 +14,9 @@ const LoginForm = () => {
   };
 
   const signInMutation = trpc.auth.signIn.useMutation({
-    onSuccess({ name, email, role, accessToken }) {
+    onSuccess({ username, email, role, accessToken }) {
       const user = {
-        username: name,
+        username,
         role,
         email,
         accessToken

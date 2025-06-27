@@ -5,7 +5,7 @@ export type UserResponse = {
   email: string;
   createdAt: Date;
   updatedAt: Date;
-  name?: string;
+  username?: string;
   role: string;
   authType: AuthType;
 };

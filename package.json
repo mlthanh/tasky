@@ -4,13 +4,16 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "prepare": "husky install",
-    "lint": "eslint \"apps/**/*.{js,ts,tsx}\" --color",
     "frontend:start": "nx run frontend:serve --host",
     "frontend:build": "nx run frontend:build",
     "backend:start": "nx run backend:serve",
     "prisma:migrate": "prisma migrate dev",
-    "dev": "nx run-many --target=serve --projects=frontend,backend --parallel"
+    "dev": "nx run-many --target=serve --projects=frontend,backend --parallel",
+    "typecheck": "tsc",
+    "lint": "eslint \"apps/**/*.{js,ts,tsx}\" --color",
+    "lint:fix": "eslint \"apps/**/*.{js,ts,tsx}\" \"libs/**/*.{js,ts,tsx}\" --fix --color",
+    "format": "prettier . --write",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {

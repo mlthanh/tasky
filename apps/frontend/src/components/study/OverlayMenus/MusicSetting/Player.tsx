@@ -30,11 +30,9 @@ export const Player = ({
 
     if (volume === 0) {
       audio.pause();
-    } else {
-      if (audio.paused) {
+    } else if (audio.paused) {
         audio.play().catch((err) => console.log('Play failed:', err));
       }
-    }
   }, [volume]);
 
   return (

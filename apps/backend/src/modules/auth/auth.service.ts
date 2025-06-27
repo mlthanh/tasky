@@ -35,7 +35,7 @@ export const signUp = async (
   return {
     id: user.id,
     email: user.email,
-    name: user.name,
+    username: user.name ?? user.email,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
     role: user.role,
@@ -58,7 +58,7 @@ export const signIn = async (
     code: 'UNAUTHORIZED'
   });
 
-  if (!user) {
+  if (!user || !user.password) {
     throw error;
   }
 
@@ -101,7 +101,7 @@ export const signIn = async (
     email: user.email,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
-    name: user.name,
+    username: user.name ?? user.email,
     role: user.role,
     authType: user.authType,
     accessToken
