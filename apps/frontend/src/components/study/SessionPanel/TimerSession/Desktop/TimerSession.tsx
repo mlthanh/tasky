@@ -13,6 +13,7 @@ import { TimerCounter } from '../Shared/TimerCounter';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import TimerDetail from '../Shared/TimerDetail';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 type TimerSessionProps = {
   className?: string;
@@ -22,6 +23,7 @@ type TimerSessionProps = {
 export const TimerSession = ({ className, timer }: TimerSessionProps) => {
   const { isTimerOpen, setIsTimerOpen, isTimerDetail, setIsTimerDetail } =
     useUIStateStore();
+  const { getLabel } = useLanguage();
 
   const toolBarList = [
     {
@@ -38,7 +40,7 @@ export const TimerSession = ({ className, timer }: TimerSessionProps) => {
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<ReadingTimeDuotone />}>
-            Personal Timer
+            {getLabel('pTimer')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList} />

@@ -12,11 +12,12 @@ import {
   useSidebar
 } from '@components/common/SideBar';
 import Logo from '@components/Logo';
-import { SideBarList } from '@frontend/constants/sidebar';
+import { useSidebarList } from '@frontend/constants/sidebar';
 import { Link, NavLink } from 'react-router-dom';
 
 export function AppSidebar() {
   const { open } = useSidebar();
+  const SideBarList = useSidebarList();
 
   return (
     <Sidebar collapsible="icon" variant="sidebar">
@@ -47,7 +48,16 @@ export function AppSidebar() {
                         }
                       >
                         {item.icon && <item.icon className="w-4 h-auto" />}
-                        <span>{item.title}</span>
+                      </NavLink>
+                      <NavLink
+                        to={item.url}
+                        className={({ isActive }) =>
+                          `flex justify-center gap-3 ${
+                            isActive ? 'text-primary font-bold' : ''
+                          }`
+                        }
+                      >
+                        <span className="text-sm">{item.title}</span>
                       </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

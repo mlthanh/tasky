@@ -1,14 +1,19 @@
 import { ProjectsAltFill } from '@components/common/Icon';
 import { MenuItemType } from '.';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 export enum WorkspacesSideBarUrl {
-  PROJECT = '/project',
+  PROJECT = '/project'
 }
 
-export const getWorkspacesSideBarList = (): MenuItemType[] => [
-  {
-    title: 'Project',
-    url: WorkspacesSideBarUrl.PROJECT,
-    icon: ProjectsAltFill,
-  },
-];
+export const useWorkspacesSideBarList = (): MenuItemType[] => {
+  const { getLabel } = useLanguage();
+
+  return [
+    {
+      title: getLabel('project'),
+      url: WorkspacesSideBarUrl.PROJECT,
+      icon: ProjectsAltFill
+    }
+  ];
+};

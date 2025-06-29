@@ -9,8 +9,8 @@
     "backend:start": "nx run backend:serve",
     "prisma:migrate": "prisma migrate dev",
     "dev": "nx run-many --target=serve --projects=frontend,backend --parallel",
-    "typecheck": "tsc",
-    "lint": "eslint \"apps/**/*.{js,ts,tsx}\" --color",
+    "typecheck": "tsc --project tsconfig.base.json",
+    "lint": "eslint \"apps/**/*.{js,ts,tsx}\" \"libs/**/*.{js,ts,tsx}\" --color",
     "lint:fix": "eslint \"apps/**/*.{js,ts,tsx}\" \"libs/**/*.{js,ts,tsx}\" --fix --color",
     "format": "prettier . --write",
     "prepare": "husky install"

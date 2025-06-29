@@ -54,5 +54,5 @@
     "useDefineForClassFields": true /* Emit ECMAScript-standard-compliant class fields. */
   },
   "include": ["apps", "libs"],
-  "exclude": ["node_modules", "tmp", "frontend-e2e"]
+  "exclude": ["node_modules", "tmp", "apps/frontend-e2e"]
 }

@@ -1,11 +1,8 @@
 {
-  "products": "Sản Phẩm",
-  "customise": "Tùy Chỉnh",
-  "blog": "Bài Viết",
-  "contact": "Liên Hệ",
-  "account": "Tài khoản",
-  "favorite": "Yêu thích",
-  "language": "Ngôn ngữ",
-  "new_arrivals": "Hàng mới về",
-  "buy_by_category": "Mua theo danh mục"
+  "dashboard": "Quản lý",
+  "study": "Học tập",
+  "workspace": "Không gian",
+  "project": "Dự án",
+
+  "pTimer": "Thời gian"
 }

@@ -12,7 +12,7 @@ import {
 } from '@frontend/constants/sidebar';
 import { useLocation } from 'react-router-dom';
 
-export function HeaderBreadcrumb() {
+export function HeaderBreadcrumb({ className }) {
   const location = useLocation();
   type pathType = ApplicationSideBarUrl | WorkspacesSideBarUrl;
 
@@ -30,7 +30,7 @@ export function HeaderBreadcrumb() {
   };
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className={className}>
       <BreadcrumbList>
         <BreadcrumbItem className="text-base">
           <BreadcrumbLink>Home</BreadcrumbLink>

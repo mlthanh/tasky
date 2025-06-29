@@ -1,7 +1,7 @@
 set -e
 
 yarn lint:fix
-yarn typecheck --project tsconfig.base.json
+yarn typecheck
 
 
 echo "All checks passed. Proceeding to commit."

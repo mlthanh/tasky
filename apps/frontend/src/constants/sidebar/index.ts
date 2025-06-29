@@ -1,12 +1,11 @@
 import { SVGProps } from 'react';
 import {
   ApplicationSideBarUrl,
-  getApplicationSideBarList,
+  useApplicationSideBarList
 } from './ApplicationMenuList';
-
 import {
   WorkspacesSideBarUrl,
-  getWorkspacesSideBarList,
+  useWorkspacesSideBarList
 } from './WorkspaceMenuList';
 
 export interface MenuItemType {
@@ -21,15 +20,20 @@ type SideBarListType = {
   items: MenuItemType[];
 };
 
-export const SideBarList = [
-  {
-    group: '',
-    items: getApplicationSideBarList(),
-  },
-  {
-    group: 'Workspaces',
-    items: getWorkspacesSideBarList(),
-  },
-] as SideBarListType[];
+export const useSidebarList = (): SideBarListType[] => {
+  const applicationItems = useApplicationSideBarList();
+  const workspaceItems = useWorkspacesSideBarList();
+
+  return [
+    {
+      group: '',
+      items: applicationItems
+    },
+    {
+      group: 'Workspaces',
+      items: workspaceItems
+    }
+  ];
+};
 
 export { WorkspacesSideBarUrl, ApplicationSideBarUrl };

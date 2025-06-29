@@ -947,3 +947,63 @@ export function ProjectsAltFill({
     </svg>
   );
 }
+
+export function BaselineKeyboardArrowDown({
+  className,
+  ...rest
+}: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6l-6-6z"
+      ></path>
+    </svg>
+  );
+}
+
+export function BaselineKeyboardArrowUp({
+  className,
+  ...rest
+}: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"
+      ></path>
+    </svg>
+  );
+}
+
+export function BaselineCircle({ className, ...rest }: IconProps): JSX.Element {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+      className={tailwindMerge(IconStyle, className)}
+      {...rest}
+    >
+      <path
+        fill="currentColor"
+        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2"
+      ></path>
+    </svg>
+  );
+}
