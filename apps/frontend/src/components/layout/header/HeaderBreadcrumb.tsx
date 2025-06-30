@@ -10,20 +10,20 @@ import {
   ApplicationSideBarUrl,
   WorkspacesSideBarUrl
 } from '@frontend/constants/sidebar';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { useLocation } from 'react-router-dom';
 
 export function HeaderBreadcrumb({ className }) {
   const location = useLocation();
+  const { getLabel } = useLanguage();
   type pathType = ApplicationSideBarUrl | WorkspacesSideBarUrl;
 
   const routingPath = (path: pathType) => {
     switch (path) {
       case ApplicationSideBarUrl.DASHBOARD:
-        return 'Dashboard';
-      case ApplicationSideBarUrl.STUDY:
-        return 'Study';
+        return getLabel('dashboard');
       case WorkspacesSideBarUrl.PROJECT:
-        return 'Project';
+        return getLabel('project');
       default:
         return '';
     }
@@ -33,7 +33,7 @@ export function HeaderBreadcrumb({ className }) {
     <Breadcrumb className={className}>
       <BreadcrumbList>
         <BreadcrumbItem className="text-base">
-          <BreadcrumbLink>Home</BreadcrumbLink>
+          <BreadcrumbLink>{getLabel('home')}</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>

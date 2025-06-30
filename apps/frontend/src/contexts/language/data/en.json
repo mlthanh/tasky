@@ -3,6 +3,13 @@
   "study": "Study",
   "workspace": "Workspace",
   "project": "Project",
+  "home": "Home",
 
-  "pTimer": "Personal Timer"
+  "pTimer": "Personal Timer",
+  "goal": "Goal Sessions",
+  "focus": "Focus time (min)",
+  "break": "Break time (min)",
+  "set": "Set time",
+  "open": "Open",
+  "completed": "Completed"
 }

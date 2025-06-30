@@ -5,6 +5,7 @@ import { TimerConfigRef, TimerSetting } from './TimerSetting';
 import { useTimeStore, useUIStateStore, useDeviceStore } from '@hooks/stores';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import { tailwindMerge } from '@utils/merge';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 type TimerDetailProps = {
   className?: string;
@@ -18,6 +19,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
   const { bTime, fTime, setfocusTime, setbreakTime } = useTimeStore();
   const { setIsTimerDetail } = useUIStateStore();
   const { isMobile } = useDeviceStore();
+  const { getLabel } = useLanguage();
 
   return (
     <>
@@ -27,7 +29,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
           className
         )}
       >
-        <span>Focus time (min)</span>
+        <span>{getLabel('focus')}</span>
         <TimerSetting
           ref={fTimerRef}
           step={5}
@@ -35,7 +37,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
           initialMinute={Math.floor((fTime % 3600) / 60)}
           initialHour={Math.floor(fTime / 3600)}
         />
-        <span>Break time (min)</span>
+        <span>{getLabel('break')}</span>
         <TimerSetting
           ref={bTimerRef}
           step={1}
@@ -62,7 +64,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
             }
           }}
         >
-          Set time
+          {getLabel('set')}
         </Button>
       </CardFooter>
     </>

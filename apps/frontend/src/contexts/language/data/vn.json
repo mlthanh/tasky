@@ -3,6 +3,13 @@
   "study": "Học tập",
   "workspace": "Không gian",
   "project": "Dự án",
+  "home": "Trang chủ",
 
-  "pTimer": "Thời gian"
+  "pTimer": "Thời gian",
+  "goal": "Mục tiêu",
+  "focus": "Tập trung (phút)",
+  "break": "Nghỉ ngơi (phút)",
+  "set": "Đặt giờ",
+  "open": "Mở",
+  "completed": "Hoàn thành"
 }

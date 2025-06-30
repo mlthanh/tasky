@@ -5,6 +5,7 @@ import { ReadingTimeDuotone, RoundClose } from '@components/common/Icon';
 import StudyToolbar from '@components/study/StudyToolbar';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { GoalList } from '../Shared/GoalList';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 type GoalSessionProps = {
   className?: string;
@@ -13,21 +14,22 @@ type GoalSessionProps = {
 export const GoalSession = ({ className }: GoalSessionProps) => {
   const { isGoalOpen, setIsGoalOpen, isTimerOpen, isTimerDetail } =
     useUIStateStore();
+  const { getLabel } = useLanguage();
   const toolBarList = [
     {
       title: 'close',
       icon: <RoundClose />,
       handler: () => {
         setIsGoalOpen(!isGoalOpen);
-      },
-    },
+      }
+    }
   ];
   return (
     <Card className={className}>
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<ReadingTimeDuotone />}>
-            Session goals
+            {getLabel('goal')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList}></StudyToolbar>

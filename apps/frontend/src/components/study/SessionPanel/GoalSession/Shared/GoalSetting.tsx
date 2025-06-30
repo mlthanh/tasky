@@ -4,6 +4,7 @@ import { TaskStatus } from '@hooks/stores/useTaskStore';
 import { Label } from '@components/common/Label';
 import Input from '@components/common/Input';
 import { Button } from '@components/common/Button';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 type GoalSettingProps = {
   className?: string;
@@ -12,6 +13,7 @@ type GoalSettingProps = {
 const GoalSetting = ({ className }: GoalSettingProps) => {
   const { addTask, taskList } = useTaskStore();
   const [inputValue, setInputValue] = useState('');
+  const { getLabel } = useLanguage();
 
   const handleAdd = () => {
     if (!inputValue.trim()) return;
@@ -52,7 +54,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
           <Label className="font-semibold sm:text-2xl">
             {taskList.filter((task) => task.status === TaskStatus.OPEN).length}
           </Label>
-          <Label className=" lg:text-lg sm:text-sm">Open</Label>
+          <Label className=" lg:text-lg sm:text-sm">{getLabel('open')}</Label>
         </div>
         <span className="text-3xl">|</span>
         <div className="flex flex-col items-center justify-center gap-1 font-extrabold text-primary">
@@ -63,7 +65,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
             }
           </Label>
           <Label className="font-extrabold lg:text-lg sm:text-sm">
-            Completed
+            {getLabel('completed')}
           </Label>
         </div>
       </div>

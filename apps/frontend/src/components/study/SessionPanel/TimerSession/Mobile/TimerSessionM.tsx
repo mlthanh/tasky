@@ -12,6 +12,7 @@ import {
   SquareRounded
 } from '@components/common/Icon';
 import StudyToolbar from '@components/study/StudyToolbar';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface TimerSessionMProps {
   className?: string;
@@ -20,6 +21,7 @@ interface TimerSessionMProps {
 
 export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
   const { isTimerOpen, setIsTimerOpen, setIsTimerDetail } = useUIStateStore();
+  const { getLabel } = useLanguage();
 
   const toolBarList = [
     {
@@ -35,7 +37,7 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
     <Card className={className}>
       <CardHeader className="flex justify-between">
         <Label className="text-white" icon={<ReadingTimeDuotone />}>
-          Personal Timer
+          {getLabel('pTimer')}
         </Label>
         <StudyToolbar toolBarList={toolBarList} />
       </CardHeader>

@@ -7,6 +7,7 @@ import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { useTaskStore, TaskStatus } from '@hooks/stores/useTaskStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 import ToolPanel from './ToolPanel';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface Props {
   className?: string;
@@ -18,6 +19,7 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
     useUIStateStore();
 
   const { taskList } = useTaskStore();
+  const { getLabel } = useLanguage();
 
   const toolList = [
     {
@@ -61,7 +63,7 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
               className="text-xs text-white select-none"
               icon={<ReadingTimeDuotone />}
             >
-              Personal Timer
+              {getLabel('pTimer')}
             </Label>
           </CardHeader>
           <CardContent>
@@ -78,7 +80,7 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
         >
           <CardHeader>
             <Label className="text-xs text-white select-none" icon={<Goal24 />}>
-              Goal Sessions
+              {getLabel('goal')}
             </Label>
           </CardHeader>
           <CardContent className="text-xs font-semibold select-none">
