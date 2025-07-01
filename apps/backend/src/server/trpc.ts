@@ -1,6 +1,7 @@
 import { initTRPC, TRPCError } from '@trpc/server';
 import superjson from 'superjson';
 import { Context } from './context';
+import { ZodError } from 'zod';
 
 const t = initTRPC.context<Context>().create({
   transformer: superjson,
@@ -8,6 +9,12 @@ const t = initTRPC.context<Context>().create({
     if (error.code === 'INTERNAL_SERVER_ERROR') {
       ctx?.req.log.error(error);
       return { ...shape, message: 'Internal server error' };
+    } else if (error.cause instanceof ZodError) {
+      const zodMessage = error.cause.errors.map((e) => e.message).join(', ');
+      return {
+        ...shape,
+        message: zodMessage
+      };
     }
     return shape;
   }

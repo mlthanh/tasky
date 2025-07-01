@@ -5,6 +5,7 @@ import { trpc } from '@utils/trpc';
 import { useQueryTrpcClient } from '@hooks/useQueryClient';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useDeviceStore } from '@hooks/stores/useDeviceStore';
+import { ToastProvider } from './ToastProvider';
 
 export default function Providers({ children }: PropsWithChildren) {
   const { queryClient, trpcClient } = useQueryTrpcClient();
@@ -23,9 +24,11 @@ export default function Providers({ children }: PropsWithChildren) {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <LanguageProvider language="en">
-          <ThemeProvider>{children}</ThemeProvider>
-        </LanguageProvider>
+        <ToastProvider>
+          <LanguageProvider language="en">
+            <ThemeProvider>{children}</ThemeProvider>
+          </LanguageProvider>
+        </ToastProvider>
       </QueryClientProvider>
     </trpc.Provider>
   );

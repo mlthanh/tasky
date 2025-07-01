@@ -53,19 +53,19 @@ export const signIn = async (
     }
   });
 
-  const error = new TRPCError({
+  const UNAUTHORIZED_error = new TRPCError({
     message: 'Incorrect email or password',
     code: 'UNAUTHORIZED'
   });
 
   if (!user || !user.password) {
-    throw error;
+    throw UNAUTHORIZED_error;
   }
 
   const result = await compare(input.password, user.password);
 
   if (!result) {
-    throw error;
+    throw UNAUTHORIZED_error;
   }
 
   const accessToken = sign(

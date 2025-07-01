@@ -4,9 +4,11 @@ import { useUserStore } from '@hooks/stores/useUserStore';
 import { trpc } from '@utils/trpc';
 import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import LoginFormUI from './LoginFormUI';
+import { useToast } from '@frontend/contexts/ToastProvider';
 const LoginForm = () => {
   const navigate = useNavigate();
   const state = useUserStore((state) => state);
+  const { showToastError } = useToast();
 
   const [rememberMe, setRememberMe] = useState(false);
   const handleRememberMe = (value: boolean) => {
@@ -34,7 +36,7 @@ const LoginForm = () => {
       navigate('/dashboard');
     },
     onError(error: any) {
-      alert(error.message);
+      showToastError(error.message);
     }
   });
   const onSubmit = (values: EmailAndPassword) => {

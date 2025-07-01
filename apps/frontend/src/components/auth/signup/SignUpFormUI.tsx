@@ -20,7 +20,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
     handleSubmit,
     register,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting }
   } = useForm<EmailAndPassword>();
 
   const password = watch('password', '');
@@ -42,11 +42,11 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
       length: password.length >= 8,
       uppercase: /[A-Z]/.test(password),
       lowercase: /[a-z]/.test(password),
-      specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password),
+      specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password)
     };
   };
 
-  const { score, color } = getPasswordStrength(password);
+  const { score, color, label } = getPasswordStrength(password);
 
   const conditions = checkPasswordConditions(password);
 
@@ -63,8 +63,8 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
             required: 'Email is required',
             pattern: {
               value: /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: 'Email is not valid',
-            },
+              message: 'Email is not valid'
+            }
           })}
         />
 
@@ -87,12 +87,12 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
             required: 'Password is required',
             minLength: {
               value: 8,
-              message: 'At least 8 characters',
+              message: 'At least 8 characters'
             },
             pattern: {
               value: /[A-Z]/,
-              message: 'Contains a number or symbol',
-            },
+              message: 'Contains a number or symbol'
+            }
           })}
         />
 
@@ -112,7 +112,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
             ) : (
               <WrongIcon className="w-4 h-4 mr-2" />
             )}
-            Password strength
+            Password strength: {label}
           </li>
           <li className="flex items-center">
             {conditions.length ? (
@@ -136,7 +136,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
             ) : (
               <WrongIcon className="w-4 h-4 mr-2" />
             )}
-            Contains a symbol
+            At least 1 special character
           </li>
         </ul>
 
