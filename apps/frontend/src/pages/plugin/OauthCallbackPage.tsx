@@ -18,7 +18,7 @@ const OauthCallbackPage = () => {
     onSuccess: ({ user, token }) => {
       const auth = {
         email: user.email,
-        username: user.username ?? user.email,
+        name: user.name,
         role: user.role,
         accessToken: token
       };

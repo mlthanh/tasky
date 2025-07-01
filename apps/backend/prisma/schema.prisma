@@ -16,7 +16,7 @@ model User {
   createdAt DateTime @default(now()) @db.Timestamptz(3)
   updatedAt DateTime @updatedAt @db.Timestamptz(3)
   email     String   @unique @db.VarChar(255)
-  name      String?
+  name      String
   googleId  String?  @unique
   githubId  String?  @unique
   role      String   @default("user") @db.VarChar(255)

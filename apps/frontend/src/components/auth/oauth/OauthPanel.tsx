@@ -14,7 +14,7 @@ export const OauthPanel = ({ className }: OauthPanelProps) => {
   const oauthGoogleHandler = async () => {
     const result = await refetch();
     if (result.data) {
-      openPopup(result.data.url, 'google');
+      openPopup(result.data.url);
     }
   };
 

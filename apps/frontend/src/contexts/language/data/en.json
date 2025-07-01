@@ -11,5 +11,9 @@
   "break": "Break time (min)",
   "set": "Set time",
   "open": "Open",
-  "completed": "Completed"
+  "completed": "Completed",
+
+  "profile": "Profile",
+  "settings": "Settings",
+  "logout": "Log out"
 }

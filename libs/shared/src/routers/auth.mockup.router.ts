@@ -12,11 +12,6 @@ export const authRouter = router({
   }),
 
   refreshToken: noAuthProcedure.query(() => {
-    return {
-      accessToken: '',
-      username: '',
-      email: '',
-      role: '',
-    };
-  }),
+    return {} as SignInResponse;
+  })
 });

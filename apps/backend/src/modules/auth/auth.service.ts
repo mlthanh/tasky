@@ -1,5 +1,9 @@
 import { TRPCError } from '@trpc/server';
-import { SignInDto, SignUpDto } from '@shared/schemas/auth.schema';
+import {
+  SignInDto,
+  SignUpDto,
+  UserResponseSchema
+} from '@shared/schemas/auth.schema';
 import { sign, verify } from 'jsonwebtoken';
 import { authConfig } from '@backend/configs/auth.config';
 import { hash, compare } from 'bcryptjs';
@@ -32,15 +36,12 @@ export const signUp = async (
       name: generatedUsername
     }
   });
-  return {
+  return UserResponseSchema.parse({
     id: user.id,
     email: user.email,
-    username: user.name ?? user.email,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
-    role: user.role,
-    authType: user.authType
-  };
+    name: user.name ?? user.email,
+    role: user.role
+  });
 };
 
 export const signIn = async (
@@ -96,16 +97,13 @@ export const signIn = async (
     maxAge: 60 * 60 * 24 * 7
   });
 
-  return {
+  return UserResponseSchema.parse({
     id: user.id,
     email: user.email,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
-    username: user.name ?? user.email,
+    name: user.name ?? user.email,
     role: user.role,
-    authType: user.authType,
     accessToken
-  };
+  });
 };
 
 export const refreshToken = async (ctx: Context) => {
@@ -122,7 +120,7 @@ export const refreshToken = async (ctx: Context) => {
     ) as SignInResponse;
 
     const accessToken = sign(
-      { email: payload.email, role: payload.role },
+      { email: payload.email, id: payload.id },
       authConfig.tokenKey,
       { expiresIn: authConfig.tokenExpiresIn }
     );

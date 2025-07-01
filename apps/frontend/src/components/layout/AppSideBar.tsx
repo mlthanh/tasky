@@ -36,8 +36,8 @@ export function AppSidebar() {
             <SidebarGroupLabel>{group.group}</SidebarGroupLabel>
             <SidebarGroupContent>
               {group.items.map((item) => (
-                <SidebarMenu>
-                  <SidebarMenuItem key={item.title}>
+                <SidebarMenu key={item.title}>
+                  <SidebarMenuItem>
                     <SidebarMenuButton tooltip={item.title}>
                       <NavLink
                         to={item.url}

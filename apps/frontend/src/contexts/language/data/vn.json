@@ -11,5 +11,9 @@
   "break": "Nghỉ ngơi (phút)",
   "set": "Đặt giờ",
   "open": "Mở",
-  "completed": "Hoàn thành"
+  "completed": "Hoàn thành",
+
+  "profile": "Cá nhân",
+  "settings": "Cài đặt",
+  "logout": "Đăng xuất"
 }

@@ -1,12 +1,11 @@
-'use client';
-
+import { tailwindMerge } from '@frontend/utils/merge';
 import {
   useState,
   createContext,
   useContext,
   ReactNode,
   useRef,
-  useEffect,
+  useEffect
 } from 'react';
 
 const DropdownContext = createContext<{
@@ -16,9 +15,32 @@ const DropdownContext = createContext<{
 
 export const DropdownRoot = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen }}>
-      <div className="relative inline-block">{children}</div>
+      <div ref={dropdownRef} className="relative inline-block">
+        {children}
+      </div>
     </DropdownContext.Provider>
   );
 };
@@ -29,22 +51,34 @@ export const DropdownTrigger = ({ children }: { children: ReactNode }) => {
     throw new Error('DropdownTrigger must be used within a DropdownRoot');
 
   return (
-    <button
-      onClick={() => context.setIsOpen(!context.isOpen)}
-      className="px-3 py-2 text-white bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none"
-    >
+    <button onClick={() => context.setIsOpen(!context.isOpen)}>
       {children}
     </button>
   );
 };
 
-export const DropdownContent = ({ children }: { children: ReactNode }) => {
+export const DropdownSeparator = () => (
+  <div className="h-px my-1 bg-gray-200" />
+);
+
+export const DropdownContent = ({
+  children,
+  className
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   const context = useContext(DropdownContext);
   if (!context)
     throw new Error('DropdownContent must be used within a DropdownRoot');
 
   return context.isOpen ? (
-    <div className="absolute left-0 z-50 w-48 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-lg">
+    <div
+      className={tailwindMerge(
+        'absolute left-0 z-50 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-lg',
+        className
+      )}
+    >
       {children}
     </div>
   ) : null;
@@ -53,9 +87,11 @@ export const DropdownContent = ({ children }: { children: ReactNode }) => {
 export const DropdownItem = ({
   children,
   onClick,
+  className
 }: {
   children: ReactNode;
   onClick?: () => void;
+  className?: string;
 }) => {
   const context = useContext(DropdownContext);
   if (!context)
@@ -67,7 +103,10 @@ export const DropdownItem = ({
         onClick?.();
         context.setIsOpen(false);
       }}
-      className="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100"
+      className={tailwindMerge(
+        'block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-100 hover:rounded-xl',
+        className
+      )}
     >
       {children}
     </button>
@@ -111,7 +150,7 @@ export const DropdownSubContent = ({ children }: { children: ReactNode }) => {
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const [position, setPosition] = useState<{ top: number; left: number }>({
     top: 0,
-    left: 0,
+    left: 0
   });
 
   useEffect(() => {
@@ -119,7 +158,7 @@ export const DropdownSubContent = ({ children }: { children: ReactNode }) => {
       const rect = triggerRef.current.getBoundingClientRect();
       setPosition({
         top: rect.top,
-        left: rect.right + 150,
+        left: rect.right + 150
       });
     }
   }, [context?.isOpen]);
@@ -137,7 +176,7 @@ export const DropdownSubContent = ({ children }: { children: ReactNode }) => {
           style={{
             top: position.top,
             left: position.left,
-            position: 'absolute',
+            position: 'absolute'
           }}
           className="z-50 w-48 py-2 bg-white border border-gray-200 rounded-md shadow-lg"
         >

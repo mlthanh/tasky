@@ -4,6 +4,7 @@ import ThemeToggler from './ThemeToggler';
 
 import { useUserStore } from '@hooks/stores';
 import { LanguageSelectBox } from './LanguageSelectBox';
+import { SettingsDropdown } from './SettingsDropdown';
 
 const Header = () => {
   const { user } = useUserStore();
@@ -15,10 +16,7 @@ const Header = () => {
         <LanguageSelectBox />
         <ThemeToggler />
         <NotificationBell className="w-5 h-5" />
-        <div className="flex items-start justify-center gap-2">
-          <span className="text-sm">{user?.username}</span>
-          <div className="rounded-full bg-primary w-7 h-7"></div>
-        </div>
+        <SettingsDropdown />
       </div>
     </div>
   );

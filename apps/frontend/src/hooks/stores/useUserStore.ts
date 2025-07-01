@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 export type User = {
-  username?: string;
+  name: string;
   email: string;
   role: string;
   accessToken: string;
@@ -16,5 +16,5 @@ type UserStore = {
 export const useUserStore = create<UserStore>((set) => ({
   user: undefined,
   signIn: (user) => set({ user }),
-  signOut: () => set({ user: undefined }),
+  signOut: () => set({ user: undefined })
 }));
