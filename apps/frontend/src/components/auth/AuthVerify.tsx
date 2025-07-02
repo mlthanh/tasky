@@ -71,6 +71,7 @@ const AuthVerify = () => {
     if (!isTokenExpired(auth.accessToken)) {
       signIn(auth);
     } else {
+      console.log('Token is expired');
       await tryRefreshToken();
     }
   };

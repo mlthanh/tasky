@@ -14,7 +14,6 @@ export const userCredentialsSchema = z.object({
 });
 
 export const UserResponseSchema = z.object({
-  id: z.number(),
   accessToken: z.string(),
   name: z.string(),
   email: z.string().email(),

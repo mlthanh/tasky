@@ -34,7 +34,7 @@ export function createServer(opts: ServerOptions) {
   const server = fastify({ logger: loggerConfig });
 
   server.register(cors, {
-    origin: '*',
+    origin: 'http://localhost:4200',
     methods: '*',
     credentials: true
   });

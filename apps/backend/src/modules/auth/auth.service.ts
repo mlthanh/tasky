@@ -37,7 +37,6 @@ export const signUp = async (
     }
   });
   return UserResponseSchema.parse({
-    id: user.id,
     email: user.email,
     name: user.name ?? user.email,
     role: user.role
@@ -98,13 +97,18 @@ export const signIn = async (
   });
 
   return UserResponseSchema.parse({
-    id: user.id,
     email: user.email,
     name: user.name ?? user.email,
     role: user.role,
     accessToken
   });
 };
+
+interface RefreshTokenPayload {
+  id: string;
+  email: string;
+  role: 'user' | 'admin';
+}
 
 export const refreshToken = async (ctx: Context) => {
   const refreshToken = ctx.req.cookies?.['refresh_token'];
@@ -117,15 +121,24 @@ export const refreshToken = async (ctx: Context) => {
     const payload = verify(
       refreshToken,
       authConfig.refreshTokenKey
-    ) as SignInResponse;
+    ) as RefreshTokenPayload;
 
     const accessToken = sign(
-      { email: payload.email, id: payload.id },
+      {
+        id: payload.id,
+        email: payload.email,
+        role: payload.role
+      },
       authConfig.tokenKey,
       { expiresIn: authConfig.tokenExpiresIn }
     );
 
-    return { ...payload, accessToken };
+    return UserResponseSchema.parse({
+      email: payload.email,
+      role: payload.role,
+      name: payload.email,
+      accessToken
+    });
   } catch (error) {
     throw new TRPCError({
       code: 'FORBIDDEN',

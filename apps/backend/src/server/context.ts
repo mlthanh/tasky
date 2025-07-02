@@ -9,35 +9,28 @@ export const prisma = new PrismaClient();
 export interface User {
   email: string;
   role: 'user' | 'admin';
+  id: string;
 }
 
-async function decodeAndVerifyJwtToken(token: string): Promise<User> {
-  const decoded = verify(token, authConfig.tokenKey);
-  return decoded as User;
+function decodeJwtToken(token: string): User | null {
+  try {
+    const decoded = verify(token, authConfig.tokenKey);
+    return decoded as User;
+  } catch {
+    return null;
+  }
 }
 
 export async function createContext({ req, res }: CreateFastifyContextOptions) {
-  const refreshToken = req.cookies['refresh_token'];
-
+  const authHeader = req.headers.authorization;
   let user: User | undefined;
 
-  if (req.headers.authorization) {
-    try {
-      user = await decodeAndVerifyJwtToken(
-        req.headers.authorization.split(' ')[1]
-      );
-    } catch (err) {
-      user = undefined;
-    }
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.split(' ')[1];
+    const decoded = decodeJwtToken(token);
+    if (decoded) user = decoded;
   }
 
-  if (!user && refreshToken) {
-    try {
-      user = await decodeAndVerifyJwtToken(refreshToken);
-    } catch {
-      user = undefined;
-    }
-  }
   return { req, res, prisma, user };
 }
 
