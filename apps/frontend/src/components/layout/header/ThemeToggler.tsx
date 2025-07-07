@@ -5,10 +5,14 @@ export default function ThemeToggler() {
   const { CurrentTheme, ChangeTheme } = useTheme();
   return (
     <button
-      className="flex items-center justify-center w-6 h-6 p-1 ml-3 rounded-full ease light-mode dark:dark-mode"
+      className="flex items-center justify-center p-1 ml-3 rounded-full size-7 ease light-mode dark:dark-mode"
       onClick={() => ChangeTheme()}
     >
-      {CurrentTheme === 'light' ? <MoonIcon /> : <SunIcon />}
+      {CurrentTheme === 'light' ? (
+        <MoonIcon className="size-5" />
+      ) : (
+        <SunIcon className="size-5" />
+      )}
     </button>
   );
 }

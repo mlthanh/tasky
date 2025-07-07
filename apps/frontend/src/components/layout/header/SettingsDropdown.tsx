@@ -19,9 +19,8 @@ export const SettingsDropdown = () => {
   return (
     <DropdownRoot>
       <DropdownTrigger>
-        <div className="flex items-start justify-center gap-2 px-3 py-2 border rounded-full cursor-pointer border-primary">
-          <div className="rounded-full bg-primary w-7 h-7"></div>
-          <span className="text-sm font-semibold">{user?.name}</span>
+        <div className="contents">
+          <div className="rounded-full size-7 bg-primary"></div>
         </div>
       </DropdownTrigger>
       <DropdownContent className="xl:min-w-[150px] p-1">

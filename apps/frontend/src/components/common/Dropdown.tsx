@@ -38,7 +38,7 @@ export const DropdownRoot = ({ children }: { children: ReactNode }) => {
 
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen }}>
-      <div ref={dropdownRef} className="relative inline-block">
+      <div ref={dropdownRef} className="relative">
         {children}
       </div>
     </DropdownContext.Provider>
@@ -75,7 +75,7 @@ export const DropdownContent = ({
   return context.isOpen ? (
     <div
       className={tailwindMerge(
-        'absolute left-0 z-50 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-lg',
+        'absolute right-[-10px] z-50 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-lg min-w-40',
         className
       )}
     >

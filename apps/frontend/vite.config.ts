@@ -9,24 +9,23 @@ export default defineConfig({
   cacheDir: '../../node_modules/.vite/apps/frontend',
   server: {
     port: 4200,
-    host: 'localhost',
+    host: 'localhost'
   },
   preview: {
     port: 4300,
-    host: 'localhost',
+    host: 'localhost'
   },
   plugins: [react(), nxViteTsPaths(), nxCopyAssetsPlugin(['*.md'])],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
+  resolve: {
+    alias: [{ find: '~', replacement: '/src' }]
+  },
   build: {
     outDir: '../../dist/apps/frontend',
     emptyOutDir: true,
     reportCompressedSize: true,
     commonjsOptions: {
-      transformMixedEsModules: true,
-    },
+      transformMixedEsModules: true
+    }
   },
   test: {
     watch: false,
@@ -36,7 +35,7 @@ export default defineConfig({
     reporters: ['default'],
     coverage: {
       reportsDirectory: '../../coverage/apps/frontend',
-      provider: 'v8',
-    },
-  },
+      provider: 'v8'
+    }
+  }
 });

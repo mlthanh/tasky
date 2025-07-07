@@ -33,10 +33,11 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
       <div className="flex justify-between w-full gap-4">
         <Input
           type="text"
-          className="text-black sm:text-sm"
+          className="text-white sm:text-sm"
           placeholder="Type a goal"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => (e.key === 'Enter' ? handleAdd() : '')}
         ></Input>
         <Button
           type="submit"

@@ -1,14 +1,14 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, SVGProps, useEffect } from 'react';
 import {
   BaselineCircle,
-  BaselineKeyboardArrowDown,
-  BaselineKeyboardArrowUp
+  BaselineKeyboardArrowDown
 } from '@components/common/Icon';
 import { tailwindMerge } from '@frontend/utils/merge';
 
 type Option<T> = {
   value: T;
   label: string;
+  icon?: React.ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 type SelectProps<T> = {
@@ -17,6 +17,7 @@ type SelectProps<T> = {
   onChange: (value: T) => void;
   placeholder?: string;
   className?: string;
+  showLabel?: boolean;
 };
 
 export function Select<T extends string | number>({
@@ -24,6 +25,7 @@ export function Select<T extends string | number>({
   value,
   onChange,
   placeholder = 'Select...',
+  showLabel = true,
   className
 }: SelectProps<T>) {
   const [open, setOpen] = useState(false);
@@ -34,28 +36,50 @@ export function Select<T extends string | number>({
     setOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open]);
+
+  const selectedOption = options.find((o) => o.value === value);
+
   return (
-    <div className="relative w-48" ref={containerRef}>
+    <div className="relative" ref={containerRef}>
       <button
         className={tailwindMerge(
-          'flex w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:outline-none',
+          'flex items-center justify-between rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:outline-none',
           className
         )}
         onClick={() => setOpen((prev) => !prev)}
       >
-        <span>
-          {options.find((o) => o.value === value)?.label || placeholder}
-        </span>
+        <div className="flex items-center gap-2">
+          {selectedOption?.icon && <selectedOption.icon className="size-5" />}
+          {showLabel && (selectedOption?.label || placeholder)}
+        </div>
         <BaselineKeyboardArrowDown
           className={tailwindMerge(
-            'size-4 opacity-50 transition-transform duration-200',
+            'size-4 opacity-50 transition-transform duration-200 ml-1',
             open ? '-rotate-180' : 'rotate-0'
           )}
         />
       </button>
 
       {open && (
-        <ul className="absolute z-10 w-full mt-1 overflow-auto bg-white border rounded-md shadow max-h-60">
+        <ul className="absolute right-0 z-10 mt-1 overflow-auto bg-white border rounded-md shadow max-h-60 min-w-40">
           {options.map((opt) => (
             <li
               key={String(opt.value)}
@@ -66,7 +90,10 @@ export function Select<T extends string | number>({
               )}
               onClick={() => handleSelect(opt.value)}
             >
-              <span>{opt.label}</span>
+              <div className="flex items-center gap-2">
+                {opt.icon && <opt.icon className="size-4" />}
+                {opt.label}
+              </div>
               {opt.value === value && (
                 <BaselineCircle className="size-2 text-primary" />
               )}

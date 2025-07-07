@@ -12,8 +12,7 @@ type GoalSessionProps = {
 };
 
 export const GoalSession = ({ className }: GoalSessionProps) => {
-  const { isGoalOpen, setIsGoalOpen, isTimerOpen, isTimerDetail } =
-    useUIStateStore();
+  const { isGoalOpen, setIsGoalOpen, isTimerOpen } = useUIStateStore();
   const { getLabel } = useLanguage();
   const toolBarList = [
     {

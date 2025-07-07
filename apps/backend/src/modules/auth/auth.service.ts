@@ -98,7 +98,7 @@ export const signIn = async (
 
   return UserResponseSchema.parse({
     email: user.email,
-    name: user.name ?? user.email,
+    name: user.name,
     role: user.role,
     accessToken
   });
@@ -108,6 +108,7 @@ interface RefreshTokenPayload {
   id: string;
   email: string;
   role: 'user' | 'admin';
+  name: string;
 }
 
 export const refreshToken = async (ctx: Context) => {
@@ -136,7 +137,7 @@ export const refreshToken = async (ctx: Context) => {
     return UserResponseSchema.parse({
       email: payload.email,
       role: payload.role,
-      name: payload.email,
+      name: payload.name,
       accessToken
     });
   } catch (error) {

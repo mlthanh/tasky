@@ -1,14 +1,20 @@
 import { Select } from '@frontend/components/common/Select';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { Language, LANGUAGES } from '@frontend/types';
+import { SVGProps } from 'react';
 
-export const LanguageSelectBox = () => {
+export const LanguageSelectBox = ({ className = '' }) => {
   const { currentLanguage, changeLanguage } = useLanguage();
-  const languageOptions: { value: Language; label: string }[] = (
-    Object.entries(LANGUAGES) as [Language, string][]
-  ).map(([value, label]) => ({
+
+  const languageOptions = (
+    Object.entries(LANGUAGES) as [
+      Language,
+      { label: string; icon: React.ComponentType<SVGProps<SVGSVGElement>> }
+    ][]
+  ).map(([value, { label, icon }]) => ({
     value,
-    label
+    label,
+    icon
   }));
 
   return (
@@ -16,7 +22,8 @@ export const LanguageSelectBox = () => {
       value={currentLanguage}
       onChange={changeLanguage}
       options={languageOptions}
-      className="light-mode dark:dark-mode"
+      className={className}
+      showLabel={false}
     />
   );
 };
