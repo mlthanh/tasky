@@ -71,34 +71,14 @@ const AuthVerify = () => {
     if (!isTokenExpired(auth.accessToken)) {
       signIn(auth);
     } else {
-      console.log('Token is expired');
       await tryRefreshToken();
     }
   };
 
   useEffect(() => {
-    const handleOAuthSuccess = (event: MessageEvent) => {
-      if (event.data?.type === 'oauth-google-success') {
-        const saved = localStorage.getItem('auth');
-        if (saved) {
-          const parsed = UserResponseSchema.safeParse(JSON.parse(saved));
-          if (parsed.success) {
-            signIn(parsed.data);
-            navigate('/dashboard');
-          }
-        }
-      }
-    };
-
-    window.addEventListener('message', handleOAuthSuccess);
-
     if (!user) {
       initAuth();
     }
-
-    return () => {
-      window.removeEventListener('message', handleOAuthSuccess);
-    };
   }, [user, signIn, signOut, navigate, refetch, location.pathname]);
 
   return <span style={{ display: 'none' }} />;

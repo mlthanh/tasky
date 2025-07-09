@@ -23,7 +23,6 @@ const OauthCallbackPage = () => {
         accessToken: token
       };
 
-      signIn(auth);
       localStorage.setItem('auth', JSON.stringify({ ...auth }));
 
       if (window.opener) {
