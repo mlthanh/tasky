@@ -15,21 +15,35 @@ export const useQueryTrpcClient = () => {
       links: [
         httpBatchLink({
           url: APP_URL,
+          transformer: SuperJSON,
           fetch: async (input, init) => {
-            const saved = localStorage.getItem('auth');
-            const auth = saved ? JSON.parse(saved) : null;
+            const getUrl = (): string => {
+              if (typeof input === 'string') return input;
+              if (input instanceof Request) return input.url;
+              return '';
+            };
+
+            const url = getUrl();
+
+            const skipRefresh =
+              url.includes('/auth.signIn') || url.includes('/auth.signUp');
+
+            const savedAuth = localStorage.getItem('auth');
+            const auth = savedAuth ? JSON.parse(savedAuth) : null;
             const accessToken = auth?.accessToken;
 
-            const res = await fetch(input, {
+            const makeAuthHeaders = (token: string | undefined) => ({
+              ...init?.headers,
+              Authorization: token ? `Bearer ${token}` : ''
+            });
+
+            const response = await fetch(input, {
               ...init,
-              headers: {
-                ...init?.headers,
-                Authorization: accessToken ? `Bearer ${accessToken}` : ''
-              },
+              headers: makeAuthHeaders(accessToken),
               credentials: 'include'
             });
 
-            if (res.status !== 401) return res;
+            if (response.status !== 401 || skipRefresh) return response;
 
             try {
               const refreshRes = await fetch(`${APP_URL}/auth.refreshToken`, {
@@ -47,23 +61,19 @@ export const useQueryTrpcClient = () => {
 
                   return fetch(input, {
                     ...init,
-                    headers: {
-                      ...init?.headers,
-                      Authorization: `Bearer ${newAccessToken}`
-                    },
+                    headers: makeAuthHeaders(newAccessToken),
                     credentials: 'include'
                   });
                 }
               }
-            } catch (err) {
-              console.error('Refresh failed:', err);
+            } catch (error) {
+              console.error('Token refresh failed:', error);
             }
 
             localStorage.removeItem('auth');
             window.location.href = '/login';
-            return res;
-          },
-          transformer: SuperJSON
+            return response;
+          }
         })
       ]
     })

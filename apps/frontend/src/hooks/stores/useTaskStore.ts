@@ -3,7 +3,7 @@ import { persist } from 'zustand/middleware';
 
 export enum TaskStatus {
   OPEN = 'OPEN',
-  COMPLETED = 'COMPLETED',
+  COMPLETED = 'COMPLETED'
 }
 
 type TaskType = {
@@ -23,7 +23,7 @@ export type TaskStore = {
 
 export const useTaskStore = create<TaskStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       taskList: [],
 
       addTask: (task) =>
@@ -31,19 +31,19 @@ export const useTaskStore = create<TaskStore>()(
 
       deleteTask: (id) =>
         set((state) => ({
-          taskList: state.taskList.filter((task) => task.id !== id),
+          taskList: state.taskList.filter((task) => task.id !== id)
         })),
 
       updateTask: (id, newData) =>
         set((state) => ({
           taskList: state.taskList.map((task) =>
             task.id === id ? { ...task, ...newData } : task
-          ),
-        })),
+          )
+        }))
     }),
     {
       name: 'task-storage',
-      partialize: (state) => ({ taskList: state.taskList }),
+      partialize: (state) => ({ taskList: state.taskList })
     }
   )
 );

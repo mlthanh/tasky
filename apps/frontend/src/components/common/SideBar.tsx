@@ -374,29 +374,28 @@ const SidebarGroup = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
 );
 SidebarGroup.displayName = 'SidebarGroup';
 
-const SidebarGroupLabel = forwardRef<
-  HTMLDivElement,
-  ComponentProps<'div'> & { asChild?: boolean }
->(({ className, asChild = false, ...props }, ref) => {
-  return (
-    <div
-      ref={ref}
-      data-sidebar="group-label"
-      className={tailwindMerge(
-        'flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
-        'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
-        className
-      )}
-      {...props}
-    />
-  );
-});
+const SidebarGroupLabel = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
+  ({ className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        data-sidebar="group-label"
+        className={tailwindMerge(
+          'flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0',
+          'group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0',
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
 SidebarGroupLabel.displayName = 'SidebarGroupLabel';
 
 const SidebarGroupAction = forwardRef<
   HTMLButtonElement,
-  ComponentProps<'button'> & { asChild?: boolean }
->(({ className, asChild = false, ...props }, ref) => {
+  ComponentProps<'button'>
+>(({ className, ...props }, ref) => {
   return (
     <button
       ref={ref}
@@ -475,14 +474,12 @@ const sidebarMenuButtonVariants = cva(
 const SidebarMenuButton = forwardRef<
   HTMLButtonElement,
   ComponentProps<'button'> & {
-    asChild?: boolean;
     isActive?: boolean;
     tooltip?: string | ComponentProps<typeof TooltipContent>;
   } & VariantProps<typeof sidebarMenuButtonVariants>
 >(
   (
     {
-      asChild = false,
       isActive = false,
       variant = 'default',
       size = 'default',
@@ -529,10 +526,9 @@ SidebarMenuButton.displayName = 'SidebarMenuButton';
 const SidebarMenuAction = forwardRef<
   HTMLButtonElement,
   ComponentProps<'button'> & {
-    asChild?: boolean;
     showOnHover?: boolean;
   }
->(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
+>(({ className, showOnHover = false, ...props }, ref) => {
   return (
     <button
       ref={ref}
@@ -575,24 +571,21 @@ const SidebarMenuBadge = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
 );
 SidebarMenuBadge.displayName = 'SidebarMenuBadge';
 
-const SidebarMenuSkeleton = forwardRef<
-  HTMLDivElement,
-  ComponentProps<'div'> & {
-    showIcon?: boolean;
+const SidebarMenuSkeleton = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
+  ({ className, ...props }, ref) => {
+    return (
+      <div
+        ref={ref}
+        data-sidebar="menu-skeleton"
+        className={tailwindMerge(
+          'flex h-8 items-center gap-2 rounded-md px-2',
+          className
+        )}
+        {...props}
+      ></div>
+    );
   }
->(({ className, showIcon = false, ...props }, ref) => {
-  return (
-    <div
-      ref={ref}
-      data-sidebar="menu-skeleton"
-      className={tailwindMerge(
-        'flex h-8 items-center gap-2 rounded-md px-2',
-        className
-      )}
-      {...props}
-    ></div>
-  );
-});
+);
 SidebarMenuSkeleton.displayName = 'SidebarMenuSkeleton';
 
 const SidebarMenuSub = forwardRef<HTMLUListElement, ComponentProps<'ul'>>(
@@ -619,11 +612,10 @@ SidebarMenuSubItem.displayName = 'SidebarMenuSubItem';
 const SidebarMenuSubButton = forwardRef<
   HTMLAnchorElement,
   ComponentProps<'a'> & {
-    asChild?: boolean;
     size?: 'sm' | 'md';
     isActive?: boolean;
   }
->(({ asChild = false, size = 'md', isActive, className, ...props }, ref) => {
+>(({ size = 'md', isActive, className, ...props }, ref) => {
   return (
     <a
       ref={ref}

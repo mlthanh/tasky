@@ -11,7 +11,7 @@ const SignUpForm = () => {
     onSuccess() {
       navigate('/login');
     },
-    onError(error: any) {
+    onError(error) {
       showToastError(error.message);
     }
   });

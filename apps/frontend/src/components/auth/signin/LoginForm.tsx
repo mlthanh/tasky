@@ -1,19 +1,15 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores/useUserStore';
 import { trpc } from '@utils/trpc';
 import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import LoginFormUI from './LoginFormUI';
 import { useToast } from '@frontend/contexts/ToastProvider';
+import { useState } from 'react';
 const LoginForm = () => {
   const navigate = useNavigate();
-  const state = useUserStore((state) => state);
+  const { signIn } = useUserStore();
   const { showToastError } = useToast();
-
-  const [rememberMe, setRememberMe] = useState(false);
-  const handleRememberMe = (value: boolean) => {
-    setRememberMe(value);
-  };
+  const [rememberMe, handleRememberMe] = useState(false);
 
   const signInMutation = trpc.auth.signIn.useMutation({
     onSuccess({ name, email, role, accessToken }) {
@@ -24,13 +20,7 @@ const LoginForm = () => {
         accessToken
       };
 
-      state.signIn(user);
-      if (rememberMe) {
-        localStorage.setItem(
-          'auth',
-          JSON.stringify({ accessToken, email, role, name })
-        );
-      }
+      signIn(user);
       localStorage.setItem(
         'auth',
         JSON.stringify({ accessToken, email, role, name })
@@ -38,7 +28,8 @@ const LoginForm = () => {
 
       navigate('/dashboard');
     },
-    onError(error: any) {
+    onError(error) {
+      console.log(error);
       showToastError(error.message);
     }
   });

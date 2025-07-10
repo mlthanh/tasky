@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useUserStore } from '@hooks/stores';
 import { trpc } from '@utils/trpc';
 
 const OauthCallbackPage = () => {
   const [searchParams] = useSearchParams();
-  const signIn = useUserStore((state) => state.signIn);
-
   const code = searchParams.get('code');
   const scope = searchParams.get('scope') ?? undefined;
   const authuser = searchParams.get('authuser') ?? undefined;

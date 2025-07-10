@@ -2,7 +2,7 @@ import { Button } from '@components/common/Button';
 import { Medal } from '@components/common/Icon';
 import { useNavigate } from 'react-router-dom';
 
-export const MarketingPage = () => {
+const MarketingPage = () => {
   const navigate = useNavigate();
 
   const handleGoPage = () => {
@@ -40,3 +40,5 @@ export const MarketingPage = () => {
     </div>
   );
 };
+
+export default MarketingPage;

@@ -16,8 +16,8 @@ export const usePomodoroTimer = ({
   const pause = () => setIsRunning(false);
   const reset = () => {
     setIsRunning(false);
-    setTimeLeft(focusTime);
     setMode('focus');
+    setTimeLeft(focusTime);
   };
 
   useEffect(() => {
@@ -32,9 +32,14 @@ export const usePomodoroTimer = ({
 
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev === 0) {
+        if (prev <= 1) {
           const nextMode = mode === 'focus' ? 'break' : 'focus';
           setMode(nextMode);
+
+          if (!autoLoop) {
+            setIsRunning(false);
+          }
+
           return nextMode === 'focus' ? focusTime : breakTime;
         }
         return prev - 1;
@@ -42,12 +47,9 @@ export const usePomodoroTimer = ({
     }, 1000);
 
     return () => {
-      if (!intervalRef.current) {
-        throw new Error('Root element not found');
-      }
-      clearInterval(intervalRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [isRunning, mode]);
+  }, [isRunning, mode, autoLoop, focusTime, breakTime]);
 
   return {
     timeLeft,

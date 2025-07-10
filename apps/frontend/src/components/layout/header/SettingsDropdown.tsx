@@ -13,7 +13,6 @@ export const SettingsDropdown = () => {
   const { getLabel } = useLanguage();
 
   if (!auth) return;
-  const user = JSON.parse(auth);
   const navigate = useNavigate();
 
   return (

@@ -1,7 +1,7 @@
 import SignUpForm from '@components/auth/signup/SignUpForm';
 import Transition from '@components/transition/Transition';
 import { useEffect, useState } from 'react';
-import { MarketingPage } from './MarketingPage';
+import MarketingPage from './MarketingPage';
 import { useLocation } from 'react-router-dom';
 
 const RegisterPage = () => {
