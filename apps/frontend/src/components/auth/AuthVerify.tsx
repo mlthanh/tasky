@@ -34,8 +34,8 @@ const AuthVerify = () => {
 
       if (!refreshed?.accessToken) throw new Error('Refresh failed');
 
-      const { accessToken, name, email, role } = refreshed;
-      const newAuth = { accessToken, name, email, role };
+      const { accessToken, name, email, role, avatar } = refreshed;
+      const newAuth = { accessToken, name, email, role, avatar };
 
       signIn(newAuth);
       localStorage.setItem('auth', JSON.stringify(newAuth));

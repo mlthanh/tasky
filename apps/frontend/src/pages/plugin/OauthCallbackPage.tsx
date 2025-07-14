@@ -1,53 +1,55 @@
+// pages/auth/google/callback.tsx
 import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
 import { trpc } from '@utils/trpc';
+import { useNavigate } from 'react-router-dom';
 
-const OauthCallbackPage = () => {
-  const [searchParams] = useSearchParams();
-  const code = searchParams.get('code');
-  const scope = searchParams.get('scope') ?? undefined;
-  const authuser = searchParams.get('authuser') ?? undefined;
-  const prompt = searchParams.get('prompt') ?? undefined;
-
-  const hasCode = Boolean(code);
-
+export default function GoogleCallbackPage() {
+  const navigate = useNavigate();
   const { mutate, isPending, isError } = trpc.oauth.googleCallback.useMutation({
     onSuccess: ({ user, token }) => {
       const auth = {
         email: user.email,
         name: user.name,
         role: user.role,
+        avatar: user.avatar,
         accessToken: token
       };
 
-      localStorage.setItem('auth', JSON.stringify({ ...auth }));
+      localStorage.setItem('auth', JSON.stringify(auth));
 
       if (window.opener) {
         window.opener.postMessage({ type: 'oauth-google-success' }, '*');
         window.close();
       }
+    },
+    onError(error) {
+      if (window.opener && error.data?.code === 'CONFLICT') {
+        const message = encodeURIComponent(
+          error.message ?? 'Something was wrong'
+        );
+        const statusCode = error.data?.httpStatus ?? 500;
+        navigate(
+          `/auth/google/callback-error?message=${message}&statusCode=${statusCode}`
+        );
+      }
     }
   });
 
   useEffect(() => {
-    if (hasCode && code) {
-      mutate({ code: code, scope, authuser, prompt });
+    const url = new URL(window.location.href);
+    const code = url.searchParams.get('code');
+
+    if (code) {
+      mutate({ code });
+    } else {
+      console.error('Không tìm thấy mã code trong URL callback');
     }
-  }, [hasCode, code, scope, authuser, prompt, mutate]);
+  }, [mutate]);
 
-  if (!hasCode) {
-    return <div>Thiếu mã xác thực. Vui lòng thử lại.</div>;
-  }
-
-  if (isPending) {
-    return <div>Đang xác thực tài khoản Google...</div>;
-  }
-
-  if (isError) {
-    return <div>Đăng nhập thất bại. Vui lòng thử lại sau.</div>;
-  }
-
-  return null;
-};
-
-export default OauthCallbackPage;
+  return (
+    <div className="p-4 text-center">
+      {isPending && <p>Đang đăng nhập với Google...</p>}
+      {isError && <p>Đã xảy ra lỗi, vui lòng thử lại.</p>}
+    </div>
+  );
+}

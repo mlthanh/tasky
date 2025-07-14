@@ -45,13 +45,22 @@ export const DropdownRoot = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const DropdownTrigger = ({ children }: { children: ReactNode }) => {
+export const DropdownTrigger = ({
+  children,
+  className
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   const context = useContext(DropdownContext);
   if (!context)
     throw new Error('DropdownTrigger must be used within a DropdownRoot');
 
   return (
-    <button onClick={() => context.setIsOpen(!context.isOpen)}>
+    <button
+      className={tailwindMerge(className)}
+      onClick={() => context.setIsOpen(!context.isOpen)}
+    >
       {children}
     </button>
   );

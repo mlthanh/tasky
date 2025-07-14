@@ -1,10 +1,10 @@
 import { noAuthProcedure, router } from '../trpc.base';
 import { userCredentialsSchema } from '../schemas/auth.schema';
-import { SignInResponse, UserResponse } from '../types/auth.type';
+import { SignInResponse } from '../types/auth.type';
 
 export const authRouter = router({
   signUp: noAuthProcedure.input(userCredentialsSchema).mutation(async () => {
-    return {} as UserResponse;
+    return {} as SignInResponse;
   }),
 
   signIn: noAuthProcedure.input(userCredentialsSchema).mutation(async () => {

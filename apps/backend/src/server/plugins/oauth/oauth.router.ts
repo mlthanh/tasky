@@ -22,7 +22,8 @@ export const oauthRouter = router({
         {
           id: user.id,
           role: user.role,
-          email: user.email
+          email: user.email,
+          name: user.name
         },
         authConfig.refreshTokenKey,
         { expiresIn: authConfig.refreshExpiresIn }

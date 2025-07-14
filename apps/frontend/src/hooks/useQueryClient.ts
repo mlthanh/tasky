@@ -26,7 +26,9 @@ export const useQueryTrpcClient = () => {
             const url = getUrl();
 
             const skipRefresh =
-              url.includes('/auth.signIn') || url.includes('/auth.signUp');
+              url.includes('/auth.signIn') ||
+              url.includes('/auth.signUp') ||
+              url.includes('/googleAuth');
 
             const savedAuth = localStorage.getItem('auth');
             const auth = savedAuth ? JSON.parse(savedAuth) : null;

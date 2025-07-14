@@ -2,7 +2,8 @@ import { TRPCError } from '@trpc/server';
 import {
   SignInDto,
   SignUpDto,
-  UserResponseSchema
+  UserResponseSchema,
+  SignUpResponseSchema
 } from '@shared/schemas/auth.schema';
 import { sign, verify } from 'jsonwebtoken';
 import { authConfig } from '@backend/configs/auth.config';
@@ -33,13 +34,52 @@ export const signUp = async (
       email: input.email,
       password: bcryptHash,
       role: 'user',
-      name: generatedUsername
+      name: generatedUsername,
+      authProviders: {
+        create: {
+          provider: 'LOCAL',
+          providerId: input.email
+        }
+      }
     }
   });
+
+  const accessToken = sign(
+    {
+      id: user.id,
+      email: user.email,
+      role: user.role,
+      name: user.name
+    },
+    authConfig.tokenKey,
+    { expiresIn: authConfig.tokenExpiresIn }
+  );
+
+  const refreshToken = sign(
+    {
+      id: user.id,
+      role: user.role,
+      email: user.email,
+      name: user.name
+    },
+    authConfig.refreshTokenKey,
+    { expiresIn: authConfig.refreshExpiresIn }
+  );
+
+  ctx.res.setCookie('refresh_token', refreshToken, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 60 * 60 * 24 * 7
+  });
+
   return UserResponseSchema.parse({
     email: user.email,
-    name: user.name ?? user.email,
-    role: user.role
+    name: user.name,
+    role: user.role,
+    avatar: user.avatar,
+    accessToken
   });
 };
 
@@ -72,7 +112,8 @@ export const signIn = async (
     {
       id: user.id,
       email: user.email,
-      role: user.role
+      role: user.role,
+      name: user.name
     },
     authConfig.tokenKey,
     { expiresIn: authConfig.tokenExpiresIn }
@@ -82,7 +123,8 @@ export const signIn = async (
     {
       id: user.id,
       role: user.role,
-      email: user.email
+      email: user.email,
+      name: user.name
     },
     authConfig.refreshTokenKey,
     { expiresIn: authConfig.refreshExpiresIn }
@@ -100,6 +142,7 @@ export const signIn = async (
     email: user.email,
     name: user.name,
     role: user.role,
+    avatar: user.avatar,
     accessToken
   });
 };
@@ -128,18 +171,19 @@ export const refreshToken = async (ctx: Context) => {
       {
         id: payload.id,
         email: payload.email,
-        role: payload.role
+        role: payload.role,
+        name: payload.name
       },
       authConfig.tokenKey,
       { expiresIn: authConfig.tokenExpiresIn }
     );
 
-    return UserResponseSchema.parse({
+    return {
       email: payload.email,
       role: payload.role,
       name: payload.name,
       accessToken
-    });
+    };
   } catch (error) {
     throw new TRPCError({
       code: 'FORBIDDEN',

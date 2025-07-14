@@ -13,11 +13,19 @@ export const userCredentialsSchema = z.object({
     .min(8, 'Password must contain at least 8 character(s)')
 });
 
+export const SignUpResponseSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  role: z.enum(['user', 'admin']),
+  avatar: z.string().nullable()
+});
+
 export const UserResponseSchema = z.object({
   accessToken: z.string(),
   name: z.string(),
   email: z.string().email(),
-  role: z.string()
+  role: z.enum(['user', 'admin']),
+  avatar: z.string().nullable()
 });
 
 export type SignInDto = z.TypeOf<typeof userCredentialsSchema>;
