@@ -46,7 +46,7 @@ const BreadcrumbLink = React.forwardRef<
     <a
       ref={ref}
       className={tailwindMerge(
-        'transition-colors hover:text-foreground',
+        'transition-colors hover:text-primary cursor-pointer',
         className
       )}
       {...props}
@@ -64,7 +64,7 @@ const BreadcrumbPage = React.forwardRef<
     role="link"
     aria-disabled="true"
     aria-current="page"
-    className={tailwindMerge('font-normal text-foreground', className)}
+    className={tailwindMerge('font-normal text-primary', className)}
     {...props}
   />
 ));

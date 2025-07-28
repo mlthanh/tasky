@@ -33,7 +33,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
       <div className="flex justify-between w-full gap-4">
         <Input
           type="text"
-          className="text-white sm:text-sm"
+          className="h-10 text-white sm:text-sm"
           placeholder="Type a goal"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -41,9 +41,8 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
         ></Input>
         <Button
           type="submit"
-          className={`bg-primary ${
-            inputValue === '' ? 'bg-gray-400 cursor-default hover:' : ''
-          }`}
+          variant={`${inputValue === '' ? 'muted' : 'default'}`}
+          className={`border-none`}
           onClick={handleAdd}
         >
           +

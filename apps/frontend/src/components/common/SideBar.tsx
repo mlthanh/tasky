@@ -235,7 +235,7 @@ const SidebarTrigger = forwardRef<
       data-sidebar="trigger"
       variant="ghost"
       size="icon"
-      className={tailwindMerge('h-7 w-7', className)}
+      className={tailwindMerge('', className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();

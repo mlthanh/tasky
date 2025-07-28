@@ -7,7 +7,7 @@ import {
 } from '@components/common/Icon';
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { Label } from '@components/common/Label';
-import StudyToolbar from '@components/study/StudyToolbar';
+import StudyToolbar from '@frontend/components/page/study/StudyToolbar';
 import { Button } from '@components/common/Button';
 import { TimerCounter } from '../Shared/TimerCounter';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
@@ -56,23 +56,21 @@ export const TimerSession = ({ className, timer }: TimerSessionProps) => {
           />
           <div>
             <Button
-              className="hover:bg-slate-600"
+              variant={'ghost'}
+              className="text-white"
               onClick={() => {
                 setIsTimerDetail(true);
                 timer.pause();
               }}
             >
-              <SquareRounded className="text-white" />
+              <SquareRounded className="" />
             </Button>
             <Button
-              className=" hover:bg-slate-600"
+              variant={'ghost'}
+              className="text-white"
               onClick={() => (timer.isRunning ? timer.pause() : timer.start())}
             >
-              {timer.isRunning ? (
-                <Pause className="text-white" />
-              ) : (
-                <Play className="text-white"></Play>
-              )}
+              {timer.isRunning ? <Pause /> : <Play></Play>}
             </Button>
           </div>
         </CardContent>

@@ -33,13 +33,23 @@ module.exports = {
       colors: {
         'dark-mode': '#212332',
         'light-mode': '#fff',
+        destructive: '#F85640',
+        foreground: 'oklch(0.145 0 0)',
+        accent: 'oklch(0.97 0 0)',
+        'accent-foreground': 'oklch(0.205 0 0)',
         red: '#F85640',
         orange: '#FBA63C',
         green: '#13854E',
         background: '#F5F5F5',
         primary: {
           DEFAULT: '#00ADB5',
-          100: '#C0DBEA'
+          100: '#CCF2F4',
+          200: '#99E5E9',
+          300: '#66D8DE',
+          400: '#33CCD3',
+          500: '#00ADB5',
+          600: '#009AA1',
+          700: '#007A80'
         }
       },
       boxShadow: {

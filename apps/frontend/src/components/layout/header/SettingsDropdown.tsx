@@ -6,7 +6,6 @@ import {
   DropdownTrigger
 } from '@frontend/components/common/Dropdown';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
-import { UserResponseSchema } from '@shared/schemas/auth.schema';
 import { useNavigate } from 'react-router-dom';
 
 export const SettingsDropdown = () => {

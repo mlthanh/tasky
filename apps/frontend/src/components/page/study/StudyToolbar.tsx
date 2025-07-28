@@ -18,7 +18,9 @@ const StudyToolbar = ({ toolBarList }: StudyToolbarProps) => {
         <Button
           key={item.title}
           onClick={item.handler}
-          className="w-4 h-4 text-black shadow-none sm:text-white"
+          variant={'ghost'}
+          size={'icon'}
+          className="text-white"
         >
           {item.icon}
         </Button>

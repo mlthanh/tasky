@@ -2,7 +2,7 @@
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { Label } from '@components/common/Label';
 import { Goal24, ReadingTimeDuotone } from '@components/common/Icon';
-import { TimerCounter } from '@components/study/SessionPanel/TimerSession/Shared/TimerCounter';
+import { TimerCounter } from '@frontend/components/page/study/SessionPanel/TimerSession/Shared/TimerCounter';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { useTaskStore, TaskStatus } from '@hooks/stores/useTaskStore';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';

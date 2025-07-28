@@ -16,7 +16,8 @@ export const GoalList = ({ className }: GoalListProps) => {
         >
           <div className="flex items-center">
             <Button
-              className="p-1 mr-2 bg-black"
+              variant={'icon'}
+              className="p-1 mr-2 bg-black border-none"
               onClick={() => {
                 const newStatus =
                   task.status === TaskStatus.OPEN
@@ -35,7 +36,12 @@ export const GoalList = ({ className }: GoalListProps) => {
             <strong>{task.content}</strong>
           </div>
 
-          <Button className="p-1 bg-black" onClick={() => deleteTask(task.id)}>
+          <Button
+            variant={'ghost'}
+            size={'icon'}
+            className="p-1 bg-black"
+            onClick={() => deleteTask(task.id)}
+          >
             <RoundClose />
           </Button>
         </div>

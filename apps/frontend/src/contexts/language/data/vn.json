@@ -15,5 +15,13 @@
 
   "profile": "Cá nhân",
   "settings": "Cài đặt",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+
+  "lbl_notfound_01": "Chúng tôi không thể tìm thấy ",
+  "lbl_notfound_02": "trang bạn đang tìm kiếm",
+  "errorCode": "Mã lỗi: ",
+
+  "lbl_button_01": "Quay lại",
+  "lbl_button_02": "Đăng nhập",
+  "lbl_button_03": "Đăng ký"
 }

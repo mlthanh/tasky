@@ -1,4 +1,5 @@
 import { Button } from '@components/common/Button';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { useNavigate } from 'react-router-dom';
 
 const NotFoundPage = () => {
@@ -10,6 +11,8 @@ const NotFoundPage = () => {
       navigate('/');
     }
   };
+
+  const { getLabel } = useLanguage();
 
   return (
     <div className="flex m-auto bg-no-repeat lg:min-h-screen bg-full lg:bg-auth_background px-auth">
@@ -23,15 +26,17 @@ const NotFoundPage = () => {
       <div className="flex flex-col items-start justify-center w-full min-h-screen gap-3 lg:flex-1">
         <h1 className="font-bold text-9xl">Oops!</h1>
         <p className="text-4xl font-medium tracking-wider">
-          We can't seem to find the <br /> page you're looking for.
+          {getLabel('lbl_notfound_01')} <br /> {getLabel('lbl_notfound_02')}
         </p>
-        <span className="mt-4 text-2xl font-normal">Error code: 404</span>
+        <span className="mt-4 text-2xl font-normal">
+          {getLabel('errorCode')} 404
+        </span>
         <Button
           variant={'secondary'}
           className="flex items-center p-3 text-lg font-medium text-white bg-primary"
           onClick={() => goBack()}
         >
-          Go back
+          {getLabel('lbl_button_01')}
         </Button>
       </div>
     </div>

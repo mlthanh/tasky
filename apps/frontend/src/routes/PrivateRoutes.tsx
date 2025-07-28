@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import { JSX, lazy, Suspense } from 'react';
-import Loader from '~/components/Loader';
+import Loader from '@components/Loader';
 
 const PrivateLayout = lazy(() => import('@layouts/PrivateLayout'));
 const HomePage = lazy(() => import('@pages/private/HomePage'));

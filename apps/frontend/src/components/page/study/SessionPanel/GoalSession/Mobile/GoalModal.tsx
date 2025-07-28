@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { ReadingTimeDuotone, RoundClose } from '@components/common/Icon';
 import { Label } from '@components/common/Label';
-import StudyToolbar from '@components/study/StudyToolbar';
+import StudyToolbar from '@frontend/components/page/study/StudyToolbar';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { Modal } from '@components/common/Modal';
 import GoalSetting from '../Shared/GoalSetting';
@@ -20,8 +20,8 @@ export const GoalModal = ({ className }: GoalModalProps) => {
       icon: <RoundClose />,
       handler: () => {
         setIsGoalOpen(!isGoalOpen);
-      },
-    },
+      }
+    }
   ];
 
   return (

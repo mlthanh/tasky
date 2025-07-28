@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { BlockQuote, RoundClose, Show, Shuffle } from '@components/common/Icon';
 import { Label } from '@components/common/Label';
-import StudyToolbar from '@components/study/StudyToolbar';
+import StudyToolbar from '@frontend/components/page/study/StudyToolbar';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { trpc } from '@utils/trpc';
 

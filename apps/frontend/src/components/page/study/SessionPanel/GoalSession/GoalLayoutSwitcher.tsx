@@ -2,7 +2,7 @@ import { useDeviceStore } from '@hooks/stores';
 import {
   GoalSession,
   GoalModal
-} from '@components/study/SessionPanel/GoalSession';
+} from '@frontend/components/page/study/SessionPanel/GoalSession';
 
 export const GoalLayoutSwitcher = () => {
   const { isMobile } = useDeviceStore();

@@ -11,7 +11,7 @@ import {
   RoundClose,
   SquareRounded
 } from '@components/common/Icon';
-import StudyToolbar from '@components/study/StudyToolbar';
+import StudyToolbar from '@frontend/components/page/study/StudyToolbar';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface TimerSessionMProps {

@@ -15,5 +15,11 @@
 
   "profile": "Profile",
   "settings": "Settings",
-  "logout": "Log out"
+  "logout": "Log out",
+
+  "lbl_notfound_01": "We can't seem to find the ",
+  "lbl_notfound_02": "page you're looking for.",
+  "Error code:": "Error code: ",
+
+  "lbl_button_01": "Go Back"
 }

@@ -2,8 +2,8 @@ import { useDeviceStore, useUIStateStore } from '@hooks/stores';
 import {
   TimerModal,
   TimerSession,
-  TimerSessionM,
-} from '@components/study/SessionPanel/TimerSession';
+  TimerSessionM
+} from '@frontend/components/page/study/SessionPanel/TimerSession';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 
 interface props {

@@ -38,13 +38,18 @@ export const OauthPanel = ({ className }: OauthPanelProps) => {
     <div className={`${className}`}>
       <Button
         type="button"
-        variant={'icon'}
+        variant={'outline'}
+        className="border border-neutral-200"
         onClick={() => oauthGoogleHandler()}
       >
-        <GoogleIcon />
+        <GoogleIcon /> Login with google
       </Button>
-      <Button type="button" variant={'icon'}>
-        <GithubIcon />
+      <Button
+        type="button"
+        variant={'outline'}
+        className="border border-neutral-200"
+      >
+        <GithubIcon /> Login with github
       </Button>
     </div>
   );

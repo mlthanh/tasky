@@ -5,6 +5,7 @@ import { OauthPanel } from '@components/auth/oauth/OauthPanel';
 import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { Separator } from '@frontend/components/common/Seporator';
 
 type SignInFormProps = {
   rememberMe: boolean;
@@ -25,14 +26,17 @@ const LoginFormUI = ({
   } = useForm<EmailAndPassword>();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid items-center w-full gap-3 lg:max-w-lg">
-        <Label htmlFor="email">Email</Label>
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-[400px]">
+      <div className="grid items-center w-full gap-3">
         <Input
           type="email"
           id="email"
-          placeholder="sample@email.com"
-          className="bg-primary-100"
+          placeholder="Enter email address"
+          className={`h-10 ${
+            errors.email
+              ? 'border-destructive focus:outline-none focus:ring-0'
+              : ''
+          } text-xs lg:text-sm`}
           {...register('email', {
             required: 'Email is required',
             pattern: {
@@ -40,41 +44,51 @@ const LoginFormUI = ({
               message: 'Email is not valid'
             }
           })}
-          onBlur={() => trigger('email')}
         />
 
         {errors.email && (
-          <p className="text-xs text-red">{errors.email.message}</p>
+          <p className="text-xs lg:hidden text-destructive">
+            {errors.email.message}
+          </p>
         )}
-
-        <div className="flex justify-between mt-3">
-          <Label htmlFor="password">Password</Label>
-          <span className="text-xs font-light underline">
-            <Link to="/">Forgot Password ?</Link>
-          </span>
-        </div>
 
         <Input
           type="password"
           id="password"
-          className="bg-primary-100"
+          className={`h-10 ${
+            errors.password
+              ? 'border-destructive focus:outline-none focus:ring-0'
+              : ''
+          } text-xs lg:text-sm`}
+          placeholder="Enter password"
           {...register('password', {
-            required: 'Password is required'
+            required: 'Password is required',
+            validate: (value) => {
+              if (value.length < 8) {
+                return 'Must be at least 8 characters';
+              }
+              if (!/[A-Z]/.test(value)) {
+                return 'Must contain at least one uppercase letter';
+              }
+              if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+                return 'Must contain at least one special character';
+              }
+              return true; // pass
+            }
           })}
-          onBlur={() => trigger('password')}
         />
 
         {errors.password && (
-          <p className="text-xs text-red">{errors.password.message}</p>
+          <p className="text-xs lg:hidden text-destructive">
+            {errors.password.message}
+          </p>
         )}
 
-        <Button className="bg-primary uppercase text-light-mode w-[50%] mx-auto lg:mt-8 mt-5 rounded-[23px]">
+        <Button type="submit" className="text-xs lg:text-sm">
           Login
         </Button>
-        <span className="mt-2 text-sm text-center lg:mt-5 lg:text-base">
-          or continue with
-        </span>
-        <OauthPanel className="flex justify-center gap-2" />
+        <Separator variant="dot" orientation="horizontal" className="my-2" />
+        <OauthPanel className="flex flex-col justify-center gap-2" />
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
           Don’t have an account yet?
           <Link

@@ -3,6 +3,13 @@ import Transition from '@components/transition/Transition';
 import { useEffect, useState } from 'react';
 import MarketingPage from './MarketingPage';
 import { useLocation } from 'react-router-dom';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle
+} from '@frontend/components/common/Card';
+import Logo from '@frontend/components/Logo';
 
 const RegisterPage = () => {
   const location = useLocation();
@@ -27,14 +34,18 @@ const RegisterPage = () => {
       {isFromGetting && !delay ? (
         <MarketingPage />
       ) : (
-        <div className="flex h-screen m-auto bg-no-repeat bg-full lg:bg-auth_background lg:px-auth">
-          <div className="flex items-center justify-center w-full lg:mt-8 lg:block lg:flex-1">
-            <div className="flex flex-col gap-10">
-              <span className="text-4xl font-extrabold lg:text-6xl">
-                Registration
-              </span>
-              <SignUpForm />
-            </div>
+        <div className="flex h-screen bg-neutral-100 bg-full lg:bg-auth_background lg:px-auth">
+          <div className="flex items-center justify-center w-full lg:m-auto lg:block lg:flex-1 ">
+            <Card className="p-8 mx-auto ">
+              <CardHeader className="flex items-center justify-center">
+                <CardTitle className="text-2xl font-extrabold lg:text-4xl">
+                  Sign Up
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex items-center justify-center">
+                <SignUpForm />
+              </CardContent>
+            </Card>
           </div>
           <div className="items-end justify-center flex-1 hidden lg:flex">
             <img

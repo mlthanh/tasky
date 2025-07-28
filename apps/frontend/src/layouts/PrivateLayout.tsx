@@ -19,11 +19,11 @@ const PrivateLayout = () => {
           }`}
         >
           <div
-            className={`border-b-2 flex items-center justify-center ${
+            className={`border-b-2 flex items-center justify-center gap-4 ${
               isStudyPage ? 'invisible h-0' : 'px-app'
             }`}
           >
-            <SidebarTrigger className="inline-block" />
+            <SidebarTrigger />
             <Header />
           </div>
 

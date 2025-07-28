@@ -8,7 +8,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={tailwindMerge(
-      'rounded-xl bg-card text-card-foreground flex flex-col items-center justify-center gap-2',
+      'rounded-xl bg-white text-card-foreground flex flex-col items-center justify-center gap-2',
       className
     )}
     {...props}
@@ -20,7 +20,7 @@ const CardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={tailwindMerge('w-full', className)} {...props} />
+  <div ref={ref} className={tailwindMerge('w-full ', className)} {...props} />
 ));
 CardHeader.displayName = 'CardHeader';
 
@@ -84,5 +84,5 @@ export {
   CardFooter,
   CardTitle,
   CardDescription,
-  CardContent,
+  CardContent
 };

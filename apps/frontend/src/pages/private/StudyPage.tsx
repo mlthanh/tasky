@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { useUIStateStore, useTimeStore } from '@hooks/stores';
 import { useSidebar } from '@components/common/SideBar';
-import ToolPanel from '@components/study/ToolPanel';
+import ToolPanel from '@frontend/components/page/study/ToolPanel';
 import {
   OverlayMenus,
   MenuStatus
-} from '@components/study/OverlayMenus/OverlayMenus';
-import SessionPanel from '@components/study/SessionPanel/SessionPanel';
-import { QuickStatusPanel } from '@components/study/QuickStatusPanel';
+} from '@frontend/components/page/study/OverlayMenus/OverlayMenus';
+import SessionPanel from '@frontend/components/page/study/SessionPanel/SessionPanel';
+import { QuickStatusPanel } from '@frontend/components/page/study/QuickStatusPanel';
 import { useFullscreen } from '@hooks/useFullScreen';
 import { GetToolList } from '@constants/StudyToolList';
-import { QuotePanel } from '@components/study/QuotePanel';
+import { QuotePanel } from '@frontend/components/page/study/QuotePanel';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
 
 const StudyPage = () => {

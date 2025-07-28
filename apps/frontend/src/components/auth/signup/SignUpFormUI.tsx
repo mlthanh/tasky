@@ -5,10 +5,12 @@ import Input from '@components/common/Input';
 import { Label } from '@components/common/Label';
 import { OauthPanel } from '@components/auth/oauth/OauthPanel';
 import { Link } from 'react-router-dom';
+import { Separator } from '@frontend/components/common/Seporator';
 
 export type EmailAndPassword = {
   email: string;
   password: string;
+  cfm_password: string;
 };
 
 type SignUpFormProps = {
@@ -51,14 +53,17 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
   const conditions = checkPasswordConditions(password);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="grid items-center w-full gap-3 lg:max-w-lg">
-        <Label htmlFor="email">Email</Label>
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-[400px]">
+      <div className="grid items-center w-full gap-3">
         <Input
           type="email"
           id="email"
-          placeholder="sample@email.com"
-          className="bg-primary-100"
+          placeholder="Enter email address"
+          className={`h-10 ${
+            errors.email
+              ? 'border-destructive focus:outline-none focus:ring-0'
+              : ''
+          } text-xs lg:text-sm`}
           {...register('email', {
             required: 'Email is required',
             pattern: {
@@ -69,34 +74,65 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         />
 
         {errors.email && (
-          <p className="text-xs text-red">{errors.email.message}</p>
+          <p className="text-xs lg:hidden text-destructive">
+            {errors.email.message}
+          </p>
         )}
-
-        <div className="flex justify-between mt-3">
-          <Label htmlFor="password">Password</Label>
-          <span className="text-xs font-light underline">
-            <a href="#">Forgot Password ?</a>
-          </span>
-        </div>
 
         <Input
           type="password"
           id="password"
-          className="bg-primary-100"
+          className={`h-10 ${
+            errors.password
+              ? 'border-destructive focus:outline-none focus:ring-0'
+              : ''
+          } text-xs lg:text-sm`}
+          placeholder="Enter password"
           {...register('password', {
             required: 'Password is required',
-            minLength: {
-              value: 8,
-              message: 'At least 8 characters'
-            },
-            pattern: {
-              value: /[A-Z]/,
-              message: 'Contains a number or symbol'
+            validate: (value) => {
+              if (value.length < 8) {
+                return 'Must be at least 8 characters';
+              }
+              if (!/[A-Z]/.test(value)) {
+                return 'Must contain at least one uppercase letter';
+              }
+              if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+                return 'Must contain at least one special character';
+              }
+              return true; // pass
             }
           })}
         />
 
-        <div className="mt-2">
+        {errors.password && (
+          <p className="text-xs lg:hidden text-destructive">
+            {errors.password.message}
+          </p>
+        )}
+
+        <Input
+          type="password"
+          id="cfm_password"
+          className={`h-10 ${
+            errors.cfm_password
+              ? 'border-destructive focus:outline-none focus:ring-0'
+              : ''
+          } text-xs lg:text-sm`}
+          placeholder="Enter password again"
+          {...register('cfm_password', {
+            required: 'Confirm password is required',
+            validate: (value) => value === password || 'Passwords do not match'
+          })}
+        />
+
+        {errors.cfm_password && (
+          <p className="text-xs text-destructive lg:hidden">
+            {errors.cfm_password.message}
+          </p>
+        )}
+
+        <div className="hidden mt-2 lg:block">
           <div className="w-full h-2 bg-gray-200 rounded">
             <div
               className={`h-2 rounded ${color} transition-all duration-500 ease-in-out`}
@@ -105,15 +141,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
           </div>
         </div>
 
-        <ul className="gap-1 text-2xs lg:text-sm">
-          <li className="flex items-center">
-            {score === 100 ? (
-              <CorrectIcon className="w-4 h-4 mr-2" />
-            ) : (
-              <WrongIcon className="w-4 h-4 mr-2" />
-            )}
-            Password strength: {label}
-          </li>
+        <ul className="hidden gap-1 lg:block text-2xs lg:text-sm">
           <li className="flex items-center">
             {conditions.length ? (
               <CorrectIcon className="w-4 h-4 mr-2" />
@@ -140,22 +168,17 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
           </li>
         </ul>
 
-        <Button
-          type="submit"
-          className="uppercase bg-primary text-light-mode w-[50%] mx-auto lg:mt-8 mt-5 rounded-[23px] lg:text-xl text-2xs"
-        >
+        <Button type="submit" className="text-xs lg:text-sm">
           {isSubmitting ?? <LoadingLoop />}
           {isSubmitting ? 'Please wait' : 'Create account'}
         </Button>
-        <span className="mt-2 text-sm text-center lg:mt-5 lg:text-base">
-          or continue with
-        </span>
-        <OauthPanel className="flex justify-center gap-2" />
-        <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
+        <Separator variant="dot" orientation="horizontal" className="my-2" />
+        <OauthPanel className="flex flex-col justify-center gap-2" />
+        <span className="mt-2 text-sm text-center lg:mt-4 lg:text-md">
           Do have an account yet?
           <Link
             to="/login"
-            className="cursor-pointer text-red hover:text-primary"
+            className="cursor-pointer text-destructive hover:text-primary"
           >
             Log in here
           </Link>
