@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle
 } from '@frontend/components/common/Card';
-import Logo from '@frontend/components/Logo';
 
 const RegisterPage = () => {
   const location = useLocation();

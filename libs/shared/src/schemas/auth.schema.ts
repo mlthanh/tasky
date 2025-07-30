@@ -16,16 +16,14 @@ export const userCredentialsSchema = z.object({
 export const SignUpResponseSchema = z.object({
   name: z.string(),
   email: z.string().email(),
-  role: z.enum(['user', 'admin']),
-  avatar: z.string().nullable()
+  role: z.enum(['user', 'admin'])
 });
 
 export const UserResponseSchema = z.object({
   accessToken: z.string(),
   name: z.string(),
   email: z.string().email(),
-  role: z.enum(['user', 'admin']),
-  avatar: z.string().nullable()
+  role: z.enum(['user', 'admin'])
 });
 
 export type SignInDto = z.TypeOf<typeof userCredentialsSchema>;

@@ -26,6 +26,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
   } = useForm<EmailAndPassword>();
 
   const password = watch('password', '');
+  const cfm_password = watch('cfm_password', '');
 
   const getPasswordStrength = (password: string) => {
     if (!password)
@@ -82,6 +83,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         <Input
           type="password"
           id="password"
+          value={password}
           className={`h-10 ${
             errors.password
               ? 'border-destructive focus:outline-none focus:ring-0'
@@ -114,6 +116,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         <Input
           type="password"
           id="cfm_password"
+          value={cfm_password}
           className={`h-10 ${
             errors.cfm_password
               ? 'border-destructive focus:outline-none focus:ring-0'

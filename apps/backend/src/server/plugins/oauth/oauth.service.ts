@@ -26,7 +26,7 @@ export const handleGoogleCallback = async (query: any) => {
     }
   );
 
-  const { email, name, id, picture } = userInfoResponse.data;
+  const { email, name, id } = userInfoResponse.data;
 
   const authProvider = await prisma.authProvider.findUnique({
     where: {
@@ -61,7 +61,6 @@ export const handleGoogleCallback = async (query: any) => {
       data: {
         email,
         name,
-        avatar: picture,
         role: 'user',
         authProviders: {
           create: {
@@ -92,7 +91,6 @@ export const handleGoogleCallback = async (query: any) => {
       id: user.id,
       email: user.email,
       name: user.name,
-      avatar: user.avatar,
       role: user.role
     }
   };

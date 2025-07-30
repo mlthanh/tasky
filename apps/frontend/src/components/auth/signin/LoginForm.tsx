@@ -12,19 +12,19 @@ const LoginForm = () => {
   const [rememberMe, handleRememberMe] = useState(false);
 
   const signInMutation = trpc.auth.signIn.useMutation({
-    onSuccess({ name, email, role, accessToken, avatar }) {
+    onSuccess({ name, email, role, accessToken }) {
       const user = {
         name,
         role,
         email,
-        avatar,
+
         accessToken
       };
 
       signIn(user);
       localStorage.setItem(
         'auth',
-        JSON.stringify({ accessToken, email, role, name, avatar })
+        JSON.stringify({ accessToken, email, role, name })
       );
 
       navigate('/dashboard');

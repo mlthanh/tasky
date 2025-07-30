@@ -28,7 +28,10 @@ const MarketingPage = () => {
           high rises to the home office, the way your team work is unique -
           accomplish it all with tasky.
         </div>
-        <Button className="mt-2 bg-white group" onClick={handleGoPage}>
+        <Button
+          className="mt-2 text-black bg-white group"
+          onClick={handleGoPage}
+        >
           Get
           <span className="font-bold underline">
             task

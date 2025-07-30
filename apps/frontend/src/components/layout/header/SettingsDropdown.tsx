@@ -6,30 +6,25 @@ import {
   DropdownTrigger
 } from '@frontend/components/common/Dropdown';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
+import { useUserStore } from '@frontend/hooks/stores';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const SettingsDropdown = () => {
-  const auth = localStorage.getItem('auth');
-
   const { getLabel } = useLanguage();
-
-  if (!auth) return;
-  const authData = JSON.parse(auth);
-
+  const { user } = useUserStore();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
 
   return (
     <DropdownRoot>
       <DropdownTrigger className="flex items-center justify-center">
-        {authData.avatar ? (
-          <img
-            src={authData.avatar}
-            alt="User Avatar"
-            className="object-cover rounded-full size-7"
-          />
-        ) : (
-          <div className="rounded-full size-7 bg-primary" />
-        )}
+        <div className="flex items-center justify-center font-bold text-white rounded-full size-7 bg-primary">
+          <span>{user?.name.charAt(0)}</span>
+        </div>
       </DropdownTrigger>
       <DropdownContent className="xl:min-w-[150px] p-1">
         <DropdownItem>{getLabel('profile')}</DropdownItem>

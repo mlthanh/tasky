@@ -21,9 +21,12 @@ const LoginFormUI = ({
   const {
     handleSubmit,
     register,
-    trigger,
+    watch,
+
     formState: { errors }
   } = useForm<EmailAndPassword>();
+
+  const password = watch('password', '');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full md:w-[400px]">
@@ -34,7 +37,7 @@ const LoginFormUI = ({
           placeholder="Enter email address"
           className={`h-10 ${
             errors.email
-              ? 'border-destructive focus:outline-none focus:ring-0'
+              ? 'border-destructive focus:outline-none focus:ring-0 focus:border-destructive'
               : ''
           } text-xs lg:text-sm`}
           {...register('email', {
@@ -55,6 +58,7 @@ const LoginFormUI = ({
         <Input
           type="password"
           id="password"
+          value={password}
           className={`h-10 ${
             errors.password
               ? 'border-destructive focus:outline-none focus:ring-0'
@@ -62,19 +66,7 @@ const LoginFormUI = ({
           } text-xs lg:text-sm`}
           placeholder="Enter password"
           {...register('password', {
-            required: 'Password is required',
-            validate: (value) => {
-              if (value.length < 8) {
-                return 'Must be at least 8 characters';
-              }
-              if (!/[A-Z]/.test(value)) {
-                return 'Must contain at least one uppercase letter';
-              }
-              if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                return 'Must contain at least one special character';
-              }
-              return true; // pass
-            }
+            required: 'Password is required'
           })}
         />
 

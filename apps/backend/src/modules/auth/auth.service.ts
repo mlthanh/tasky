@@ -78,7 +78,6 @@ export const signUp = async (
     email: user.email,
     name: user.name,
     role: user.role,
-    avatar: user.avatar,
     accessToken
   });
 };
@@ -142,7 +141,6 @@ export const signIn = async (
     email: user.email,
     name: user.name,
     role: user.role,
-    avatar: user.avatar,
     accessToken
   });
 };
