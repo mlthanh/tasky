@@ -5,7 +5,7 @@ import Input from '@components/common/Input';
 import { Label } from '@components/common/Label';
 import { OauthPanel } from '@components/auth/oauth/OauthPanel';
 import { Link } from 'react-router-dom';
-import { Separator } from '@frontend/components/common/Seporator';
+import { Separator } from '@frontend/components/common/Separator';
 
 export type EmailAndPassword = {
   email: string;

@@ -30,8 +30,8 @@ const Separator = React.forwardRef<HTMLDivElement, SeparatorProps>(
           ? 'h-px w-full bg-border'
           : 'w-px h-full bg-border'
         : isHorizontal
-        ? 'h-px w-full bg-[length:6px_1px] bg-repeat-x bg-[radial-gradient(circle,_currentColor_1px,_transparent_1px)]'
-        : 'w-px h-full bg-[length:1px_6px] bg-repeat-y bg-[radial-gradient(circle,_currentColor_1px,_transparent_1px)]';
+        ? 'h-px w-full bg-[length:6px_1px] bg-repeat-x bg-[radial-gradient(circle,_black_1px,_transparent_1px)]'
+        : 'w-px h-full bg-[length:1px_6px] bg-repeat-y bg-[radial-gradient(circle,_black_1px,_transparent_1px)]';
 
     return (
       <div

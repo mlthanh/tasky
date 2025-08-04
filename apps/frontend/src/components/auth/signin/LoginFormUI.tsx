@@ -5,7 +5,7 @@ import { OauthPanel } from '@components/auth/oauth/OauthPanel';
 import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { Separator } from '@frontend/components/common/Seporator';
+import { Separator } from '@frontend/components/common/Separator';
 
 type SignInFormProps = {
   rememberMe: boolean;

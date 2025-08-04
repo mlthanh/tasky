@@ -84,7 +84,7 @@ export const DropdownContent = ({
   return context.isOpen ? (
     <div
       className={tailwindMerge(
-        'absolute right-[-10px] z-50 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-lg min-w-40',
+        'absolute right-[-10px] z-50 py-2 mt-1 bg-white border border-gray-200 rounded-md shadow-lg min-w-40',
         className
       )}
     >
