@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores/useUserStore';
-import { UserResponseSchema } from '@shared/schemas/auth.schema';
+import { UserResponseSchema } from '@shared/trpc/schemas/auth.schema';
 import { trpc } from '@utils/trpc';
 
 const parseJwt = (token: string) => {

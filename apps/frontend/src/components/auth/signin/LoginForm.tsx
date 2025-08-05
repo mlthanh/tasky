@@ -30,7 +30,6 @@ const LoginForm = () => {
       navigate('/dashboard');
     },
     onError(error) {
-      console.log(error);
       showToastError(error.message);
     }
   });

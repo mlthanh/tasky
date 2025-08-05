@@ -34,7 +34,7 @@
     "paths": {
       "@frontend/*": ["apps/frontend/src/*"],
       "@backend/*": ["apps/backend/src/*"],
-      "@shared/*": ["libs/shared/src/*"],
+      "@shared/*": ["libs/shared/*"],
       "@components/*": ["apps/frontend/src/components/*"],
       "@hooks/*": ["apps/frontend/src/hooks/*"],
       "@utils/*": ["apps/frontend/src/utils/*"],

@@ -1,15 +1,15 @@
-import { noAuthProcedure, router } from '@backend/server/trpc';
-import { userCredentialsSchema } from '@shared/schemas/auth.schema';
+import { router } from '@backend/server/trpc';
 import { refreshToken, signIn, signUp } from './auth.service';
+import { authRouterSchema } from '@shared/trpc/schemas/routers/authRouter.schema';
 
 export const authRouter = router({
-  signUp: noAuthProcedure
-    .input(userCredentialsSchema)
-    .mutation(async ({ input, ctx }) => signUp(input, ctx)),
-
-  signIn: noAuthProcedure
-    .input(userCredentialsSchema)
-    .mutation(async ({ input, ctx }) => signIn(input, ctx)),
-
-  refreshToken: noAuthProcedure.query(({ ctx }) => refreshToken(ctx)),
+  signUp: authRouterSchema.signUp.mutation(async ({ input, ctx }) =>
+    signUp(input, ctx)
+  ),
+  signIn: authRouterSchema.signIn.mutation(({ input, ctx }) =>
+    signIn(input, ctx)
+  ),
+  refreshToken: authRouterSchema.refreshToken.query(({ ctx }) =>
+    refreshToken(ctx)
+  )
 });

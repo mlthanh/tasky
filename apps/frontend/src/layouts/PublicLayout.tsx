@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores';
-import { UserResponseSchema } from '@shared/schemas/auth.schema';
+import { UserResponseSchema } from '@shared/trpc/schemas/auth.schema';
 
 const PublicLayout = () => {
   const [isChecking, setIsChecking] = useState(true);

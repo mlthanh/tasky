@@ -1,21 +1,13 @@
-import { router, noAuthProcedure } from '../../trpc';
-import { z } from 'zod';
+import { router } from '../../trpc';
 import { handleGoogleCallback } from './oauth.service';
 import { googleOAuth } from '../../../configs/oauth.config';
 import { sign } from 'jsonwebtoken';
 import { authConfig } from '@backend/configs/auth.config';
+import { oauthRouterSchema } from '@shared/trpc/schemas/routers/oauthRouter.schema';
 
 export const oauthRouter = router({
-  googleCallback: noAuthProcedure
-    .input(
-      z.object({
-        code: z.string(),
-        scope: z.string().optional(),
-        authuser: z.string().optional(),
-        prompt: z.string().optional()
-      })
-    )
-    .mutation(async ({ input, ctx }) => {
+  googleCallback: oauthRouterSchema.googleCallback.mutation(
+    async ({ input, ctx }) => {
       const { token, user } = await handleGoogleCallback(input);
 
       const refreshToken = sign(
@@ -38,8 +30,9 @@ export const oauthRouter = router({
       });
 
       return { token, user };
-    }),
-  googleAuth: noAuthProcedure.query(async () => {
+    }
+  ),
+  googleAuth: oauthRouterSchema.googleAuth.query(async () => {
     const url = googleOAuth.authorizeURL({
       redirect_uri: 'http://localhost:4200/auth/google/callback',
       scope: 'email profile'

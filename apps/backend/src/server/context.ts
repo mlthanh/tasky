@@ -9,7 +9,7 @@ export const prisma = new PrismaClient();
 export interface User {
   email: string;
   role: 'user' | 'admin';
-  id: string;
+  id: number;
 }
 
 function decodeJwtToken(token: string): User | null {
