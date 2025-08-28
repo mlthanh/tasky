@@ -1,19 +1,19 @@
 import { TRPCError } from '@trpc/server';
 import {
   SignInDto,
-  SignUpDto,
-  UserResponseSchema
+  SignInResponseDto,
+  SignInResponseSchema,
+  SignUpDto
 } from '@shared/trpc/schemas/auth.schema';
 import { sign, verify } from 'jsonwebtoken';
 import { authConfig } from '@backend/configs/auth.config';
 import { hash, compare } from 'bcryptjs';
 import { Context } from '@backend/server/context';
-import { SignInResponse } from '@shared/trpc/types/auth.type';
 
 export const signUp = async (
   input: SignUpDto,
   ctx: Context
-): Promise<SignInResponse> => {
+): Promise<SignInResponseDto> => {
   const existingUser = await ctx.prisma.user.findUnique({
     where: { email: input.email }
   });
@@ -73,7 +73,7 @@ export const signUp = async (
     maxAge: 60 * 60 * 24 * 7
   });
 
-  return UserResponseSchema.parse({
+  return SignInResponseSchema.parse({
     email: user.email,
     name: user.name,
     role: user.role,
@@ -84,7 +84,7 @@ export const signUp = async (
 export const signIn = async (
   input: SignInDto,
   ctx: Context
-): Promise<SignInResponse> => {
+): Promise<SignInResponseDto> => {
   const user = await ctx.prisma.user.findUnique({
     where: {
       email: input.email
@@ -136,7 +136,7 @@ export const signIn = async (
     maxAge: 60 * 60 * 24 * 7
   });
 
-  return UserResponseSchema.parse({
+  return SignInResponseSchema.parse({
     email: user.email,
     name: user.name,
     role: user.role,

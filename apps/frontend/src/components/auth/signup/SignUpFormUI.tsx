@@ -2,19 +2,14 @@ import { useForm } from 'react-hook-form';
 import { CorrectIcon, WrongIcon, LoadingLoop } from '@components/common/Icon';
 import { Button } from '@components/common/Button';
 import Input from '@components/common/Input';
-import { Label } from '@components/common/Label';
 import { OauthPanel } from '@components/auth/oauth/OauthPanel';
 import { Link } from 'react-router-dom';
 import { Separator } from '@frontend/components/common/Separator';
-
-export type EmailAndPassword = {
-  email: string;
-  password: string;
-  cfm_password: string;
-};
+import { customResolver } from '@frontend/utils/customResolver';
+import { SignUpDto, SignUpSchema } from '@shared/trpc/schemas/auth.schema';
 
 type SignUpFormProps = {
-  onSubmit(values: EmailAndPassword): void;
+  onSubmit(values: SignUpDto): void;
 };
 
 const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
@@ -23,7 +18,9 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
     register,
     watch,
     formState: { errors, isSubmitting }
-  } = useForm<EmailAndPassword>();
+  } = useForm<SignUpDto>({
+    resolver: customResolver(SignUpSchema)
+  });
 
   const password = watch('password', '');
   const cfm_password = watch('cfm_password', '');
@@ -40,17 +37,13 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
     return { score: 100, label: 'Great', color: 'bg-green' };
   };
 
-  const checkPasswordConditions = (password: string) => {
-    return {
-      length: password.length >= 8,
-      uppercase: /[A-Z]/.test(password),
-      lowercase: /[a-z]/.test(password),
-      specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password)
-    };
-  };
+  const checkPasswordConditions = (password: string) => ({
+    length: password.length >= 8,
+    uppercase: /[A-Z]/.test(password),
+    specialChar: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+  });
 
-  const { score, color, label } = getPasswordStrength(password);
-
+  const { score, color } = getPasswordStrength(password);
   const conditions = checkPasswordConditions(password);
 
   return (
@@ -65,15 +58,8 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
               ? 'border-destructive focus:outline-none focus:ring-0'
               : ''
           } text-xs lg:text-sm`}
-          {...register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: 'Email is not valid'
-            }
-          })}
+          {...register('email')}
         />
-
         {errors.email && (
           <p className="text-xs lg:hidden text-destructive">
             {errors.email.message}
@@ -90,23 +76,8 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
               : ''
           } text-xs lg:text-sm`}
           placeholder="Enter password"
-          {...register('password', {
-            required: 'Password is required',
-            validate: (value) => {
-              if (value.length < 8) {
-                return 'Must be at least 8 characters';
-              }
-              if (!/[A-Z]/.test(value)) {
-                return 'Must contain at least one uppercase letter';
-              }
-              if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                return 'Must contain at least one special character';
-              }
-              return true; // pass
-            }
-          })}
+          {...register('password')}
         />
-
         {errors.password && (
           <p className="text-xs lg:hidden text-destructive">
             {errors.password.message}
@@ -123,12 +94,8 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
               : ''
           } text-xs lg:text-sm`}
           placeholder="Enter password again"
-          {...register('cfm_password', {
-            required: 'Confirm password is required',
-            validate: (value) => value === password || 'Passwords do not match'
-          })}
+          {...register('cfm_password')}
         />
-
         {errors.cfm_password && (
           <p className="text-xs text-destructive lg:hidden">
             {errors.cfm_password.message}
@@ -175,8 +142,10 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
           {isSubmitting ?? <LoadingLoop />}
           {isSubmitting ? 'Please wait' : 'Create account'}
         </Button>
+
         <Separator variant="dot" orientation="horizontal" className="my-2" />
         <OauthPanel className="flex flex-col justify-center gap-2" />
+
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-md">
           Do have an account yet?
           <Link

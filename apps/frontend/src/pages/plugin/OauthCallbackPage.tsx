@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 export default function GoogleCallbackPage() {
   const navigate = useNavigate();
   const { mutate, isPending, isError } = trpc.oauth.googleCallback.useMutation({
-    onSuccess: ({ user, token }) => {
+    onSuccess: ({ user, accessToken }) => {
       const auth = {
         email: user.email,
         name: user.name,
         role: user.role,
-        accessToken: token
+        accessToken
       };
 
       localStorage.setItem('auth', JSON.stringify(auth));

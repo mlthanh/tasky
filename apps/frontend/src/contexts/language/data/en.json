@@ -21,5 +21,9 @@
   "lbl_notfound_02": "page you're looking for.",
   "Error code:": "Error code: ",
 
-  "lbl_button_01": "Go Back"
+  "lbl_button_01": "Go Back",
+  "lbl_button_02": "Login",
+  "lbl_button_03": "Register",
+
+  "workspace_title": "Create a new workspace"
 }

@@ -1,10 +1,10 @@
 import { router } from '@backend/server/trpc';
-import { UserResponse } from '../types/auth.type';
 import { oauthRouterSchema } from '../schemas/routers/oauthRouter.schema';
+import { SignUpResponseDto } from '../schemas/auth.schema';
 
 export const oauthRouterContract = router({
   googleCallback: oauthRouterSchema.googleCallback.mutation(async () => {
-    return { token: '', user: {} as UserResponse };
+    return { accessToken: '', user: {} as SignUpResponseDto };
   }),
   googleAuth: oauthRouterSchema.googleAuth.query(async () => {
     return { url: '' };

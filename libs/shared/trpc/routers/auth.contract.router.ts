@@ -1,15 +1,15 @@
 import { router } from '@backend/server/trpc';
-import { SignInResponse } from '../types/auth.type';
 import { authRouterSchema } from '../schemas/routers/authRouter.schema';
+import { SignInResponseDto } from '../schemas/auth.schema';
 
 export const authRouterContract = router({
   signUp: authRouterSchema.signUp.mutation(() => {
-    return {} as SignInResponse;
+    return {} as SignInResponseDto;
   }),
   signIn: authRouterSchema.signIn.mutation(() => {
-    return {} as SignInResponse;
+    return {} as SignInResponseDto;
   }),
   refreshToken: authRouterSchema.refreshToken.query(() => {
-    return {} as SignInResponse;
+    return {} as SignInResponseDto;
   })
 });

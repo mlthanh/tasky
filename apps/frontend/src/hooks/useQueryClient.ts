@@ -43,13 +43,14 @@ export const useQueryTrpcClient = () => {
               ...init,
               headers: makeAuthHeaders(accessToken),
               credentials: 'include'
-            });
+            } as RequestInit);
 
             if (response.status !== 401 || skipRefresh) return response;
 
             try {
               const refreshRes = await fetch(`${APP_URL}/auth.refreshToken`, {
-                method: 'POST',
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
                 credentials: 'include'
               });
 
@@ -65,15 +66,15 @@ export const useQueryTrpcClient = () => {
                     ...init,
                     headers: makeAuthHeaders(newAccessToken),
                     credentials: 'include'
-                  });
+                  } as RequestInit);
                 }
               }
             } catch (error) {
               console.error('Token refresh failed:', error);
+              localStorage.removeItem('auth');
+              window.location.href = '/login';
             }
 
-            localStorage.removeItem('auth');
-            window.location.href = '/login';
             return response;
           }
         })

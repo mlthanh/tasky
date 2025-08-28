@@ -1,9 +1,9 @@
-import { procedure, router } from '@backend/server/trpc';
-import { createWorkspaceSchema } from '@shared/trpc/schemas/workspace.schema';
+import { router } from '@backend/server/trpc';
 import { createWorkspace } from './workspace.service';
+import { workspaceRouterSchema } from '@shared/trpc/schemas/routers/workspaceRouter.schema';
 
 export const workspaceRouter = router({
-  create: procedure
-    .input(createWorkspaceSchema)
-    .mutation(async ({ input, ctx }) => createWorkspace(input, ctx))
+  create: workspaceRouterSchema.create.mutation(async ({ input, ctx }) =>
+    createWorkspace(input, ctx)
+  )
 });

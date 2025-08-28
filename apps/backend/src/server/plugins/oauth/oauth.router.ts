@@ -8,7 +8,7 @@ import { oauthRouterSchema } from '@shared/trpc/schemas/routers/oauthRouter.sche
 export const oauthRouter = router({
   googleCallback: oauthRouterSchema.googleCallback.mutation(
     async ({ input, ctx }) => {
-      const { token, user } = await handleGoogleCallback(input);
+      const { accessToken, user } = await handleGoogleCallback(input);
 
       const refreshToken = sign(
         {
@@ -29,7 +29,7 @@ export const oauthRouter = router({
         maxAge: 60 * 60 * 24 * 7
       });
 
-      return { token, user };
+      return { accessToken, user };
     }
   ),
   googleAuth: oauthRouterSchema.googleAuth.query(async () => {

@@ -24,7 +24,7 @@ export function createServer(opts: ServerOptions) {
             target: 'pino-pretty',
             options: {
               colorize: true,
-              translateTime: 'HH:MM:ss Z',
+              translateTime: 'SYS:yyyy-MM-dd HH:mm:ss',
               ignore: 'pid,hostname'
             }
           }

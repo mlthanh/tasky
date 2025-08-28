@@ -1,30 +1,27 @@
 import { Button } from '@components/common/Button';
 import Input from '@components/common/Input';
-import { Label } from '@components/common/Label';
 import { OauthPanel } from '@components/auth/oauth/OauthPanel';
-import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Separator } from '@frontend/components/common/Separator';
+import { SignInDto, SignInSchema } from '@shared/trpc/schemas/auth.schema';
+import { customResolver } from '@frontend/utils/customResolver';
 
 type SignInFormProps = {
   rememberMe: boolean;
-  onSubmit(values: EmailAndPassword): void;
+  onSubmit(values: SignInDto): void;
   handleRememberMe(value: boolean): void;
 };
 
-const LoginFormUI = ({
-  onSubmit,
-  rememberMe,
-  handleRememberMe
-}: SignInFormProps) => {
+const LoginFormUI = ({ onSubmit }: SignInFormProps) => {
   const {
     handleSubmit,
     register,
     watch,
-
     formState: { errors }
-  } = useForm<EmailAndPassword>();
+  } = useForm<SignInDto>({
+    resolver: customResolver(SignInSchema)
+  });
 
   const password = watch('password', '');
 
@@ -37,18 +34,11 @@ const LoginFormUI = ({
           placeholder="Enter email address"
           className={`h-10 ${
             errors.email
-              ? 'border-destructive focus:outline-none focus:ring-0 focus:border-destructive'
+              ? 'border-destructive focus:outline-none focus:ring-0'
               : ''
           } text-xs lg:text-sm`}
-          {...register('email', {
-            required: 'Email is required',
-            pattern: {
-              value: /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/,
-              message: 'Email is not valid'
-            }
-          })}
+          {...register('email')}
         />
-
         {errors.email && (
           <p className="text-xs lg:hidden text-destructive">
             {errors.email.message}
@@ -59,17 +49,14 @@ const LoginFormUI = ({
           type="password"
           id="password"
           value={password}
+          placeholder="Enter password"
           className={`h-10 ${
             errors.password
               ? 'border-destructive focus:outline-none focus:ring-0'
               : ''
           } text-xs lg:text-sm`}
-          placeholder="Enter password"
-          {...register('password', {
-            required: 'Password is required'
-          })}
+          {...register('password')}
         />
-
         {errors.password && (
           <p className="text-xs lg:hidden text-destructive">
             {errors.password.message}
@@ -79,6 +66,7 @@ const LoginFormUI = ({
         <Button type="submit" className="text-xs lg:text-sm">
           Login
         </Button>
+
         <Separator variant="dot" orientation="horizontal" className="my-2" />
         <OauthPanel className="flex flex-col justify-center gap-2" />
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">

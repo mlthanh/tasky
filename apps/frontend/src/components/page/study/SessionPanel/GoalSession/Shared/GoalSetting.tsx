@@ -42,7 +42,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
         <Button
           type="submit"
           variant={`${inputValue === '' ? 'muted' : 'default'}`}
-          className={`border-none`}
+          className={'border-none'}
           onClick={handleAdd}
         >
           +

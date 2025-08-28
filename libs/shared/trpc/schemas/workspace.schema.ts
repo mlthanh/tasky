@@ -4,4 +4,4 @@ export const createWorkspaceSchema = z.object({
   name: z.string().trim().min(1, 'Required')
 });
 
-export type createWorkspaceDto = z.TypeOf<typeof createWorkspaceSchema>;
+export type createWorkspaceDto = z.infer<typeof createWorkspaceSchema>;

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores/useUserStore';
 import { trpc } from '@utils/trpc';
-import { EmailAndPassword } from '@components/auth/signup/SignUpFormUI';
 import LoginFormUI from './LoginFormUI';
 import { useToast } from '@frontend/contexts/ToastProvider';
 import { useState } from 'react';
+import { SignInDto } from '@shared/trpc/schemas/auth.schema';
 const LoginForm = () => {
   const navigate = useNavigate();
   const { signIn } = useUserStore();
@@ -33,7 +33,7 @@ const LoginForm = () => {
       showToastError(error.message);
     }
   });
-  const onSubmit = (values: EmailAndPassword) => {
+  const onSubmit = (values: SignInDto) => {
     signInMutation.mutate(values);
   };
 

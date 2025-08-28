@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores/useUserStore';
-import { UserResponseSchema } from '@shared/trpc/schemas/auth.schema';
+import { SignInResponseSchema } from '@shared/trpc/schemas/auth.schema';
 import { trpc } from '@utils/trpc';
 
 const parseJwt = (token: string) => {
@@ -59,7 +59,7 @@ const AuthVerify = () => {
       return;
     }
 
-    const parsed = UserResponseSchema.safeParse(JSON.parse(saved));
+    const parsed = SignInResponseSchema.safeParse(JSON.parse(saved));
     if (!parsed.success) {
       console.warn('Invalid auth object:', parsed.error);
       localStorage.removeItem('auth');

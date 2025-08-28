@@ -23,5 +23,7 @@
 
   "lbl_button_01": "Quay lại",
   "lbl_button_02": "Đăng nhập",
-  "lbl_button_03": "Đăng ký"
+  "lbl_button_03": "Đăng ký",
+
+  "workspace_title": "Tạo workspace mới"
 }

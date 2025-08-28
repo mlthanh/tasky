@@ -9,6 +9,7 @@ export const createWorkspace = async (
   input: createWorkspaceDto,
   ctx: Context
 ) => {
+  console.log('ctx', ctx.user);
   if (!ctx.user) {
     throw new TRPCError({
       code: 'UNAUTHORIZED',

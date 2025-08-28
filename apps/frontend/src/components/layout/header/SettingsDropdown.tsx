@@ -3,14 +3,12 @@ import {
   DropdownContent,
   DropdownItem,
   DropdownRoot,
-  DropdownSeparator,
   DropdownTrigger
 } from '@frontend/components/common/Dropdown';
 import { RoundLogout } from '@frontend/components/common/Icon';
 import { Separator } from '@frontend/components/common/Separator';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { useUserStore } from '@frontend/hooks/stores';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const SettingsDropdown = () => {
@@ -44,11 +42,7 @@ export const SettingsDropdown = () => {
           <p className="text-sm text-neutral-900">{user?.name || 'User'}</p>
           <p className="text-xs text-neutral-500">{user?.email}</p>
         </div>
-        <Separator
-          variant="dot"
-          orientation="horizontal"
-          className="my-2 text-"
-        />
+        <Separator variant="dot" orientation="horizontal" className="my-2" />
         <DropdownItem
           onClick={() => {
             localStorage.removeItem('auth');

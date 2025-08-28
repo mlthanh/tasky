@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores';
-import { UserResponseSchema } from '@shared/trpc/schemas/auth.schema';
+import { SignInResponseSchema } from '@shared/trpc/schemas/auth.schema';
 
 const PublicLayout = () => {
   const [isChecking, setIsChecking] = useState(true);
@@ -13,7 +13,7 @@ const PublicLayout = () => {
     if (!saved) return false;
 
     try {
-      const parsed = UserResponseSchema.safeParse(JSON.parse(saved));
+      const parsed = SignInResponseSchema.safeParse(JSON.parse(saved));
       if (parsed.success) {
         signIn(parsed.data);
         navigate('/dashboard', { replace: true });

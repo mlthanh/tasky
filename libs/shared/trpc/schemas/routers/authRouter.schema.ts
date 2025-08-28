@@ -1,8 +1,8 @@
 import { noAuthProcedure } from '@backend/server/trpc';
-import { userCredentialsSchema } from '../auth.schema';
+import { SignInSchema, SignUpSchema } from '../auth.schema';
 
 export const authRouterSchema = {
-  signUp: noAuthProcedure.input(userCredentialsSchema),
-  signIn: noAuthProcedure.input(userCredentialsSchema),
+  signUp: noAuthProcedure.input(SignUpSchema),
+  signIn: noAuthProcedure.input(SignInSchema),
   refreshToken: noAuthProcedure
 };
