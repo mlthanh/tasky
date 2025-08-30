@@ -23,7 +23,7 @@ const PrivateLayout = () => {
               isStudyPage ? 'invisible h-0' : 'px-app'
             }`}
           >
-            <SidebarTrigger />
+            <SidebarTrigger className="text-dark-mode dark:text-light-mode dark:hover:bg-light-mode/10" />
             <Header />
           </div>
 

@@ -25,5 +25,6 @@
   "lbl_button_02": "Đăng nhập",
   "lbl_button_03": "Đăng ký",
 
-  "workspace_title": "Tạo workspace mới"
+  "workspace_title": "Tạo workspace mới",
+  "lbl_error_01": "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại."
 }

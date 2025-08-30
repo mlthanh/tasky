@@ -3,6 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useUserStore } from '@hooks/stores/useUserStore';
 import { SignInResponseSchema } from '@shared/trpc/schemas/auth.schema';
 import { trpc } from '@utils/trpc';
+import { useQueryTrpcClient } from '@frontend/hooks/useQueryClient';
+import { useToast } from '@frontend/contexts/ToastProvider';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 const parseJwt = (token: string) => {
   try {
@@ -21,6 +24,9 @@ const AuthVerify = () => {
   const { user, signIn, signOut } = useUserStore();
   const navigate = useNavigate();
   const location = useLocation();
+  const { error } = useQueryTrpcClient();
+  const { showToastError } = useToast();
+  const { getLabel } = useLanguage();
 
   const { refetch } = trpc.auth.refreshToken.useQuery(undefined, {
     enabled: false,
@@ -40,7 +46,6 @@ const AuthVerify = () => {
       signIn(newAuth);
       localStorage.setItem('auth', JSON.stringify(newAuth));
     } catch (err) {
-      console.error('Token refresh failed:', err);
       signOut();
       localStorage.removeItem('auth');
 
@@ -61,7 +66,6 @@ const AuthVerify = () => {
 
     const parsed = SignInResponseSchema.safeParse(JSON.parse(saved));
     if (!parsed.success) {
-      console.warn('Invalid auth object:', parsed.error);
       localStorage.removeItem('auth');
       return navigate('/login');
     }
@@ -80,6 +84,14 @@ const AuthVerify = () => {
       initAuth();
     }
   }, [user, signIn, signOut, navigate, refetch, location.pathname]);
+
+  useEffect(() => {
+    if (error) {
+      showToastError(error.message);
+      localStorage.removeItem('auth');
+      navigate('/login');
+    }
+  }, [error]);
 
   return <span style={{ display: 'none' }} />;
 };

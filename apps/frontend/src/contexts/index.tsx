@@ -22,14 +22,14 @@ export default function Providers({ children }: PropsWithChildren) {
   }, [setIsMobile]);
 
   return (
-    <trpc.Provider client={trpcClient} queryClient={queryClient}>
-      <QueryClientProvider client={queryClient}>
-        <ToastProvider>
-          <LanguageProvider language="en">
+    <ToastProvider>
+      <LanguageProvider language="en">
+        <trpc.Provider client={trpcClient} queryClient={queryClient}>
+          <QueryClientProvider client={queryClient}>
             <ThemeProvider>{children}</ThemeProvider>
-          </LanguageProvider>
-        </ToastProvider>
-      </QueryClientProvider>
-    </trpc.Provider>
+          </QueryClientProvider>
+        </trpc.Provider>
+      </LanguageProvider>
+    </ToastProvider>
   );
 }

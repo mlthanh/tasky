@@ -55,7 +55,6 @@ export const QuotesSession = ({
         </div>
         <div
           onClick={() => {
-            console.log(isQuoteShow);
             setIsQuoteShow(!isQuoteShow);
           }}
         >

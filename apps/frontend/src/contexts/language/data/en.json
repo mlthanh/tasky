@@ -25,5 +25,6 @@
   "lbl_button_02": "Login",
   "lbl_button_03": "Register",
 
-  "workspace_title": "Create a new workspace"
+  "workspace_title": "Create a new workspace",
+  "lbl_error_01": "Your session has expired. Please log in again."
 }

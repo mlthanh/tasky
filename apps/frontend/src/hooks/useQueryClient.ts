@@ -3,12 +3,16 @@ import { useState } from 'react';
 import { QueryClient } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { trpc } from '@utils/trpc';
+import { useToast } from '@frontend/contexts/ToastProvider';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
+import { error } from 'node:console';
 
 export const useQueryTrpcClient = () => {
   const APP_URL = import.meta.env.VITE_APP_URL;
   if (!APP_URL) throw new Error('No app url env variable found');
 
   const [queryClient] = useState(() => new QueryClient());
+  const [error, setError] = useState<Error | null>(null);
 
   const [trpcClient] = useState(() =>
     trpc.createClient({
@@ -55,8 +59,9 @@ export const useQueryTrpcClient = () => {
               });
 
               if (refreshRes.ok) {
+                debugger;
                 const json = await refreshRes.json();
-                const newAccessToken = json?.result?.data?.accessToken;
+                const newAccessToken = json?.result?.data?.json?.accessToken;
 
                 if (newAccessToken) {
                   const updated = { ...auth, accessToken: newAccessToken };
@@ -70,9 +75,11 @@ export const useQueryTrpcClient = () => {
                 }
               }
             } catch (error) {
-              console.error('Token refresh failed:', error);
-              localStorage.removeItem('auth');
-              window.location.href = '/login';
+              if (error instanceof Error) {
+                setError(error);
+              } else {
+                setError(new Error(String(error)));
+              }
             }
 
             return response;
@@ -82,5 +89,5 @@ export const useQueryTrpcClient = () => {
     })
   );
 
-  return { queryClient, trpcClient };
+  return { queryClient, trpcClient, error };
 };

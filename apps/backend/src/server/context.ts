@@ -27,7 +27,6 @@ export async function createContext({ req, res }: CreateFastifyContextOptions) {
   if (authHeader?.startsWith('Bearer ')) {
     const token = authHeader.split(' ')[1];
     const decoded = decodeJwtToken(token);
-    console.log('user', decoded);
     if (decoded) user = decoded;
   }
 

@@ -1,8 +1,9 @@
 import { trpc } from '@utils/trpc';
 import { useNavigate } from 'react-router-dom';
-import SignUpFormUI, { EmailAndPassword } from './SignUpFormUI';
+import SignUpFormUI from './SignUpFormUI';
 import { useToast } from '@frontend/contexts/ToastProvider';
 import { useUserStore } from '@hooks/stores';
+import { SignUpDto } from '@shared/trpc/schemas/auth.schema';
 
 const SignUpForm = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const SignUpForm = () => {
     }
   });
 
-  const onSubmit = (values: EmailAndPassword) => {
+  const onSubmit = (values: SignUpDto) => {
     signUpMutation.mutate(values);
   };
   return <SignUpFormUI onSubmit={onSubmit} />;

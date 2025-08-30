@@ -7,9 +7,6 @@ export const useCreateWorkspace = () => {
   return trpc.workspace.create.useMutation({
     onSuccess({ name }) {
       console.log('workspace', name);
-    },
-    onError(error) {
-      showToastError(error.message);
     }
   });
 };
