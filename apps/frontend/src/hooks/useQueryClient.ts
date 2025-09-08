@@ -3,16 +3,12 @@ import { useState } from 'react';
 import { QueryClient } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { trpc } from '@utils/trpc';
-import { useToast } from '@frontend/contexts/ToastProvider';
-import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
-import { error } from 'node:console';
 
 export const useQueryTrpcClient = () => {
   const APP_URL = import.meta.env.VITE_APP_URL;
   if (!APP_URL) throw new Error('No app url env variable found');
 
   const [queryClient] = useState(() => new QueryClient());
-  const [error, setError] = useState<Error | null>(null);
 
   const [trpcClient] = useState(() =>
     trpc.createClient({
@@ -59,7 +55,6 @@ export const useQueryTrpcClient = () => {
               });
 
               if (refreshRes.ok) {
-                debugger;
                 const json = await refreshRes.json();
                 const newAccessToken = json?.result?.data?.json?.accessToken;
 
@@ -73,13 +68,13 @@ export const useQueryTrpcClient = () => {
                     credentials: 'include'
                   } as RequestInit);
                 }
+              } else {
+                localStorage.removeItem('auth');
+                window.location.href = '/';
+                throw new Error('Session expired, redirecting...');
               }
             } catch (error) {
-              if (error instanceof Error) {
-                setError(error);
-              } else {
-                setError(new Error(String(error)));
-              }
+              throw new Error('Session expired, redirecting...');
             }
 
             return response;
@@ -89,5 +84,5 @@ export const useQueryTrpcClient = () => {
     })
   );
 
-  return { queryClient, trpcClient, error };
+  return { queryClient, trpcClient };
 };

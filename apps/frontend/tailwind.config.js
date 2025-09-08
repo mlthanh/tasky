@@ -37,6 +37,8 @@ module.exports = {
         foreground: 'oklch(0.145 0 0)',
         accent: 'oklch(0.97 0 0)',
         'accent-foreground': 'oklch(0.205 0 0)',
+        muted: 'oklch(0.97 0 0)',
+        'muted-foreground': 'oklch(0.556 0 0)',
         red: '#F85640',
         orange: '#FBA63C',
         green: '#13854E',

@@ -24,7 +24,6 @@ const AuthVerify = () => {
   const { user, signIn, signOut } = useUserStore();
   const navigate = useNavigate();
   const location = useLocation();
-  const { error } = useQueryTrpcClient();
   const { showToastError } = useToast();
   const { getLabel } = useLanguage();
 
@@ -84,14 +83,6 @@ const AuthVerify = () => {
       initAuth();
     }
   }, [user, signIn, signOut, navigate, refetch, location.pathname]);
-
-  useEffect(() => {
-    if (error) {
-      showToastError(error.message);
-      localStorage.removeItem('auth');
-      navigate('/login');
-    }
-  }, [error]);
 
   return <span style={{ display: 'none' }} />;
 };

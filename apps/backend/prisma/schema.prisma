@@ -20,13 +20,17 @@ model User {
   role       String          @default("user") @db.VarChar(255)
   password    String?         @db.VarChar(255)
   authProviders AuthProvider[]
+  workspaces    Workspace[]
 }
 
 model Workspace {
-  id         Int             @id @default(autoincrement())
-  userId     Int
-  name       String
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  name      String
+  imageUrl  String?   @db.VarChar(500)  // link ảnh (Cloudinary URL)
+  user      User      @relation(fields: [userId], references: [id])
 }
+
 
 model AuthProvider {
   id         Int        @id @default(autoincrement())

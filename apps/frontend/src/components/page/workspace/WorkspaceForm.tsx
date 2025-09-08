@@ -1,3 +1,6 @@
+import { useForm } from 'react-hook-form';
+import React, { useRef, useState } from 'react';
+
 import { Button } from '@frontend/components/common/Button';
 import {
   Card,
@@ -15,7 +18,9 @@ import {
   createWorkspaceDto,
   createWorkspaceSchema
 } from '@shared/trpc/schemas/workspace.schema';
-import { Form, useForm } from 'react-hook-form';
+import { Avatar } from '@frontend/components/common/Avatar';
+import { ImageIcon } from '@frontend/components/common/Icon';
+import { toBase64 } from '@frontend/utils/toBase64';
 
 interface WorkspaceFormProps {
   onCancel: () => void;
@@ -31,10 +36,21 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
   });
 
   const { getLabel } = useLanguage();
+  const imageRef = useRef<HTMLInputElement | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
   const { mutate, isPending } = useCreateWorkspace();
 
   const onSubmit = (value: createWorkspaceDto) => {
     mutate(value);
+  };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      const base64Str = await toBase64(file);
+      setPreview(base64Str);
+    }
   };
 
   return (
@@ -68,6 +84,50 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
               {errors.name.message}
             </p>
           )}
+
+          <div className="flex flex-col gap-y-2">
+            <div className="flex items-center gap-x-5 ">
+              {preview ? (
+                <div className="size-[72px] relative rounded-md overflow-hidden">
+                  <img
+                    alt="image"
+                    className="object-cover-fill"
+                    src={preview}
+                  ></img>
+                </div>
+              ) : (
+                <Avatar
+                  classNameWrapper="text-black size-[72px]"
+                  fallback={<ImageIcon className="size-[36px]" />}
+                />
+              )}
+
+              <div className="flex flex-col text-black">
+                <p className="text-sm">Workspace Icon</p>
+                <p className="text-sm text-muted-foreground">
+                  JPG, PNG, SVG or JPEG, max 1mb
+                </p>
+                <input
+                  ref={imageRef}
+                  disabled={isPending}
+                  className="hidden"
+                  type="file"
+                  accept=".jpg, .png, .jpeg, .svg"
+                  onChange={handleImageChange}
+                ></input>
+                <Button
+                  variant={'teritary'}
+                  type="button"
+                  disabled={isPending}
+                  size={'xs'}
+                  className="mt-2 w-fit"
+                  onClick={() => imageRef.current?.click()}
+                >
+                  Upload image
+                </Button>
+              </div>
+            </div>
+          </div>
 
           <Separator
             variant="dot"

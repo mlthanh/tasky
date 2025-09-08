@@ -4,6 +4,7 @@ import { createContext } from './context';
 import { appRouter } from './router';
 import cors from '@fastify/cors';
 import cookie from '@fastify/cookie';
+import multipart from '@fastify/multipart';
 
 export interface ServerOptions {
   dev?: boolean;
@@ -49,6 +50,8 @@ export function createServer(opts: ServerOptions) {
     hook: 'onRequest',
     parseOptions: {}
   });
+
+  server.register(multipart);
 
   const stop = () => server.close();
   const start = async () => {

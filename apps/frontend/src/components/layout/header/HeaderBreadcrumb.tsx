@@ -33,7 +33,9 @@ export function HeaderBreadcrumb({ className }) {
     <Breadcrumb className={className}>
       <BreadcrumbList>
         <BreadcrumbItem className="text-base">
-          <BreadcrumbLink>{getLabel('home')}</BreadcrumbLink>
+          <BreadcrumbLink className="text-black dark:text-light-mode">
+            {getLabel('home')}
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>

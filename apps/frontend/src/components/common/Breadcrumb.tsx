@@ -46,7 +46,7 @@ const BreadcrumbLink = React.forwardRef<
     <a
       ref={ref}
       className={tailwindMerge(
-        'transition-colors hover:text-primary cursor-pointer',
+        'transition-colors hover:text-primary dark:hover:text-primary cursor-pointer',
         className
       )}
       {...props}

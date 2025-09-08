@@ -25,7 +25,13 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const showToast = (toast: Omit<Toast, 'id'>) => {
     const id = Date.now() + Math.random(); // tránh trùng id
     const newToast = { ...toast, id };
-    setToasts((prev) => [...prev, newToast]);
+
+    setToasts((prev) => {
+      if (newToast.mode === 'manual') {
+        return [newToast];
+      }
+      return [...prev, newToast];
+    });
 
     if (newToast.mode !== 'manual') {
       setTimeout(() => {
@@ -74,13 +80,23 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
             key={toast.id}
             className={`relative p-4 shadow-lg rounded-lg bg-background text-foreground border ${
               toast.type === 'success'
-                ? 'border-green-500 text-green-600'
+                ? 'border-green'
                 : toast.type === 'error'
-                ? 'border-red-500 text-red-600'
+                ? 'border-destructive'
                 : 'border-gray-300'
             }`}
           >
-            <p className="font-semibold">{toast.title}</p>
+            <p
+              className={`font-semibold ${
+                toast.type === 'success'
+                  ? ' text-green'
+                  : toast.type === 'error'
+                  ? ' text-destructive'
+                  : 'text-black'
+              }`}
+            >
+              {toast.title}
+            </p>
             {toast.description && (
               <p className="text-sm opacity-80">{toast.description}</p>
             )}
