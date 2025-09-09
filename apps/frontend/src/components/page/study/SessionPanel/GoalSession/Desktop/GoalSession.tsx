@@ -28,7 +28,7 @@ export const GoalSession = ({ className }: GoalSessionProps) => {
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<ReadingTimeDuotone />}>
-            {getLabel('goal')}
+            {getLabel('lbl_study_002')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList}></StudyToolbar>

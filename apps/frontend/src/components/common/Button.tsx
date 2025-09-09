@@ -14,7 +14,7 @@ const buttonVariants = cva(
         ghost:
           'border-transparent shadow-none hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
-        icon: 'rounded-[23px] w-[20%] bg-white border border-primary',
+        icon: 'rounded-[23px] bg-white border border-primary',
         muted: 'bg-neutral-200 text-neutral-600 hover:bg-neutral-200/80',
         teritary:
           'bg-primary-100 text-primary-600 border-transparent hover:bg-primary-200 shadow-none'

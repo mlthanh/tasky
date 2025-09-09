@@ -26,7 +26,7 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
   const toolBarList = [
     {
       title: 'close',
-      icon: <RoundClose />,
+      icon: <RoundClose className="text-white" />,
       handler: () => {
         setIsTimerOpen(!isTimerOpen);
       }
@@ -37,7 +37,7 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
     <Card className={className}>
       <CardHeader className="flex justify-between">
         <Label className="text-white" icon={<ReadingTimeDuotone />}>
-          {getLabel('pTimer')}
+          {getLabel('lbl_study_001')}
         </Label>
         <StudyToolbar toolBarList={toolBarList} />
       </CardHeader>
@@ -48,22 +48,24 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
         />
         <div className="flex gap-3">
           <Button
-            className="p-0"
+            variant={'ghost'}
+            className="text-white"
             onClick={() => {
               setIsTimerDetail(true);
               timer.pause();
             }}
           >
-            <SquareRounded className="w-6 h-6 text-white" />
+            <SquareRounded className="w-6 h-6 " />
           </Button>
           <Button
-            className=""
+            variant={'ghost'}
+            className="text-white"
             onClick={() => (timer.isRunning ? timer.pause() : timer.start())}
           >
             {timer.isRunning ? (
-              <Pause className="w-6 h-6 text-white" />
+              <Pause className="w-6 h-6 " />
             ) : (
-              <Play className="w-6 h-6 text-white"></Play>
+              <Play className="w-6 h-6 "></Play>
             )}
           </Button>
         </div>

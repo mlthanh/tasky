@@ -51,7 +51,7 @@ export const SettingsDropdown = () => {
           className="flex items-center justify-center gap-2 font-semibold text-red"
         >
           <RoundLogout />
-          {getLabel('logout')}
+          {getLabel('lbl_main_001')}
         </DropdownItem>
       </DropdownContent>
     </DropdownRoot>

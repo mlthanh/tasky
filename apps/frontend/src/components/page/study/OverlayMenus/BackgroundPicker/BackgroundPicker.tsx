@@ -3,6 +3,7 @@ import { Label } from '@components/common/Label';
 import StudyToolbar from '../../StudyToolbar';
 import { ImageIcon, RoundClose } from '@components/common/Icon';
 import { BackgroundList } from './BackgroundList';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 type BackgroundPickerProps = {
   className?: string;
@@ -22,12 +23,14 @@ export const BackgroundPicker = ({
     }
   ];
 
+  const { getLabel } = useLanguage();
+
   return (
     <Card className={`${className}`}>
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<ImageIcon />}>
-            Background
+            {getLabel('lbl_study_007')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList}></StudyToolbar>

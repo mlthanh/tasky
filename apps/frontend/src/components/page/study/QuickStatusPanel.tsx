@@ -37,9 +37,6 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
   const completedTask = taskList.filter(
     (task) => task.status === TaskStatus.COMPLETED
   ).length;
-  const openTask = taskList.filter(
-    (task) => task.status === TaskStatus.OPEN
-  ).length;
 
   return (
     <div
@@ -63,7 +60,7 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
               className="text-xs text-white select-none"
               icon={<ReadingTimeDuotone />}
             >
-              {getLabel('pTimer')}
+              {getLabel('lbl_study_001')}
             </Label>
           </CardHeader>
           <CardContent>
@@ -80,11 +77,11 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
         >
           <CardHeader>
             <Label className="text-xs text-white select-none" icon={<Goal24 />}>
-              {getLabel('goal')}
+              {getLabel('lbl_study_002')}
             </Label>
           </CardHeader>
           <CardContent className="text-xs font-semibold select-none">
-            <span className="font-bold">{completedTask}</span>/{openTask}
+            <span className="font-bold">{completedTask}</span>/{taskList.length}
           </CardContent>
         </Card>
       </div>

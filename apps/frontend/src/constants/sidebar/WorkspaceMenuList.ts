@@ -11,7 +11,7 @@ export const useWorkspacesSideBarList = (): MenuItemType[] => {
 
   return [
     {
-      title: getLabel('project'),
+      title: getLabel('men_main_004'),
       url: WorkspacesSideBarUrl.PROJECT,
       icon: ProjectsAltFill
     }

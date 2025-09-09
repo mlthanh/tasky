@@ -26,17 +26,17 @@ const NotFoundPage = () => {
       <div className="flex flex-col items-start justify-center w-full min-h-screen gap-3 lg:flex-1">
         <h1 className="font-bold text-9xl">Oops!</h1>
         <p className="text-4xl font-medium tracking-wider">
-          {getLabel('lbl_notfound_01')} <br /> {getLabel('lbl_notfound_02')}
+          {getLabel('lbl_notfound_001')} <br /> {getLabel('lbl_notfound_002')}
         </p>
         <span className="mt-4 text-2xl font-normal">
-          {getLabel('errorCode')} 404
+          {getLabel('lbl_notfound_003')} 404
         </span>
         <Button
           variant={'secondary'}
           className="flex items-center p-3 text-lg font-medium text-white bg-primary"
           onClick={() => goBack()}
         >
-          {getLabel('lbl_button_01')}
+          {getLabel('lbl_button_001')}
         </Button>
       </div>
     </div>

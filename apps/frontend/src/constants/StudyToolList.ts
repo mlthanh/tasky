@@ -6,6 +6,7 @@ import {
   OpenInFullRounded
 } from '@components/common/Icon';
 import { MenuStatus } from '@frontend/components/page/study/OverlayMenus/OverlayMenus';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { useDeviceStore } from '@hooks/stores';
 
 export const GetToolList = ({
@@ -18,9 +19,10 @@ export const GetToolList = ({
   setMenuState: React.Dispatch<React.SetStateAction<MenuStatus | null>>;
 }) => {
   const { isMobile } = useDeviceStore();
+  const { getLabel } = useLanguage();
   const ToolList = [
     {
-      title: 'Background',
+      title: getLabel('lbl_study_007'),
       icon: ImageIcon,
       handler: () =>
         setMenuState((prev) =>
@@ -28,7 +30,7 @@ export const GetToolList = ({
         )
     },
     {
-      title: 'Music',
+      title: getLabel('lbl_study_008'),
       icon: MusicFill,
       handler: () =>
         setMenuState((prev) =>
@@ -44,7 +46,7 @@ export const GetToolList = ({
         )
     },
     {
-      title: 'Expanded',
+      title: getLabel('lbl_study_016'),
       icon: !isFullscreen ? OpenInFullRounded : Contract,
       handler: toggleFullscreen
     }

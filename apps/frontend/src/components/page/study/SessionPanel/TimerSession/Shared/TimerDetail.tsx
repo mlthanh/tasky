@@ -29,7 +29,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
           className
         )}
       >
-        <span>{getLabel('focus')}</span>
+        <span>{getLabel('lbl_study_003')}</span>
         <TimerSetting
           ref={fTimerRef}
           step={5}
@@ -37,7 +37,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
           initialMinute={Math.floor((fTime % 3600) / 60)}
           initialHour={Math.floor(fTime / 3600)}
         />
-        <span>{getLabel('break')}</span>
+        <span>{getLabel('lbl_study_004')}</span>
         <TimerSetting
           ref={bTimerRef}
           step={1}
@@ -64,7 +64,7 @@ const TimerDetail = ({ className, timer }: TimerDetailProps) => {
             }
           }}
         >
-          {getLabel('set')}
+          {getLabel('lbl_button_004')}
         </Button>
       </CardFooter>
     </>

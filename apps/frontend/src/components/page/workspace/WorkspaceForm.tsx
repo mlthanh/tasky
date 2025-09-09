@@ -57,7 +57,7 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
     <Card className="w-full h-full p-7">
       <CardHeader className="flex">
         <CardTitle className="text-lg font-bold text-black">
-          {getLabel('workspace_title')}
+          {getLabel('lbl_form_001')}
         </CardTitle>
       </CardHeader>
 
@@ -69,9 +69,11 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
 
       <CardContent className="block">
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-          <Label className="text-sm text-black">Workspace Name</Label>
+          <Label className="text-sm text-black">
+            {getLabel('lbl_form_002')}
+          </Label>
           <Input
-            placeholder="Enter workspace name"
+            placeholder={getLabel('lbl_form_003')}
             className={`w-full text-black ${
               errors.name
                 ? 'border-destructive focus:outline-none focus:ring-0'
@@ -93,6 +95,7 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
                     alt="image"
                     className="object-cover-fill"
                     src={preview}
+                    {...register('imageUrl')}
                   ></img>
                 </div>
               ) : (
@@ -103,9 +106,9 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
               )}
 
               <div className="flex flex-col text-black">
-                <p className="text-sm">Workspace Icon</p>
+                <p className="text-sm">{getLabel('lbl_form_004')}</p>
                 <p className="text-sm text-muted-foreground">
-                  JPG, PNG, SVG or JPEG, max 1mb
+                  {getLabel('lbl_form_005')}
                 </p>
                 <input
                   ref={imageRef}
@@ -123,7 +126,7 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
                   className="mt-2 w-fit"
                   onClick={() => imageRef.current?.click()}
                 >
-                  Upload image
+                  {getLabel('lbl_button_005')}
                 </Button>
               </div>
             </div>
@@ -143,10 +146,10 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
               onClick={onCancel}
               disabled={isPending}
             >
-              Cancel
+              {getLabel('lbl_button_007')}
             </Button>
             <Button type="submit" size={'lg'} disabled={isPending}>
-              Create workspace
+              {getLabel('lbl_button_006')}
             </Button>
           </div>
         </form>

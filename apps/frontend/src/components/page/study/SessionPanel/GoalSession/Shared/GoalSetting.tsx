@@ -33,7 +33,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
       <div className="flex justify-between w-full gap-4">
         <Input
           type="text"
-          className="h-10 text-white sm:text-sm"
+          className="h-10 text-black lg:text-white sm:text-sm"
           placeholder="Type a goal"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
@@ -54,7 +54,9 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
           <Label className="font-semibold sm:text-2xl">
             {taskList.filter((task) => task.status === TaskStatus.OPEN).length}
           </Label>
-          <Label className=" lg:text-lg sm:text-sm">{getLabel('open')}</Label>
+          <Label className=" lg:text-lg sm:text-sm">
+            {getLabel('lbl_study_005')}
+          </Label>
         </div>
         <span className="text-3xl">|</span>
         <div className="flex flex-col items-center justify-center gap-1 font-extrabold text-primary">
@@ -65,7 +67,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
             }
           </Label>
           <Label className="font-extrabold lg:text-lg sm:text-sm">
-            {getLabel('completed')}
+            {getLabel('lbl_study_006')}
           </Label>
         </div>
       </div>

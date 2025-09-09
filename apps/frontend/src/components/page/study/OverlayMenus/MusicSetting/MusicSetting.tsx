@@ -4,6 +4,7 @@ import { MusicFill, RoundClose, Pause, Play } from '@components/common/Icon';
 import { useRef, useState } from 'react';
 import StudyToolbar from '../../StudyToolbar';
 import { Player } from './Player';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 type MusicSettingProps = {
   className?: string;
@@ -12,7 +13,7 @@ type MusicSettingProps = {
 
 export const MusicSetting = ({
   className,
-  closeHandler,
+  closeHandler
 }: MusicSettingProps) => {
   const [rainVolumn, setRainVolumn] = useState<number>(0);
   const [fireVolumn, setFireVolumn] = useState<number>(0);
@@ -21,35 +22,37 @@ export const MusicSetting = ({
   const [isPause, setIsPaused] = useState(false);
   const audioRefs = useRef<Record<string, HTMLAudioElement | null>>({});
 
+  const { getLabel } = useLanguage();
+
   const soundSettingList = [
     {
       id: '1',
-      title: 'Rain sounds',
+      title: getLabel('lbl_study_010'),
       volume: rainVolumn,
       setVolume: setRainVolumn,
-      source: '/study/music/calming-rain.mp3',
+      source: '/study/music/calming-rain.mp3'
     },
     {
       id: '2',
-      title: 'Ghibli sounds',
+      title: getLabel('lbl_study_011'),
       volume: ghibliVolumn,
       setVolume: setGhibliVolumn,
-      source: '/study/music/ghibli.mp3',
+      source: '/study/music/ghibli.mp3'
     },
     {
       id: '3',
-      title: 'Fire sounds',
+      title: getLabel('lbl_study_012'),
       volume: fireVolumn,
       setVolume: setFireVolumn,
-      source: '/study/music/fire.mp3',
+      source: '/study/music/fire.mp3'
     },
     {
       id: '4',
-      title: 'Ambience sounds',
+      title: getLabel('lbl_study_013'),
       volume: ambienceVolumn,
       setVolume: setAmbienceVolumn,
-      source: '/study/music/ambience.mp3',
-    },
+      source: '/study/music/ambience.mp3'
+    }
   ];
 
   const toolBarList = [
@@ -76,13 +79,13 @@ export const MusicSetting = ({
           });
           setIsPaused(true);
         }
-      },
+      }
     },
     {
       title: 'close',
       icon: <RoundClose />,
-      handler: closeHandler,
-    },
+      handler: closeHandler
+    }
   ];
 
   return (
@@ -90,7 +93,7 @@ export const MusicSetting = ({
       <CardHeader className="flex justify-between gap-10">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<MusicFill />}>
-            Music
+            {getLabel('lbl_study_008')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList}></StudyToolbar>

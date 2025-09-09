@@ -40,7 +40,7 @@ export const TimerSession = ({ className, timer }: TimerSessionProps) => {
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<ReadingTimeDuotone />}>
-            {getLabel('pTimer')}
+            {getLabel('lbl_study_001')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList} />

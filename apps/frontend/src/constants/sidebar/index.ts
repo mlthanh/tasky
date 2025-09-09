@@ -7,6 +7,7 @@ import {
   WorkspacesSideBarUrl,
   useWorkspacesSideBarList
 } from './WorkspaceMenuList';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 export interface MenuItemType {
   title: string;
@@ -23,14 +24,15 @@ type SideBarListType = {
 export const useSidebarList = (): SideBarListType[] => {
   const applicationItems = useApplicationSideBarList();
   const workspaceItems = useWorkspacesSideBarList();
+  const { getLabel } = useLanguage();
 
   return [
     {
-      group: '',
+      group: getLabel('grp_main_001'),
       items: applicationItems
     },
     {
-      group: 'Workspaces',
+      group: getLabel('grp_main_002'),
       items: workspaceItems
     }
   ];

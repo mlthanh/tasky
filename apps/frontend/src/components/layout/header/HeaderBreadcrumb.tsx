@@ -21,9 +21,9 @@ export function HeaderBreadcrumb({ className }) {
   const routingPath = (path: pathType) => {
     switch (path) {
       case ApplicationSideBarUrl.DASHBOARD:
-        return getLabel('dashboard');
+        return getLabel('men_main_002');
       case WorkspacesSideBarUrl.PROJECT:
-        return getLabel('project');
+        return getLabel('men_main_004');
       default:
         return '';
     }
@@ -34,7 +34,7 @@ export function HeaderBreadcrumb({ className }) {
       <BreadcrumbList>
         <BreadcrumbItem className="text-base">
           <BreadcrumbLink className="text-black dark:text-light-mode">
-            {getLabel('home')}
+            {getLabel('men_main_001')}
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

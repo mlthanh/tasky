@@ -12,12 +12,12 @@ export const useApplicationSideBarList = (): MenuItemType[] => {
 
   return [
     {
-      title: getLabel('dashboard'),
+      title: getLabel('men_main_002'),
       url: ApplicationSideBarUrl.DASHBOARD,
       icon: BaselineSpaceDashboard
     },
     {
-      title: getLabel('study'),
+      title: getLabel('men_main_003'),
       url: ApplicationSideBarUrl.STUDY,
       icon: LapTimer
     }

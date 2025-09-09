@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { BlockQuote, RoundClose, Show, Shuffle } from '@components/common/Icon';
 import { Label } from '@components/common/Label';
 import StudyToolbar from '@frontend/components/page/study/StudyToolbar';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { trpc } from '@utils/trpc';
 
@@ -15,6 +16,7 @@ export const QuotesSession = ({
   closeHandler
 }: QuotesSessionProps) => {
   const { isQuoteShow, setIsQuoteShow, setQuote } = useUIStateStore();
+  const { getLabel } = useLanguage();
   const toolBarList = [
     {
       title: 'close',
@@ -39,7 +41,7 @@ export const QuotesSession = ({
       <CardHeader className="flex justify-between gap-10">
         <div className="flex items-center justify-center gap-1">
           <Label className="text-white" icon={<BlockQuote />}>
-            Motivational Quotes
+            {getLabel('lbl_study_009')}
           </Label>
         </div>
         <StudyToolbar toolBarList={toolBarList}></StudyToolbar>
@@ -50,7 +52,7 @@ export const QuotesSession = ({
             className="text-white cursor-pointer hover:opacity-65"
             icon={<Shuffle />}
           >
-            Shuffle
+            {getLabel('lbl_study_014')}
           </Label>
         </div>
         <div
@@ -62,7 +64,7 @@ export const QuotesSession = ({
             className="text-white cursor-pointer hover:opacity-65"
             icon={<Show />}
           >
-            Show/Hide
+            {getLabel('lbl_study_015')}
           </Label>
         </div>
       </CardContent>

@@ -6,6 +6,7 @@ import { useUIStateStore } from '@hooks/stores/useUIStateStore';
 import { Modal } from '@components/common/Modal';
 import GoalSetting from '../Shared/GoalSetting';
 import { GoalList } from '../Shared/GoalList';
+import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface GoalModalProps {
   className?: string;
@@ -13,11 +14,12 @@ interface GoalModalProps {
 
 export const GoalModal = ({ className }: GoalModalProps) => {
   const { setIsGoalOpen, isGoalOpen } = useUIStateStore();
+  const { getLabel } = useLanguage();
 
   const toolBarList = [
     {
       title: 'close',
-      icon: <RoundClose />,
+      icon: <RoundClose className="text-black" />,
       handler: () => {
         setIsGoalOpen(!isGoalOpen);
       }
@@ -29,11 +31,8 @@ export const GoalModal = ({ className }: GoalModalProps) => {
       <Card className={className}>
         <CardHeader className="flex justify-between">
           <div className="flex items-center justify-center gap-1">
-            <Label
-              className="text-black sm:text-white"
-              icon={<ReadingTimeDuotone />}
-            >
-              Goal Session
+            <Label className="text-black " icon={<ReadingTimeDuotone />}>
+              {getLabel('lbl_study_002')}
             </Label>
           </div>
           <StudyToolbar toolBarList={toolBarList} />

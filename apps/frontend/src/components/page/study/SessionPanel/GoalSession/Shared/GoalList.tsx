@@ -12,12 +12,16 @@ export const GoalList = ({ className }: GoalListProps) => {
       {taskList.map((task) => (
         <div
           key={task.id}
-          className="flex items-center justify-between w-full px-4 py-2 bg-black rounded-lg"
+          className="flex items-center justify-between w-full px-4 py-2 bg-black rounded-lg group"
         >
-          <div className="flex items-center">
+          <div className="flex items-center min-h-[40px]">
             <Button
               variant={'icon'}
-              className="p-1 mr-2 bg-black border-none"
+              className={`p-1 mr-2 bg-black border-none ${
+                task.status === TaskStatus.OPEN
+                  ? '-ml-9 group-hover:ml-0 transition-all duration-300'
+                  : ''
+              }`}
               onClick={() => {
                 const newStatus =
                   task.status === TaskStatus.OPEN
@@ -28,21 +32,21 @@ export const GoalList = ({ className }: GoalListProps) => {
               }}
             >
               {task.status === TaskStatus.OPEN ? (
-                <Unchecked />
+                <Unchecked className="text-light-mode" />
               ) : (
                 <Checked className="text-primary" />
               )}
             </Button>
-            <strong>{task.content}</strong>
+            <strong className="">{task.content}</strong>
           </div>
 
           <Button
             variant={'ghost'}
             size={'icon'}
-            className="p-1 bg-black"
+            className="hover:bg-transparent"
             onClick={() => deleteTask(task.id)}
           >
-            <RoundClose />
+            <RoundClose className="text-light-mode" />
           </Button>
         </div>
       ))}
