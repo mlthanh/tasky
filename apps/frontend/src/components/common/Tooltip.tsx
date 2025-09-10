@@ -95,7 +95,7 @@ export const TooltipContent = ({
       ref={tooltipRef}
       style={{ top: `${position.top}px`, left: `${position.left}px` }}
       className={tailwindMerge(
-        'absolute z-[9999] rounded-md bg-dark-mode px-3 py-1 text-sm text-white dark:bg-light-mode dark:text-dark-mode shadow-md transition-opacity duration-200',
+        'absolute select-none z-[9999] rounded-md bg-dark-mode px-3 py-1 text-sm text-white dark:bg-light-mode dark:text-dark-mode shadow-md transition-opacity duration-200',
         className
       )}
     >

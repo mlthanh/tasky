@@ -1,16 +1,23 @@
 import { Outlet, useLocation } from 'react-router-dom';
-import Header from '@components/layout/header/Header';
+
 import { SidebarProvider, SidebarTrigger } from '@components/common/SideBar';
 import { AppSidebar } from '@components/layout/AppSideBar';
-import AuthVerify from '@components/auth/AuthVerify';
+import Header from '@components/layout/header/Header';
+import { useAuth } from '@frontend/hooks/useAuth';
+import Loader from '@frontend/components/Loader';
 
 const PrivateLayout = () => {
   const location = useLocation();
+
   const isStudyPage = location.pathname === '/study';
+  const { isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Loader />;
+  }
 
   return (
     <div className="light-mode dark:dark-mode font-Quicksand">
-      <AuthVerify />
       <SidebarProvider>
         <AppSidebar />
         <main

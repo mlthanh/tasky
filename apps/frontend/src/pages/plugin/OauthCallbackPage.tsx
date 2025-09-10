@@ -2,9 +2,11 @@
 import { useEffect } from 'react';
 import { trpc } from '@utils/trpc';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@frontend/contexts/ToastProvider';
 
 export default function GoogleCallbackPage() {
   const navigate = useNavigate();
+  const { showToastError } = useToast();
   const { mutate, isPending, isError } = trpc.oauth.googleCallback.useMutation({
     onSuccess: ({ user, accessToken }) => {
       const auth = {
@@ -41,7 +43,7 @@ export default function GoogleCallbackPage() {
     if (code) {
       mutate({ code });
     } else {
-      console.error('Không tìm thấy mã code trong URL callback');
+      showToastError('Code not found in callback URL');
     }
   }, [mutate]);
 

@@ -21,6 +21,7 @@ import {
 import { Avatar } from '@frontend/components/common/Avatar';
 import { ImageIcon } from '@frontend/components/common/Icon';
 import { toBase64 } from '@frontend/utils/toBase64';
+import { useDeviceStore } from '@frontend/hooks/stores';
 
 interface WorkspaceFormProps {
   onCancel: () => void;
@@ -39,9 +40,14 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
   const imageRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const { mutate, isPending } = useCreateWorkspace();
+  const { isMobile } = useDeviceStore();
 
   const onSubmit = (value: createWorkspaceDto) => {
-    mutate(value);
+    const finalValues = {
+      ...value,
+      imageUrl: !preview ? undefined : preview
+    };
+    mutate(finalValues);
   };
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +62,7 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
   return (
     <Card className="w-full h-full p-7">
       <CardHeader className="flex">
-        <CardTitle className="text-lg font-bold text-black">
+        <CardTitle className="font-bold text-black text-md lg:text-lg">
           {getLabel('lbl_form_001')}
         </CardTitle>
       </CardHeader>
@@ -90,24 +96,25 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
           <div className="flex flex-col gap-y-2">
             <div className="flex items-center gap-x-5 ">
               {preview ? (
-                <div className="size-[72px] relative rounded-md overflow-hidden">
+                <div className="size-[36px] lg:size-[72px] relative rounded-md overflow-hidden">
                   <img
                     alt="image"
                     className="object-cover-fill"
                     src={preview}
-                    {...register('imageUrl')}
                   ></img>
                 </div>
               ) : (
                 <Avatar
-                  classNameWrapper="text-black size-[72px]"
-                  fallback={<ImageIcon className="size-[36px]" />}
+                  classNameWrapper="text-black size-[36px] lg:size-[72px]"
+                  fallback={
+                    <ImageIcon className="size-[18px] lg:size-[36px]" />
+                  }
                 />
               )}
 
               <div className="flex flex-col text-black">
-                <p className="text-sm">{getLabel('lbl_form_004')}</p>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs lg:text-sm">{getLabel('lbl_form_004')}</p>
+                <p className="text-xs lg:text-sm text-muted-foreground">
                   {getLabel('lbl_form_005')}
                 </p>
                 <input
@@ -126,7 +133,9 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
                   className="mt-2 w-fit"
                   onClick={() => imageRef.current?.click()}
                 >
-                  {getLabel('lbl_button_005')}
+                  <span className="text-xs lg:text-sm">
+                    {getLabel('lbl_button_005')}
+                  </span>
                 </Button>
               </div>
             </div>
@@ -141,15 +150,23 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
           <div className="flex items-center justify-between">
             <Button
               type="button"
-              size={'lg'}
+              size={`${isMobile ? 'sm' : 'lg'}`}
               variant={'secondary'}
               onClick={onCancel}
               disabled={isPending}
             >
-              {getLabel('lbl_button_007')}
+              <span className="text-xs lg:text-sm">
+                {getLabel('lbl_button_007')}
+              </span>
             </Button>
-            <Button type="submit" size={'lg'} disabled={isPending}>
-              {getLabel('lbl_button_006')}
+            <Button
+              type="submit"
+              size={`${isMobile ? 'sm' : 'lg'}`}
+              disabled={isPending}
+            >
+              <span className="text-xs lg:text-sm">
+                {getLabel('lbl_button_006')}
+              </span>
             </Button>
           </div>
         </form>

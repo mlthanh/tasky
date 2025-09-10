@@ -1,5 +1,6 @@
 import { Label } from '@components/common/Label';
 import Slider from '@components/common/Slider';
+import { useToast } from '@frontend/contexts/ToastProvider';
 import { ReactNode, useEffect, useRef } from 'react';
 
 type PlayerProps = {
@@ -18,9 +19,10 @@ export const Player = ({
   setVolumn,
   title,
   source,
-  audioRefs,
+  audioRefs
 }: PlayerProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const { showToastError } = useToast();
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -31,8 +33,10 @@ export const Player = ({
     if (volume === 0) {
       audio.pause();
     } else if (audio.paused) {
-        audio.play().catch((err) => console.log('Play failed:', err));
-      }
+      audio
+        .play()
+        .catch((err) => showToastError(`Play failed: ${err}`, 'manual'));
+    }
   }, [volume]);
 
   return (

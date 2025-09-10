@@ -1,13 +1,14 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
+
 import { useUserStore } from '@hooks/stores';
 import { SignInResponseSchema } from '@shared/trpc/schemas/auth.schema';
 
 const PublicLayout = () => {
   const [isChecking, setIsChecking] = useState(true);
   const navigate = useNavigate();
-  const { signIn } = useUserStore();
 
+  const { signIn } = useUserStore();
   const handleAuth = useCallback(() => {
     const saved = localStorage.getItem('auth');
     if (!saved) return false;

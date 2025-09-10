@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import StudyToolbar from '../../StudyToolbar';
 import { Player } from './Player';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
+import { useToast } from '@frontend/contexts/ToastProvider';
 
 type MusicSettingProps = {
   className?: string;
@@ -23,6 +24,7 @@ export const MusicSetting = ({
   const audioRefs = useRef<Record<string, HTMLAudioElement | null>>({});
 
   const { getLabel } = useLanguage();
+  const { showToastError } = useToast();
 
   const soundSettingList = [
     {
@@ -67,7 +69,11 @@ export const MusicSetting = ({
         if (isPause) {
           Object.values(audioRefs.current).forEach((audio) => {
             if (audio && audio.paused) {
-              audio.play().catch((err) => console.log('Play failed:', err));
+              audio
+                .play()
+                .catch((err) =>
+                  showToastError(`Play failed: ${err}`, 'manual')
+                );
             }
           });
           setIsPaused(false);
