@@ -74,7 +74,7 @@ export const useQueryTrpcClient = () => {
                 throw new Error('Session expired, redirecting...');
               }
             } catch (error) {
-              throw new Error('Session expired, redirecting...');
+              throw new Error(`Something was wrong, ${error}`);
             }
 
             return response;

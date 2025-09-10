@@ -13,41 +13,6 @@ export default [
       '@nx': nx
     },
     rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforceBuildableLibDependency: true,
-          allow: [
-            '^@pages/.*',
-            '^@components/.*',
-            '^@frontend/.*',
-            '^@backend/.*',
-            '^@shared/.*',
-            '^@hooks/.*',
-            '^@constants/.*',
-            '^@contexts/.*',
-            '^@layouts/.*',
-            '^@assets/.*',
-            '^@utils/.*',
-            '^.*/eslint(\\.base)?\\.config\\.[cm]?js$'
-          ],
-          depConstraints: [
-            {
-              sourceTag: 'type:frontend',
-              onlyDependOnLibsWithTags: ['type:shared']
-            },
-            {
-              sourceTag: 'type:backend',
-              onlyDependOnLibsWithTags: ['type:shared']
-            },
-            {
-              sourceTag: 'type:shared',
-              onlyDependOnLibsWithTags: ['type:shared']
-            }
-          ]
-        }
-      ],
-
       'no-console': 'warn',
       'no-lonely-if': 'warn',
       'no-trailing-spaces': 'warn',

@@ -7,7 +7,7 @@ import { authConfig } from '@backend/configs/auth.config';
 
 const redirectUri = 'http://localhost:4200/auth/google/callback';
 
-export const handleGoogleCallback = async (query: any) => {
+export const handleGoogleCallback = async (query) => {
   const { code } = query;
 
   const tokenParams = {

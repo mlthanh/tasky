@@ -181,7 +181,7 @@ export const refreshToken = async (ctx: Context) => {
       name: payload.name,
       accessToken
     };
-  } catch (error) {
+  } catch {
     throw new TRPCError({
       code: 'FORBIDDEN',
       message: 'Invalid refresh token'
