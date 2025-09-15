@@ -10,11 +10,10 @@ import { useDeviceStore } from '@hooks/stores/useDeviceStore';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface TimerModalProps {
-  className?: string;
   timer: ReturnType<typeof usePomodoroTimer>;
 }
 
-export const TimerModal = ({ className, timer }: TimerModalProps) => {
+export const TimerModal = ({ timer }: TimerModalProps) => {
   const { setIsTimerDetail, isTimerOpen, isTimerDetail } = useUIStateStore();
   const { isMobile } = useDeviceStore();
   const { getLabel } = useLanguage();
@@ -31,7 +30,7 @@ export const TimerModal = ({ className, timer }: TimerModalProps) => {
 
   return (
     <Modal isOpen={isMobile && isTimerOpen && isTimerDetail}>
-      <Card className={className}>
+      <Card>
         <CardHeader className="flex justify-between">
           <div className="flex items-center justify-center gap-1">
             <Label

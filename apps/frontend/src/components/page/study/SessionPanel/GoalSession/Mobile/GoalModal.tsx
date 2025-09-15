@@ -8,11 +8,7 @@ import GoalSetting from '../Shared/GoalSetting';
 import { GoalList } from '../Shared/GoalList';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
-interface GoalModalProps {
-  className?: string;
-}
-
-export const GoalModal = ({ className }: GoalModalProps) => {
+export const GoalModal = () => {
   const { setIsGoalOpen, isGoalOpen } = useUIStateStore();
   const { getLabel } = useLanguage();
 
@@ -28,7 +24,7 @@ export const GoalModal = ({ className }: GoalModalProps) => {
 
   return (
     <Modal isOpen={isGoalOpen}>
-      <Card className={className}>
+      <Card>
         <CardHeader className="flex justify-between">
           <div className="flex items-center justify-center gap-1">
             <Label className="text-black " icon={<ReadingTimeDuotone />}>
@@ -38,8 +34,8 @@ export const GoalModal = ({ className }: GoalModalProps) => {
           <StudyToolbar toolBarList={toolBarList} />
         </CardHeader>
         <CardContent className="flex flex-col items-center justify-center h-full gap-4 ">
-          <GoalSetting className="flex flex-col items-center justify-center w-full gap-2 text-white" />
-          <GoalList className="flex flex-col items-center justify-start w-full gap-2 overflow-y-auto pr-1 text-white max-h-[230px]" />
+          <GoalSetting className="text-white" />
+          <GoalList className="text-white max-h-[230px]" />
         </CardContent>
       </Card>
     </Modal>

@@ -1,6 +1,6 @@
 import { Button } from '@components/common/Button';
 import Input from '@components/common/Input';
-import { OauthPanel } from '@components/auth/oauth/OauthPanel';
+import { OauthPanel } from '@frontend/components/auth/oauth/OauthPanel';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { Separator } from '@frontend/components/common/Separator';
@@ -68,7 +68,7 @@ const LoginFormUI = ({ onSubmit }: SignInFormProps) => {
         </Button>
 
         <Separator variant="dot" orientation="horizontal" className="my-2" />
-        <OauthPanel className="flex flex-col justify-center gap-2" />
+        <OauthPanel />
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-base">
           Don’t have an account yet?
           <Link

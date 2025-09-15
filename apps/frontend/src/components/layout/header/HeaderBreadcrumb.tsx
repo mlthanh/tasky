@@ -13,7 +13,7 @@ import {
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { useLocation } from 'react-router-dom';
 
-export function HeaderBreadcrumb({ className }) {
+export function HeaderBreadcrumb() {
   const location = useLocation();
   const { getLabel } = useLanguage();
   type pathType = ApplicationSideBarUrl | WorkspacesSideBarUrl;
@@ -30,7 +30,7 @@ export function HeaderBreadcrumb({ className }) {
   };
 
   return (
-    <Breadcrumb className={className}>
+    <Breadcrumb className='className="hidden xl:block"'>
       <BreadcrumbList>
         <BreadcrumbItem className="text-base">
           <BreadcrumbLink className="text-black dark:text-light-mode">

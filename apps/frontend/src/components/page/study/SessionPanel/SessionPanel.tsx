@@ -4,15 +4,14 @@ import { TimerLayoutSwitcher } from './TimerSession/TimerLayoutSwitcher';
 import { GoalLayoutSwitcher } from './GoalSession/GoalLayoutSwitcher';
 
 interface SessionPanelProps {
-  className?: string;
   timer: ReturnType<typeof usePomodoroTimer>;
 }
 
-const SessionPanel = ({ className, timer }: SessionPanelProps) => {
+const SessionPanel = ({ timer }: SessionPanelProps) => {
   const { isTimerOpen, isGoalOpen } = useUIStateStore();
 
   return (
-    <div className={`flex flex-col gap-2 h-full ${className}`}>
+    <div className="flex flex-col gap-2 h-full xl:w-[20vw] sm:w-[38vw] md:w-[32vw] lg:w-[25vw]">
       {isTimerOpen && <TimerLayoutSwitcher timer={timer} />}
       {isGoalOpen && <GoalLayoutSwitcher />}
     </div>

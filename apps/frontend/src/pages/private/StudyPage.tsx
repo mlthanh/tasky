@@ -51,11 +51,8 @@ const StudyPage = () => {
       </div>
 
       <div className="flex justify-between mt-[20px] max-h-[calc(100vh-100px)]">
-        <SessionPanel
-          className="xl:w-[20vw] sm:w-[38vw] md:w-[32vw] lg:w-[25vw] h-full"
-          timer={timer}
-        />
-        <QuotePanel className="hidden md:block" />
+        <SessionPanel timer={timer} />
+        <QuotePanel />
         <OverlayMenus
           menuState={menuState}
           onClose={() => {

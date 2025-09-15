@@ -3,7 +3,7 @@ import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import { Language, LANGUAGES } from '@frontend/types';
 import { SVGProps } from 'react';
 
-export const LanguageSelectBox = ({ className = '' }) => {
+export const LanguageSelectBox = () => {
   const { currentLanguage, changeLanguage } = useLanguage();
 
   const languageOptions = (
@@ -22,7 +22,7 @@ export const LanguageSelectBox = ({ className = '' }) => {
       value={currentLanguage}
       onChange={changeLanguage}
       options={languageOptions}
-      className={className}
+      className="border-none light-mode dark:dark-mode"
       showLabel={false}
     />
   );

@@ -1,4 +1,3 @@
-// components/study/QuickStatusPanel.tsx
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { Label } from '@components/common/Label';
 import { Goal24, ReadingTimeDuotone } from '@components/common/Icon';
@@ -10,11 +9,10 @@ import ToolPanel from './ToolPanel';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface Props {
-  className?: string;
   timer: ReturnType<typeof usePomodoroTimer>;
 }
 
-export const QuickStatusPanel = ({ className = '', timer }: Props) => {
+export const QuickStatusPanel = ({ timer }: Props) => {
   const { isTimerOpen, isGoalOpen, setIsTimerOpen, setIsGoalOpen } =
     useUIStateStore();
 
@@ -39,9 +37,7 @@ export const QuickStatusPanel = ({ className = '', timer }: Props) => {
   ).length;
 
   return (
-    <div
-      className={`flex items-center justify-center gap-2 text-white ${className}`}
-    >
+    <div className="flex items-center justify-center gap-2 text-white">
       <ToolPanel
         toolList={toolList}
         className="flex items-center justify-center gap-2 sm:hidden"

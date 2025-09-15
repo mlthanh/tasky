@@ -7,6 +7,6 @@ import {
 export const GoalLayoutSwitcher = () => {
   const { isMobile } = useDeviceStore();
 
-  if (isMobile) return <GoalModal className="" />;
-  return <GoalSession className="px-4 py-3 text-sm bg-black/85" />;
+  if (isMobile) return <GoalModal />;
+  return <GoalSession />;
 };

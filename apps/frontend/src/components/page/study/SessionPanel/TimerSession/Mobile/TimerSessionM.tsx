@@ -15,11 +15,10 @@ import StudyToolbar from '@frontend/components/page/study/StudyToolbar';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 interface TimerSessionMProps {
-  className?: string;
   timer: ReturnType<typeof usePomodoroTimer>;
 }
 
-export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
+export const TimerSessionM = ({ timer }: TimerSessionMProps) => {
   const { isTimerOpen, setIsTimerOpen, setIsTimerDetail } = useUIStateStore();
   const { getLabel } = useLanguage();
 
@@ -34,7 +33,7 @@ export const TimerSessionM = ({ className, timer }: TimerSessionMProps) => {
   ];
 
   return (
-    <Card className={className}>
+    <Card className="absolute p-5 transform -translate-x-1/2 -translate-y-1/2 bg-black top-1/2 left-1/2">
       <CardHeader className="flex justify-between">
         <Label className="text-white" icon={<ReadingTimeDuotone />}>
           {getLabel('lbl_study_001')}

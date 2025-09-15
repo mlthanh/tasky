@@ -1,5 +1,6 @@
 import { Button } from '@components/common/Button';
 import { Checked, RoundClose, Unchecked } from '@components/common/Icon';
+import { tailwindMerge } from '@frontend/utils/merge';
 import { TaskStatus, useTaskStore } from '@hooks/stores/useTaskStore';
 type GoalListProps = {
   className?: string;
@@ -8,7 +9,12 @@ type GoalListProps = {
 export const GoalList = ({ className }: GoalListProps) => {
   const { taskList, deleteTask, updateTask } = useTaskStore();
   return (
-    <div className={className}>
+    <div
+      className={tailwindMerge(
+        'flex flex-col items-center justify-start w-full gap-2 overflow-y-auto pr-1',
+        className
+      )}
+    >
       {taskList.map((task) => (
         <div
           key={task.id}

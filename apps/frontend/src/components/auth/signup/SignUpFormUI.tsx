@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { CorrectIcon, WrongIcon, LoadingLoop } from '@components/common/Icon';
 import { Button } from '@components/common/Button';
 import Input from '@components/common/Input';
-import { OauthPanel } from '@components/auth/oauth/OauthPanel';
+import { OauthPanel } from '@frontend/components/auth/oauth/OauthPanel';
 import { Link } from 'react-router-dom';
 import { Separator } from '@frontend/components/common/Separator';
 import { customResolver } from '@frontend/utils/customResolver';
@@ -144,7 +144,7 @@ const SignUpFormUI = ({ onSubmit }: SignUpFormProps) => {
         </Button>
 
         <Separator variant="dot" orientation="horizontal" className="my-2" />
-        <OauthPanel className="flex flex-col justify-center gap-2" />
+        <OauthPanel />
 
         <span className="mt-2 text-sm text-center lg:mt-4 lg:text-md">
           Do have an account yet?

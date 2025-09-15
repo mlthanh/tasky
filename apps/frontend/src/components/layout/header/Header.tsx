@@ -8,11 +8,11 @@ import { SettingsDropdown } from './SettingsDropdown';
 const Header = () => {
   return (
     <div className="flex items-center justify-center xl:justify-between w-full py-[5px]">
-      <HeaderBreadcrumb className="hidden xl:block" />
+      <HeaderBreadcrumb />
       <div className="flex items-center justify-center gap-4">
         <ThemeToggler />
         <NotificationBell className="w-5 h-5" />
-        <LanguageSelectBox className="border-none light-mode dark:dark-mode" />
+        <LanguageSelectBox />
         <SettingsDropdown />
       </div>
     </div>

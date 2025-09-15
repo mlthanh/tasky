@@ -1,12 +1,7 @@
-import { Button } from '@components/common/Button';
-import { GithubIcon, GoogleIcon } from '@components/common/Icon';
-import { trpc } from '@utils/trpc';
+import { trpc } from '@frontend/utils/trpc';
+import { OauthPanelUI } from './OauthPanelUI';
 
-type OauthPanelProps = {
-  className?: string;
-};
-
-export const OauthPanel = ({ className }: OauthPanelProps) => {
+export const OauthPanel = () => {
   const { refetch } = trpc.oauth.googleAuth.useQuery(undefined, {
     enabled: false
   });
@@ -33,24 +28,5 @@ export const OauthPanel = ({ className }: OauthPanelProps) => {
       `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes,status=yes`
     );
   }
-
-  return (
-    <div className={`${className}`}>
-      <Button
-        type="button"
-        variant={'outline'}
-        className="border border-neutral-200"
-        onClick={() => oauthGoogleHandler()}
-      >
-        <GoogleIcon /> Login with google
-      </Button>
-      <Button
-        type="button"
-        variant={'outline'}
-        className="border border-neutral-200"
-      >
-        <GithubIcon /> Login with github
-      </Button>
-    </div>
-  );
+  return <OauthPanelUI oauthGoogleHandler={oauthGoogleHandler} />;
 };

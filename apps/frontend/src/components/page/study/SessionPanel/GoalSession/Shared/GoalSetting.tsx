@@ -5,6 +5,7 @@ import { Label } from '@components/common/Label';
 import Input from '@components/common/Input';
 import { Button } from '@components/common/Button';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
+import { tailwindMerge } from '@frontend/utils/merge';
 
 type GoalSettingProps = {
   className?: string;
@@ -29,7 +30,12 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
   };
 
   return (
-    <div className={`${className}`}>
+    <div
+      className={tailwindMerge(
+        'flex flex-col items-center justify-center w-full gap-2',
+        className
+      )}
+    >
       <div className="flex justify-between w-full gap-4">
         <Input
           type="text"
