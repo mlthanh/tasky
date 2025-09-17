@@ -4,7 +4,7 @@ import Loader from '@components/Loader';
 
 const PrivateLayout = lazy(() => import('@layouts/PrivateLayout'));
 const HomePage = lazy(() => import('@pages/private/HomePage'));
-const StudyPage = lazy(() => import('@pages/private/StudyPage'));
+const FocusPage = lazy(() => import('@frontend/pages/private/FocusPage'));
 const ProjectPage = lazy(() => import('@pages/private/ProjectPage'));
 
 const withSuspense = (Component: React.ComponentType): JSX.Element => {
@@ -19,7 +19,7 @@ const privateRoutes: RouteObject = {
   element: withSuspense(PrivateLayout),
   children: [
     { path: '/dashboard', element: <HomePage /> },
-    { path: '/study', element: <StudyPage /> },
+    { path: '/focus', element: <FocusPage /> },
     { path: '/project', element: <ProjectPage /> }
   ]
 };

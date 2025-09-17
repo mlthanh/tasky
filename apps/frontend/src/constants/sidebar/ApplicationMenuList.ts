@@ -1,10 +1,15 @@
-import { BaselineSpaceDashboard, LapTimer } from '@components/common/Icon';
+import {
+  BaselineSpaceDashboard,
+  LapTimer,
+  SettingsFill
+} from '@components/common/Icon';
 import { MenuItemType } from '.';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 export enum ApplicationSideBarUrl {
   DASHBOARD = '/dashboard',
-  STUDY = '/study'
+  FOCUS = '/focus',
+  SETTING = '/setting'
 }
 
 export const useApplicationSideBarList = (): MenuItemType[] => {
@@ -18,8 +23,13 @@ export const useApplicationSideBarList = (): MenuItemType[] => {
     },
     {
       title: getLabel('men_main_003'),
-      url: ApplicationSideBarUrl.STUDY,
+      url: ApplicationSideBarUrl.FOCUS,
       icon: LapTimer
+    },
+    {
+      title: getLabel('men_main_005'),
+      url: ApplicationSideBarUrl.SETTING,
+      icon: SettingsFill
     }
   ];
 };

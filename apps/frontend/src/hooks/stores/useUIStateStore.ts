@@ -24,7 +24,7 @@ export const useUIStateStore = create<UIState>()(
       isTimerDetail: false,
       isGoalOpen: false,
       isQuoteShow: false,
-      background: '/study/anime1.jpg',
+      background: '/focus/anime1.jpg',
       quote: { quote: '', author: '' },
 
       setIsTimerOpen: (v: boolean) => set(() => ({ isTimerOpen: v })),

@@ -30,7 +30,7 @@ export function HeaderBreadcrumb() {
   };
 
   return (
-    <Breadcrumb className='className="hidden xl:block"'>
+    <Breadcrumb className="hidden xl:block">
       <BreadcrumbList>
         <BreadcrumbItem className="text-base">
           <BreadcrumbLink className="text-black dark:text-light-mode">

@@ -1,3 +1,5 @@
+import { WorkspaceSwitcher } from '@frontend/components/layout/sidebar/workspaceswitcher/WorkspaceSwitcher';
+import WorkspaceSwitcherUI from '@frontend/components/layout/sidebar/workspaceswitcher/WorkspaceSwitcherUI';
 import { WorkspaceForm } from '@frontend/components/page/workspace/WorkspaceForm';
 
 const ProjectPage = () => {
@@ -9,6 +11,7 @@ const ProjectPage = () => {
           console.log('cancel');
         }}
       />
+      <WorkspaceSwitcher />
     </div>
   );
 };

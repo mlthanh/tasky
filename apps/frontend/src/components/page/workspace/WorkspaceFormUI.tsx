@@ -65,7 +65,7 @@ export const WorkspaceFormUI = ({
 
     onSubmit(finalValues);
 
-    if (!!isPending) reset();
+    if (isPending) reset();
   };
 
   return (

@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 
 import { SidebarProvider, SidebarTrigger } from '@components/common/SideBar';
-import { AppSidebar } from '@components/layout/AppSideBar';
+import { AppSidebar } from '@frontend/components/layout/sidebar/AppSideBar';
 import Header from '@components/layout/header/Header';
 import { useAuth } from '@frontend/hooks/useAuth';
 import Loader from '@frontend/components/Loader';
@@ -9,7 +9,7 @@ import Loader from '@frontend/components/Loader';
 const PrivateLayout = () => {
   const location = useLocation();
 
-  const isStudyPage = location.pathname === '/study';
+  const isFocusPage = location.pathname === '/focus';
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
@@ -22,12 +22,12 @@ const PrivateLayout = () => {
         <AppSidebar />
         <main
           className={`w-full ${
-            isStudyPage ? 'overflow-y-hidden h-screen' : ''
+            isFocusPage ? 'overflow-y-hidden h-screen' : ''
           }`}
         >
           <div
             className={`border-b-2 flex items-center justify-center gap-4 ${
-              isStudyPage ? 'invisible h-0' : 'px-app'
+              isFocusPage ? 'invisible h-0' : 'px-app'
             }`}
           >
             <SidebarTrigger className="text-dark-mode dark:text-light-mode dark:hover:bg-light-mode/10" />
@@ -36,7 +36,7 @@ const PrivateLayout = () => {
 
           <div
             className={`${
-              isStudyPage ? '' : 'mt-5 px-app'
+              isFocusPage ? '' : 'mt-5 px-app'
             } light-mode dark:dark-mode`}
           >
             <Outlet />

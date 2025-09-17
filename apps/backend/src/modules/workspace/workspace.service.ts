@@ -45,3 +45,18 @@ export const createWorkspace = async (
     imageUrl: workspace.imageUrl
   });
 };
+
+export const getWorkspace = async (ctx: Context) => {
+  if (!ctx.user) {
+    throw new TRPCError({
+      code: 'UNAUTHORIZED',
+      message: 'Please Login Before'
+    });
+  }
+
+  const data = await ctx.prisma.workspace.findMany({
+    where: { userId: ctx.user.id }
+  });
+
+  return data;
+};
