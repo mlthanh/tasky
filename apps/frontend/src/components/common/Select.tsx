@@ -1,57 +1,55 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-  ReactNode
-} from 'react';
+import React, { createContext, ReactNode } from 'react';
 import { tailwindMerge } from '@frontend/utils/merge';
 import { BaselineKeyboardArrowDown } from '@components/common/Icon';
 
-// Context type generic
-type SelectContextType<T extends string> = {
-  value?: T;
-  onChange: (value: T) => void;
+// ---- Types ----
+type Option = {
+  value: string;
+  label: string;
+};
+
+type SelectContextType = {
+  value?: Option;
+  onChange: (option: Option) => void;
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   placeholder?: string;
 };
 
-const SelectContext = createContext<SelectContextType<any> | null>(null);
+const SelectContext = createContext<SelectContextType | null>(null);
 
-function useSelect<T extends string>() {
+function useSelect() {
   const ctx = React.useContext(SelectContext);
   if (!ctx) throw new Error('Select components must be used within <Select>');
-  return ctx as SelectContextType<T>;
+  return ctx;
 }
 
-type SelectProps<T extends string> = {
-  value?: T;
-  onChange?: (value: T) => void;
-  defaultValue?: T;
+type SelectProps = {
+  value?: Option;
+  onChange?: (option: Option) => void;
+  defaultValue?: Option;
   placeholder?: string;
   children: React.ReactNode;
 };
 
-export function Select<T extends string>({
+export function Select({
   value: controlledValue,
   onChange,
   defaultValue,
   placeholder = 'Select...',
   children
-}: SelectProps<T>) {
+}: SelectProps) {
   const [open, setOpen] = React.useState(false);
   const [uncontrolledValue, setUncontrolledValue] = React.useState<
-    T | undefined
+    Option | undefined
   >(defaultValue);
 
   const isControlled = controlledValue !== undefined;
   const value = isControlled ? controlledValue : uncontrolledValue;
 
-  const handleChange = (v: T) => {
-    if (!isControlled) setUncontrolledValue(v);
-    onChange?.(v);
+  const handleChange = (opt: Option) => {
+    if (!isControlled) setUncontrolledValue(opt);
+    onChange?.(opt);
     setOpen(false);
   };
 
@@ -64,7 +62,6 @@ export function Select<T extends string>({
   );
 }
 
-// ---- Trigger ----
 export function SelectTrigger({
   className,
   children
@@ -99,12 +96,12 @@ export function SelectValue({
   renderValue
 }: {
   placeholder?: string;
-  renderValue?: (value?: string) => React.ReactNode;
+  renderValue?: (option?: Option) => React.ReactNode;
 }) {
-  const { value, placeholder: ctxPlaceholder } = useSelect<string>();
+  const { value, placeholder: ctxPlaceholder } = useSelect();
 
   if (!value) return <span>{placeholder || ctxPlaceholder}</span>;
-  return <>{renderValue ? renderValue(value) : value}</>;
+  return <>{renderValue ? renderValue(value) : value.label}</>;
 }
 
 // ---- Content ----
@@ -152,17 +149,22 @@ export function SelectItem({
   children: ReactNode;
 }) {
   const { value: selected, onChange } = useSelect();
-  const isSelected = value === selected;
+  const option: Option = { value, label: String(children) };
+  const isSelected = selected?.value === value;
 
   return (
     <div
       className={tailwindMerge(
-        'cursor-pointer rounded-sm px-3 py-2 text-sm hover:bg-slate-100',
+        'flex cursor-pointer items-center justify-between px-3 py-2 text-sm hover:bg-slate-100',
         isSelected ? 'bg-accent text-accent-foreground' : ''
       )}
-      onClick={() => onChange(value)}
+      onClick={() => onChange(option)}
     >
-      {children}
+      <div className="flex items-center gap-2">{children}</div>
+
+      {isSelected && (
+        <span className="inline-block rounded-full size-2 bg-primary" />
+      )}
     </div>
   );
 }

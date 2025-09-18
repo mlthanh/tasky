@@ -4,5 +4,5 @@ import WorkspaceSwitcherUI from './WorkspaceSwitcherUI';
 export const WorkspaceSwitcher = () => {
   const workspace = trpc.workspace.get.useQuery();
 
-  return <WorkspaceSwitcherUI data={workspace?.data} />;
+  return <WorkspaceSwitcherUI workspaces={workspace?.data} />;
 };

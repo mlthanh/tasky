@@ -17,14 +17,10 @@ import { Link, NavLink } from 'react-router-dom';
 import { WorkspaceSwitcher } from './workspaceswitcher/WorkspaceSwitcher';
 import { Separator } from '@frontend/components/common/Separator';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
-import { Button } from '@frontend/components/common/Button';
-import { BaselineAddCircle } from '@frontend/components/common/Icon';
 
 export function AppSidebar() {
   const { open } = useSidebar();
   const SideBarList = useSidebarList();
-
-  const { getLabel } = useLanguage();
 
   return (
     <Sidebar collapsible="icon" variant="sidebar">
@@ -38,17 +34,25 @@ export function AppSidebar() {
         </Link>
       </SidebarHeader>
       <SidebarContent>
+        <SidebarGroup className="">
+          <Separator
+            variant="dot"
+            orientation="horizontal"
+            className="group-data-[collapsible=icon]:hidden "
+          />
+          <SidebarGroupLabel className="h-full py-5">
+            <WorkspaceSwitcher />
+          </SidebarGroupLabel>
+          <Separator
+            variant="dot"
+            orientation="horizontal"
+            className="group-data-[collapsible=icon]:hidden"
+          />
+        </SidebarGroup>
         {SideBarList.map((group) => (
           <SidebarGroup key={group.group}>
             <SidebarGroupLabel className="uppercase">
-              {group.group !== getLabel('grp_main_002') ? (
-                group.group
-              ) : (
-                <div className="flex items-center justify-between w-full">
-                  <span>{group.group}</span>
-                  <BaselineAddCircle className="size-5" />
-                </div>
-              )}
+              {group.group}
             </SidebarGroupLabel>
             <SidebarGroupContent>
               {group.items.map((item) => (
