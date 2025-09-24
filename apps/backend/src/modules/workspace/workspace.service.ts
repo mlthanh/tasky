@@ -55,7 +55,12 @@ export const getWorkspace = async (ctx: Context) => {
   }
 
   const data = await ctx.prisma.workspace.findMany({
-    where: { userId: ctx.user.id }
+    where: { userId: ctx.user.id },
+    select: {
+      id: true,
+      name: true,
+      imageUrl: true
+    }
   });
 
   return data;

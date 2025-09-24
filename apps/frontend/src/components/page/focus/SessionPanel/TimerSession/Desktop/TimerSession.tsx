@@ -38,7 +38,7 @@ export const TimerSession = ({ timer }: TimerSessionProps) => {
     <Card className="h-full px-4 py-3 sm:text-sm bg-black/85">
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
-          <Label className="text-white" icon={<ReadingTimeDuotone />}>
+          <Label className="font-bold text-white" icon={<ReadingTimeDuotone />}>
             {getLabel('lbl_focus_001')}
           </Label>
         </div>

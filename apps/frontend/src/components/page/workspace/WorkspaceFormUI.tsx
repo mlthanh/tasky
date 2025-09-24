@@ -18,7 +18,11 @@ import {
   createWorkspaceDto,
   createWorkspaceSchema
 } from '@shared/trpc/schemas/workspace.schema';
-import { Avatar } from '@frontend/components/common/Avatar';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage
+} from '@frontend/components/common/Avatar';
 import { ImageIcon } from '@frontend/components/common/Icon';
 import { toBase64 } from '@frontend/utils/toBase64';
 import { useDeviceStore } from '@frontend/hooks/stores';
@@ -87,7 +91,7 @@ export const WorkspaceFormUI = ({
           onSubmit={handleSubmit(submitHandler)}
           className="flex flex-col gap-4"
         >
-          <Label className="text-sm text-black">
+          <Label className="text-sm font-bold text-black">
             {getLabel('lbl_form_002')}
           </Label>
           <Input
@@ -110,19 +114,14 @@ export const WorkspaceFormUI = ({
             <div className="flex items-center gap-x-5 ">
               {preview ? (
                 <div className="size-[36px] lg:size-[72px] relative rounded-md overflow-hidden">
-                  <img
-                    alt="image"
-                    className="object-cover-fill"
-                    src={preview}
-                  ></img>
+                  <img alt="image" className="object-cover" src={preview}></img>
                 </div>
               ) : (
-                <Avatar
-                  classNameWrapper="text-black size-[36px] lg:size-[72px]"
-                  fallback={
+                <Avatar className="text-black size-[36px] lg:size-[72px]">
+                  <AvatarFallback>
                     <ImageIcon className="size-[18px] lg:size-[36px]" />
-                  }
-                />
+                  </AvatarFallback>
+                </Avatar>
               )}
 
               <div className="flex flex-col text-black">

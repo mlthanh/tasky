@@ -60,7 +60,7 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
           <Label className="font-semibold sm:text-2xl">
             {taskList.filter((task) => task.status === TaskStatus.OPEN).length}
           </Label>
-          <Label className=" lg:text-lg sm:text-sm">
+          <Label className="font-bold lg:text-lg sm:text-sm">
             {getLabel('lbl_focus_005')}
           </Label>
         </div>

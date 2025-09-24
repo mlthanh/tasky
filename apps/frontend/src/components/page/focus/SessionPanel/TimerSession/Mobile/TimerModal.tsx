@@ -34,7 +34,7 @@ export const TimerModal = ({ timer }: TimerModalProps) => {
         <CardHeader className="flex justify-between">
           <div className="flex items-center justify-center gap-1">
             <Label
-              className="text-black sm:text-white"
+              className="font-bold text-black sm:text-white"
               icon={<ReadingTimeDuotone />}
             >
               {getLabel('lbl_focus_001')}

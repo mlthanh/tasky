@@ -99,7 +99,7 @@ export const MusicSetting = ({
     <Card className={`${className}`}>
       <CardHeader className="flex justify-between gap-10">
         <div className="flex items-center justify-center gap-1">
-          <Label className="text-white" icon={<MusicFill />}>
+          <Label className="font-bold text-white" icon={<MusicFill />}>
             {getLabel('lbl_focus_008')}
           </Label>
         </div>

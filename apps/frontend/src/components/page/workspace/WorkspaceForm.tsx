@@ -9,9 +9,12 @@ interface WorkspaceFormProps {
 
 export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
   const { showToastSuccess, showToastError } = useToast();
+  const trpcCtx = trpc.useUtils();
+
   const createWorkspaceMutation = trpc.workspace.create.useMutation({
     onSuccess() {
       showToastSuccess('Workspace created successfully!');
+      trpcCtx.workspace.get.invalidate();
     },
     onError(error) {
       showToastError(error.message, 'manual');

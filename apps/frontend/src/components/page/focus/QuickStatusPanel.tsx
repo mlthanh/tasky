@@ -41,7 +41,7 @@ export const QuickStatusPanel = ({ timer }: Props) => {
       <ToolPanel
         toolList={toolList}
         className="flex items-center justify-center gap-2 sm:hidden"
-        classNameButton="bg-black"
+        toolItemStyle="bg-black"
       />
 
       <div className="hidden gap-2 sm:flex">
@@ -53,7 +53,7 @@ export const QuickStatusPanel = ({ timer }: Props) => {
         >
           <CardHeader>
             <Label
-              className="text-xs text-white select-none"
+              className="text-xs font-bold text-white select-none"
               icon={<ReadingTimeDuotone />}
             >
               {getLabel('lbl_focus_001')}
@@ -72,7 +72,10 @@ export const QuickStatusPanel = ({ timer }: Props) => {
           onClick={() => setIsGoalOpen(!isGoalOpen)}
         >
           <CardHeader>
-            <Label className="text-xs text-white select-none" icon={<Goal24 />}>
+            <Label
+              className="text-xs font-bold text-white select-none"
+              icon={<Goal24 />}
+            >
               {getLabel('lbl_focus_002')}
             </Label>
           </CardHeader>

@@ -24,7 +24,7 @@ export const GoalSession = () => {
     <Card className="px-4 py-3 text-sm bg-black/85">
       <CardHeader className="flex justify-between">
         <div className="flex items-center justify-center gap-1">
-          <Label className="text-white" icon={<ReadingTimeDuotone />}>
+          <Label className="font-bold text-white" icon={<ReadingTimeDuotone />}>
             {getLabel('lbl_focus_002')}
           </Label>
         </div>

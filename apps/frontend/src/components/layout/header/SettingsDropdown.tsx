@@ -1,4 +1,4 @@
-import { Avatar } from '@frontend/components/common/Avatar';
+import { Avatar, AvatarFallback } from '@frontend/components/common/Avatar';
 import {
   DropdownContent,
   DropdownItem,
@@ -23,22 +23,20 @@ export const SettingsDropdown = () => {
   return (
     <DropdownRoot>
       <DropdownTrigger className="flex items-center justify-center">
-        <Avatar
-          className="flex items-center justify-center font-bold text-white rounded-full select-none bg-primary hover:opacity-75"
-          fallback={avatarFallback}
-        >
-          {avatarFallback}
+        <Avatar className="flex items-center justify-center rounded-full select-none bg-primary hover:opacity-75">
+          <AvatarFallback className="font-bold text-white ">
+            {avatarFallback}
+          </AvatarFallback>
         </Avatar>
       </DropdownTrigger>
       <DropdownContent className="w-[250px] p-1">
         <div className="flex flex-col items-center justify-center gap-2 px-2.5 py-4 ">
-          <Avatar
-            classNameWrapper="flex items-center justify-center rounded-full size-12 bg-primary"
-            className="text-xl font-bold text-white select-none"
-            fallback={avatarFallback}
-          >
-            {avatarFallback}
+          <Avatar className="flex items-center justify-center rounded-full size-12 bg-primary">
+            <AvatarFallback className="text-xl font-bold text-white select-none">
+              {avatarFallback}
+            </AvatarFallback>
           </Avatar>
+
           <p className="text-sm text-neutral-900">{user?.name || 'User'}</p>
           <p className="text-xs text-neutral-500">{user?.email}</p>
         </div>

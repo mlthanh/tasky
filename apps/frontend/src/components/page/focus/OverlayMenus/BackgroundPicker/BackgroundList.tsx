@@ -1,4 +1,5 @@
 import { useUIStateStore } from '@hooks/stores/useUIStateStore';
+import { useState } from 'react';
 
 const bgList = [
   {
@@ -41,22 +42,33 @@ const bgList = [
 
 export const BackgroundList = () => {
   const { setBackground } = useUIStateStore();
+  const [isSelected, setSelected] = useState<String | null>();
 
   return (
     <div className="grid grid-cols-3 gap-4 mt-5">
-      {bgList.map((img) => (
-        <div
-          key={img.id}
-          className="overflow-hidden transition rounded cursor-pointer w-14 h-14 hover:ring-2 ring-primary"
-          onClick={() => setBackground(img.src)}
-        >
-          <img
-            src={img.src}
-            alt={img.id}
-            className="object-cover w-full h-full"
-          />
-        </div>
-      ))}
+      {bgList.map((img) => {
+        const seleted = isSelected === img.id;
+        const handleCLick = (img) => {
+          setSelected(img.id);
+          setBackground(img.src);
+        };
+
+        return (
+          <div
+            key={img.id}
+            className={`overflow-hidden transition rounded cursor-pointer size-14 lg:size-16 hover:ring-2 ring-primary ${
+              seleted ? 'ring-2' : ''
+            }`}
+            onClick={() => handleCLick(img)}
+          >
+            <img
+              src={img.src}
+              alt={img.id}
+              className="object-cover w-full h-full"
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };

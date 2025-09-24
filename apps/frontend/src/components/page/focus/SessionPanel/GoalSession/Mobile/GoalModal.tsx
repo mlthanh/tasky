@@ -27,7 +27,10 @@ export const GoalModal = () => {
       <Card>
         <CardHeader className="flex justify-between">
           <div className="flex items-center justify-center gap-1">
-            <Label className="text-black " icon={<ReadingTimeDuotone />}>
+            <Label
+              className="font-bold text-black"
+              icon={<ReadingTimeDuotone />}
+            >
               {getLabel('lbl_focus_002')}
             </Label>
           </div>

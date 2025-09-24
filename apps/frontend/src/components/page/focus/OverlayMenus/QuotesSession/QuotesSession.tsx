@@ -40,7 +40,7 @@ export const QuotesSession = ({
     <Card className={`${className}`}>
       <CardHeader className="flex justify-between gap-10">
         <div className="flex items-center justify-center gap-1">
-          <Label className="text-white" icon={<BlockQuote />}>
+          <Label className="font-bold text-white" icon={<BlockQuote />}>
             {getLabel('lbl_focus_009')}
           </Label>
         </div>

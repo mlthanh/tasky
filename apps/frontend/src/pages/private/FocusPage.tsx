@@ -39,6 +39,7 @@ const FocusPage = () => {
       ref={contentRef}
     >
       <div className="flex items-center justify-between pt-5">
+        {/*LEFT MENU INCLUDE:  */}
         <QuickStatusPanel timer={timer} />
         <ToolPanel
           toolList={GetToolList({
@@ -47,6 +48,7 @@ const FocusPage = () => {
             setMenuState
           })}
           className="flex items-center justify-center gap-2"
+          toolContentStyle="text-light-mode"
         />
       </div>
 

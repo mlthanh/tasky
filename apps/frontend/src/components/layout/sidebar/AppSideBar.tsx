@@ -38,7 +38,7 @@ export function AppSidebar() {
           <Separator
             variant="dot"
             orientation="horizontal"
-            className="group-data-[collapsible=icon]:hidden "
+            className="group-data-[collapsible=icon]:hidden"
           />
           <SidebarGroupLabel className="h-full py-5">
             <WorkspaceSwitcher />

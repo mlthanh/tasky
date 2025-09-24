@@ -35,7 +35,7 @@ export const TimerSessionM = ({ timer }: TimerSessionMProps) => {
   return (
     <Card className="absolute p-5 transform -translate-x-1/2 -translate-y-1/2 bg-black top-1/2 left-1/2">
       <CardHeader className="flex justify-between">
-        <Label className="text-white" icon={<ReadingTimeDuotone />}>
+        <Label className="font-bold text-white" icon={<ReadingTimeDuotone />}>
           {getLabel('lbl_focus_001')}
         </Label>
         <FocusToolbar toolBarList={toolBarList} />

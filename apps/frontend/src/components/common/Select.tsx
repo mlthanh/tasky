@@ -5,7 +5,7 @@ import { BaselineKeyboardArrowDown } from '@components/common/Icon';
 // ---- Types ----
 type Option = {
   value: string;
-  label: string;
+  label: React.ReactNode;
 };
 
 type SelectContextType = {
@@ -24,21 +24,19 @@ function useSelect() {
   return ctx;
 }
 
-type SelectProps = {
+// ---- Root ----
+export function Select({
+  value: controlledValue,
+  onChange,
+  defaultValue,
+  children
+}: {
   value?: Option;
   onChange?: (option: Option) => void;
   defaultValue?: Option;
   placeholder?: string;
   children: React.ReactNode;
-};
-
-export function Select({
-  value: controlledValue,
-  onChange,
-  defaultValue,
-  placeholder = 'Select...',
-  children
-}: SelectProps) {
+}) {
   const [open, setOpen] = React.useState(false);
   const [uncontrolledValue, setUncontrolledValue] = React.useState<
     Option | undefined
@@ -55,13 +53,14 @@ export function Select({
 
   return (
     <SelectContext.Provider
-      value={{ value, onChange: handleChange, open, setOpen, placeholder }}
+      value={{ value, onChange: handleChange, open, setOpen }}
     >
       <div className="relative">{children}</div>
     </SelectContext.Provider>
   );
 }
 
+// ---- Trigger ----
 export function SelectTrigger({
   className,
   children
@@ -74,7 +73,7 @@ export function SelectTrigger({
     <button
       type="button"
       className={tailwindMerge(
-        'flex w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:outline-none',
+        'text-accent-foreground flex w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:outline-none',
         className
       )}
       onClick={() => setOpen((prev) => !prev)}
@@ -95,12 +94,15 @@ export function SelectValue({
   placeholder,
   renderValue
 }: {
-  placeholder?: string;
+  placeholder?: React.ReactNode;
   renderValue?: (option?: Option) => React.ReactNode;
 }) {
-  const { value, placeholder: ctxPlaceholder } = useSelect();
+  const { value } = useSelect();
 
-  if (!value) return <span>{placeholder || ctxPlaceholder}</span>;
+  if (!value) {
+    return <>{placeholder}</>; // 👈
+  }
+
   return <>{renderValue ? renderValue(value) : value.label}</>;
 }
 
@@ -117,7 +119,7 @@ export function SelectContent({
   return (
     <div
       className={tailwindMerge(
-        'absolute z-10 w-full mt-1 bg-white border rounded-md shadow',
+        'absolute z-10 mt-1 w-full rounded-md border bg-white shadow',
         className
       )}
     >
@@ -149,19 +151,18 @@ export function SelectItem({
   children: ReactNode;
 }) {
   const { value: selected, onChange } = useSelect();
-  const option: Option = { value, label: String(children) };
+  const option: Option = { value, label: children };
   const isSelected = selected?.value === value;
 
   return (
     <div
       className={tailwindMerge(
-        'flex cursor-pointer items-center justify-between px-3 py-2 text-sm hover:bg-slate-100',
-        isSelected ? 'bg-accent text-accent-foreground' : ''
+        'flex cursor-pointer items-center justify-between px-3 py-2 text-sm hover:bg-slate-100 text-accent-foreground',
+        isSelected ? 'bg-accent' : ''
       )}
       onClick={() => onChange(option)}
     >
-      <div className="flex items-center gap-2">{children}</div>
-
+      {children}
       {isSelected && (
         <span className="inline-block rounded-full size-2 bg-primary" />
       )}
