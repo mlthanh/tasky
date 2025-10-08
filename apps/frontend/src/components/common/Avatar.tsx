@@ -5,9 +5,9 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-interface AvatarImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
+type AvatarImageProps = React.ImgHTMLAttributes<HTMLImageElement>
 
-interface AvatarFallbackProps extends React.HTMLAttributes<HTMLDivElement> {}
+type AvatarFallbackProps = React.HTMLAttributes<HTMLDivElement>
 
 /**
  * Avatar wrapper

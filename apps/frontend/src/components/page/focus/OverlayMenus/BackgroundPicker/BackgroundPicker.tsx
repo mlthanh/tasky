@@ -1,9 +1,16 @@
 import { Card, CardContent, CardHeader } from '@components/common/Card';
 import { Label } from '@components/common/Label';
-import { ImageIcon, RoundClose, YoutubeFilled } from '@components/common/Icon';
+import {
+  ImageIcon,
+  LinkSolid,
+  RoundClose,
+  YoutubeFilled
+} from '@components/common/Icon';
 import { BackgroundList } from './BackgroundList';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import FocusToolbar from '../../FocusToolbar';
+import Input from '@frontend/components/common/Input';
+import { useUIStateStore } from '@frontend/hooks/stores';
 
 type BackgroundPickerProps = {
   className?: string;
@@ -24,6 +31,7 @@ export const BackgroundPicker = ({
   ];
 
   const { getLabel } = useLanguage();
+  const { setBackground } = useUIStateStore();
 
   return (
     <Card className={`${className}`}>
@@ -37,14 +45,22 @@ export const BackgroundPicker = ({
       </CardHeader>
       <CardContent className="flex flex-col">
         <BackgroundList />
-        <div className="flex justify-between w-full my-5">
+        <div className="flex flex-col justify-between w-full my-5">
           <Label
             className="font-bold text-white"
             icon={<YoutubeFilled className="text-red size-5" />}
           >
-            Youtube video
+            Youtube Video
           </Label>
-          <span>.</span>
+          <Input
+            className="mt-2"
+            placeholder="Paste a youtube link here"
+            leftIcon={<LinkSolid className="text-light-mode" />}
+            onPaste={(e) => {
+              const pastedData = e.clipboardData.getData('Text');
+              setBackground(pastedData);
+            }}
+          />
         </div>
       </CardContent>
     </Card>

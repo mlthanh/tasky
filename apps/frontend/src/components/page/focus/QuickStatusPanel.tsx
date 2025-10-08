@@ -37,7 +37,7 @@ export const QuickStatusPanel = ({ timer }: Props) => {
   ).length;
 
   return (
-    <div className="flex items-center justify-center gap-2 text-white">
+    <div className="flex items-center justify-center gap-2 text-white z-[999]">
       <ToolPanel
         toolList={toolList}
         className="flex items-center justify-center gap-2 sm:hidden"

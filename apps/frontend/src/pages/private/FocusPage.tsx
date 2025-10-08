@@ -12,6 +12,7 @@ import { useFullscreen } from '@hooks/useFullScreen';
 import { GetToolList } from '@frontend/constants/FocusToolList';
 import { QuotePanel } from '@frontend/components/page/focus/QuotePanel';
 import { usePomodoroTimer } from '@hooks/usePomodoroTimer';
+import YouTubeBG from '@frontend/components/page/focus/YoutubeBackground';
 
 const FocusPage = () => {
   const { setOpen } = useSidebar();
@@ -24,22 +25,35 @@ const FocusPage = () => {
   const [menuState, setMenuState] = useState<MenuStatus | null>(null);
   const timer = usePomodoroTimer({ focusTime: fTime, breakTime: bTime });
 
+  const getYouTubeVideoId = (link?: string) => {
+    if (!link) return null;
+    const match = link.match(
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/
+    );
+    return match ? match[1] : null;
+  };
+
+  const videoId = getYouTubeVideoId(background);
+
   useEffect(() => {
     setOpen(false);
-  }, []);
+  }, [setOpen]);
 
   return (
     <div
-      className="w-full h-screen px-app"
-      style={{
-        backgroundImage: background ? `url(${background})` : undefined,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
-      }}
+      className="relative w-full h-screen px-app"
       ref={contentRef}
+      style={{
+        backgroundImage:
+          background && !videoId ? `url(${background})` : undefined,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center'
+      }}
     >
+      {videoId && <YouTubeBG videoId={videoId} />}
+
       <div className="flex items-center justify-between pt-5">
-        {/*LEFT MENU INCLUDE:  */}
         <QuickStatusPanel timer={timer} />
         <ToolPanel
           toolList={GetToolList({
@@ -57,9 +71,7 @@ const FocusPage = () => {
         <QuotePanel />
         <OverlayMenus
           menuState={menuState}
-          onClose={() => {
-            setMenuState(null);
-          }}
+          onClose={() => setMenuState(null)}
         />
       </div>
     </div>

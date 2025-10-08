@@ -42,7 +42,7 @@ const bgList = [
 
 export const BackgroundList = () => {
   const { setBackground } = useUIStateStore();
-  const [isSelected, setSelected] = useState<String | null>();
+  const [isSelected, setSelected] = useState<string | null>();
 
   return (
     <div className="grid grid-cols-3 gap-4 mt-5">

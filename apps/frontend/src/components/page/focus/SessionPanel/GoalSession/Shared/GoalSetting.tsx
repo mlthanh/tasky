@@ -36,10 +36,10 @@ const GoalSetting = ({ className }: GoalSettingProps) => {
         className
       )}
     >
-      <div className="flex justify-between w-full gap-4">
+      <div className="flex items-center justify-between w-full h-full gap-4">
         <Input
           type="text"
-          className="h-10 text-black lg:text-white sm:text-sm"
+          className="text-black lg:text-white sm:text-sm"
           placeholder="Type a goal"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
