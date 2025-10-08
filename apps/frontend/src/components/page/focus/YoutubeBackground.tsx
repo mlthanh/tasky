@@ -1,19 +1,43 @@
+import { useEffect } from 'react';
+import ReactPlayer from 'react-player';
+
 type YouTubeBGProps = {
   videoId: string;
+  volume?: number;
 };
 
-const YouTubeBG = ({ videoId }: YouTubeBGProps) => {
+const YouTubeBG = ({ videoId, volume }: YouTubeBGProps) => {
   return (
-    <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none select-none aspect-video z-[0]">
-      <iframe
-        className="w-[300%] h-full ml-[-100%]"
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${videoId}?list=RDnnv-vXf_GgI&autoplay=1&loop=1&controls=0&color=white&moderbranding=0&rel=0&playsinline=1&enablejsapi=1&playlist=${videoId}`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      ></iframe>
+    <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-[0]">
+      <ReactPlayer
+        src={`https://www.youtube.com/watch?v=${videoId}`}
+        playing
+        loop
+        muted={false}
+        volume={volume}
+        controls={false}
+        width="300%"
+        height="100%"
+        style={{
+          marginLeft: '-100%',
+          pointerEvents: 'none',
+          userSelect: 'none',
+          scale: '1.15'
+        }}
+        config={{
+          youtube: {
+            playerVars: {
+              autoplay: 1,
+              loop: 1,
+              controls: 0,
+              modestbranding: 1,
+              rel: 0,
+              showinfo: 0,
+              playsinline: 1
+            }
+          } as any
+        }}
+      />
     </div>
   );
 };

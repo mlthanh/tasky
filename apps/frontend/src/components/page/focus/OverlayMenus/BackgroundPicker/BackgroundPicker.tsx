@@ -11,6 +11,7 @@ import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 import FocusToolbar from '../../FocusToolbar';
 import Input from '@frontend/components/common/Input';
 import { useUIStateStore } from '@frontend/hooks/stores';
+import Slider from '@frontend/components/common/Slider';
 
 type BackgroundPickerProps = {
   className?: string;
@@ -31,7 +32,7 @@ export const BackgroundPicker = ({
   ];
 
   const { getLabel } = useLanguage();
-  const { setBackground } = useUIStateStore();
+  const { setBackground, videoVolume, setVolume } = useUIStateStore();
 
   return (
     <Card className={`${className}`}>
@@ -53,13 +54,22 @@ export const BackgroundPicker = ({
             Youtube Video
           </Label>
           <Input
-            className="mt-2"
+            className="mt-2 text-light-mode"
             placeholder="Paste a youtube link here"
             leftIcon={<LinkSolid className="text-light-mode" />}
             onPaste={(e) => {
               const pastedData = e.clipboardData.getData('Text');
               setBackground(pastedData);
             }}
+          />
+
+          <Slider
+            value={videoVolume}
+            onChange={setVolume}
+            className="mt-5"
+            min={0}
+            max={1}
+            step={0.01}
           />
         </div>
       </CardContent>

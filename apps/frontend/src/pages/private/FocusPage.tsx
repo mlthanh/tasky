@@ -18,7 +18,7 @@ const FocusPage = () => {
   const { setOpen } = useSidebar();
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { background } = useUIStateStore();
+  const { background, videoVolume } = useUIStateStore();
   const { fTime, bTime } = useTimeStore();
   const { toggleFullscreen, isFullscreen } = useFullscreen(contentRef);
 
@@ -51,7 +51,7 @@ const FocusPage = () => {
         backgroundPosition: 'center'
       }}
     >
-      {videoId && <YouTubeBG videoId={videoId} />}
+      {videoId && <YouTubeBG videoId={videoId} volume={videoVolume} />}
 
       <div className="flex items-center justify-between pt-5">
         <QuickStatusPanel timer={timer} />
