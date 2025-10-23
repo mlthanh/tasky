@@ -55,7 +55,7 @@ export const BackgroundPicker = ({
           </Label>
           <Input
             className="mt-2 text-light-mode"
-            placeholder="Paste a youtube link here"
+            placeholder={getLabel('lbl_focus_017')}
             leftIcon={<LinkSolid className="text-light-mode" />}
             onPaste={(e) => {
               const pastedData = e.clipboardData.getData('Text');

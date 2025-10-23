@@ -5,9 +5,9 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
 }
 
-type AvatarImageProps = React.ImgHTMLAttributes<HTMLImageElement>
+type AvatarImageProps = React.ImgHTMLAttributes<HTMLImageElement>;
 
-type AvatarFallbackProps = React.HTMLAttributes<HTMLDivElement>
+type AvatarFallbackProps = React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Avatar wrapper
@@ -31,7 +31,7 @@ export function AvatarImage({ className, ...props }: AvatarImageProps) {
   const [loaded, setLoaded] = React.useState(true);
 
   if (!props.src || !loaded) {
-    return null;
+    return <AvatarFallback />;
   }
 
   return (

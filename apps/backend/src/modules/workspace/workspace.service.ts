@@ -5,6 +5,7 @@ import {
 import { Context } from '@backend/server/context';
 import { TRPCError } from '@trpc/server';
 import { handleUploadImage } from '@backend/server/plugins/cloudinary/cloudinary.service';
+import { MemberRole } from '../members/member.type';
 
 export const createWorkspace = async (
   input: createWorkspaceDto,
@@ -40,6 +41,14 @@ export const createWorkspace = async (
     }
   });
 
+  await ctx.prisma.member.create({
+    data: {
+      userId: ctx.user.id,
+      workspaceId: workspace.id,
+      role: MemberRole.ADMIN
+    }
+  });
+
   return createWorkspaceSchema.parse({
     name: workspace.name,
     imageUrl: workspace.imageUrl
@@ -54,8 +63,16 @@ export const getWorkspace = async (ctx: Context) => {
     });
   }
 
+  const member = await ctx.prisma.member.findMany({
+    where: { userId: ctx.user.id }
+  });
+
+  if (member.length === 0) return [];
+
+  const workspaceIds = member.map((member) => member.workspaceId);
+
   const data = await ctx.prisma.workspace.findMany({
-    where: { userId: ctx.user.id },
+    where: { userId: ctx.user.id, id: { in: workspaceIds } },
     select: {
       id: true,
       name: true,
