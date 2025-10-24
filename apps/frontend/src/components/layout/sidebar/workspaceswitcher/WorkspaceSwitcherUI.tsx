@@ -8,9 +8,15 @@ import {
 } from '@frontend/components/common/Select';
 import { WorkspaceAvatar } from '@frontend/components/page/workspace/WorkspaceAvatar';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
+import { useNavigate } from 'react-router-dom';
 
 const WorkspaceSwitcherUI = ({ workspaces }) => {
   const { getLabel } = useLanguage();
+  const navigate = useNavigate();
+
+  const handleSelect = (option) => {
+    navigate(`/workspace/${option.value}`);
+  };
 
   return (
     <div className="flex flex-col w-full gap-y-2">
@@ -18,7 +24,7 @@ const WorkspaceSwitcherUI = ({ workspaces }) => {
         <span>{getLabel('grp_main_002')}</span>
         <BaselineAddCircle className="size-5" />
       </div>
-      <Select>
+      <Select onChange={handleSelect}>
         <SelectTrigger className="w-full p-3 font-medium bg-neutral-200">
           <SelectValue
             placeholder={

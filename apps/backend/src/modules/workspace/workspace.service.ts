@@ -6,6 +6,8 @@ import { Context } from '@backend/server/context';
 import { TRPCError } from '@trpc/server';
 import { handleUploadImage } from '@backend/server/plugins/cloudinary/cloudinary.service';
 import { MemberRole } from '../members/member.type';
+import { successResponse } from '@backend/helper/formatResponse';
+import generateInviteCode from '@shared/trpc/helper/generateInviteCode';
 
 export const createWorkspace = async (
   input: createWorkspaceDto,
@@ -37,7 +39,8 @@ export const createWorkspace = async (
     data: {
       name: input.name,
       userId: ctx.user.id,
-      imageUrl: uploadImageURL.url
+      imageUrl: uploadImageURL.url,
+      inviteCode: generateInviteCode(6)
     }
   });
 
@@ -49,10 +52,12 @@ export const createWorkspace = async (
     }
   });
 
-  return createWorkspaceSchema.parse({
+  const parsedData = createWorkspaceSchema.parse({
     name: workspace.name,
     imageUrl: workspace.imageUrl
   });
+
+  return successResponse(parsedData);
 };
 
 export const getWorkspace = async (ctx: Context) => {
@@ -80,5 +85,5 @@ export const getWorkspace = async (ctx: Context) => {
     }
   });
 
-  return data;
+  return successResponse(data);
 };

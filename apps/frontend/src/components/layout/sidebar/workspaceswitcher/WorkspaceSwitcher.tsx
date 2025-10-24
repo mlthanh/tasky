@@ -1,8 +1,15 @@
 import { trpc } from '@frontend/utils/trpc';
 import WorkspaceSwitcherUI from './WorkspaceSwitcherUI';
+import { useToast } from '@frontend/contexts/ToastProvider';
 
 export const WorkspaceSwitcher = () => {
-  const workspace = trpc.workspace.get.useQuery();
+  const { data: res } = trpc.workspace.get.useQuery();
+  const workspaces = res?.success ? res.data : [];
+  const { showToastError } = useToast();
 
-  return <WorkspaceSwitcherUI workspaces={workspace?.data} />;
+  if (res?.success === false) {
+    showToastError('Workspace fetch error:' + res.error);
+  }
+
+  return <WorkspaceSwitcherUI workspaces={workspaces} />;
 };

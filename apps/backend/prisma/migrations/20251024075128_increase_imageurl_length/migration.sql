@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Workspace" ALTER COLUMN "imageUrl" SET DATA TYPE VARCHAR(2000);

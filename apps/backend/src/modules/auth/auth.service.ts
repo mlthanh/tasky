@@ -1,7 +1,6 @@
 import { TRPCError } from '@trpc/server';
 import {
   SignInDto,
-  SignInResponseDto,
   SignInResponseSchema,
   SignUpDto
 } from '@shared/trpc/schemas/auth.schema';
@@ -9,11 +8,9 @@ import { sign, verify } from 'jsonwebtoken';
 import { authConfig } from '@backend/configs/auth.config';
 import { hash, compare } from 'bcryptjs';
 import { Context } from '@backend/server/context';
+import { successResponse } from '@backend/helper/formatResponse';
 
-export const signUp = async (
-  input: SignUpDto,
-  ctx: Context
-): Promise<SignInResponseDto> => {
+export const signUp = async (input: SignUpDto, ctx: Context) => {
   const existingUser = await ctx.prisma.user.findUnique({
     where: { email: input.email }
   });
@@ -73,18 +70,17 @@ export const signUp = async (
     maxAge: 60 * 60 * 24 * 7
   });
 
-  return SignInResponseSchema.parse({
+  const parsedData = SignInResponseSchema.parse({
     email: user.email,
     name: user.name,
     role: user.role,
     accessToken
   });
+
+  return successResponse(parsedData);
 };
 
-export const signIn = async (
-  input: SignInDto,
-  ctx: Context
-): Promise<SignInResponseDto> => {
+export const signIn = async (input: SignInDto, ctx: Context) => {
   const user = await ctx.prisma.user.findUnique({
     where: {
       email: input.email
@@ -136,12 +132,14 @@ export const signIn = async (
     maxAge: 60 * 60 * 24 * 7
   });
 
-  return SignInResponseSchema.parse({
+  const parsedData = SignInResponseSchema.parse({
     email: user.email,
     name: user.name,
     role: user.role,
     accessToken
   });
+
+  return successResponse(parsedData);
 };
 
 interface RefreshTokenPayload {
@@ -158,33 +156,28 @@ export const refreshToken = async (ctx: Context) => {
     throw new TRPCError({ code: 'UNAUTHORIZED', message: 'No refresh token' });
   }
 
-  try {
-    const payload = verify(
-      refreshToken,
-      authConfig.refreshTokenKey
-    ) as RefreshTokenPayload;
+  const payload = verify(
+    refreshToken,
+    authConfig.refreshTokenKey
+  ) as RefreshTokenPayload;
 
-    const accessToken = sign(
-      {
-        id: payload.id,
-        email: payload.email,
-        role: payload.role,
-        name: payload.name
-      },
-      authConfig.tokenKey,
-      { expiresIn: authConfig.tokenExpiresIn }
-    );
-
-    return {
+  const accessToken = sign(
+    {
+      id: payload.id,
       email: payload.email,
       role: payload.role,
-      name: payload.name,
-      accessToken
-    };
-  } catch {
-    throw new TRPCError({
-      code: 'FORBIDDEN',
-      message: 'Invalid refresh token'
-    });
-  }
+      name: payload.name
+    },
+    authConfig.tokenKey,
+    { expiresIn: authConfig.tokenExpiresIn }
+  );
+
+  const parsedData = {
+    email: payload.email,
+    role: payload.role,
+    name: payload.name,
+    accessToken
+  };
+
+  return successResponse(parsedData);
 };

@@ -27,7 +27,8 @@ model Workspace {
   id        Int      @id @default(autoincrement())
   userId    Int
   name      String
-  imageUrl  String?   @db.VarChar(500)
+  imageUrl  String?   @db.VarChar(2000)
+  inviteCode String   @db.VarChar(10)
   user      User      @relation(fields: [userId], references: [id])
 }
 
