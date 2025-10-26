@@ -6,8 +6,8 @@ import { Context } from '@backend/server/context';
 import { TRPCError } from '@trpc/server';
 import { handleUploadImage } from '@backend/server/plugins/cloudinary/cloudinary.service';
 import { MemberRole } from '../members/member.type';
-import { successResponse } from '@backend/helper/formatResponse';
 import generateInviteCode from '@shared/trpc/helper/generateInviteCode';
+import { successResponse } from '@shared/trpc/helper/formatResponse';
 
 export const createWorkspace = async (
   input: createWorkspaceDto,

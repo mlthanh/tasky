@@ -3,7 +3,7 @@ import { MenuItemType } from '.';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 export enum WorkspacesSideBarUrl {
-  PROJECT = '/project'
+  WORKSPACE = '/workspace'
 }
 
 export const useWorkspacesSideBarList = (): MenuItemType[] => {
@@ -12,7 +12,7 @@ export const useWorkspacesSideBarList = (): MenuItemType[] => {
   return [
     {
       title: getLabel('men_main_004'),
-      url: WorkspacesSideBarUrl.PROJECT,
+      url: WorkspacesSideBarUrl.WORKSPACE,
       icon: ProjectsAltFill
     }
   ];

@@ -8,7 +8,16 @@ export const useQueryTrpcClient = () => {
   const APP_URL = import.meta.env.VITE_APP_URL;
   if (!APP_URL) throw new Error('No app url env variable found');
 
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false
+          }
+        }
+      })
+  );
 
   const [trpcClient] = useState(() =>
     trpc.createClient({

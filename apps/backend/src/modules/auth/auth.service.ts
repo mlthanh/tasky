@@ -8,7 +8,7 @@ import { sign, verify } from 'jsonwebtoken';
 import { authConfig } from '@backend/configs/auth.config';
 import { hash, compare } from 'bcryptjs';
 import { Context } from '@backend/server/context';
-import { successResponse } from '@backend/helper/formatResponse';
+import { successResponse } from '@shared/trpc/helper/formatResponse';
 
 export const signUp = async (input: SignUpDto, ctx: Context) => {
   const existingUser = await ctx.prisma.user.findUnique({

@@ -6,6 +6,7 @@ const PrivateLayout = lazy(() => import('@layouts/PrivateLayout'));
 const HomePage = lazy(() => import('@pages/private/HomePage'));
 const FocusPage = lazy(() => import('@frontend/pages/private/FocusPage'));
 const ProjectPage = lazy(() => import('@pages/private/ProjectPage'));
+const SettingPage = lazy(() => import('@frontend/pages/private/SettingPage'));
 const WorkspacePage = lazy(
   () => import('@frontend/pages/private/WorkspacePage')
 );
@@ -24,6 +25,7 @@ const privateRoutes: RouteObject = {
     { path: '/dashboard', element: <HomePage /> },
     { path: '/focus', element: <FocusPage /> },
     { path: '/project', element: <ProjectPage /> },
+    { path: '/setting', element: <SettingPage /> },
     { path: '/workspace/:id', element: <WorkspacePage /> }
   ]
 };

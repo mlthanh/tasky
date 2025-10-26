@@ -4,7 +4,7 @@ import { successResponse } from '../helper/formatResponse';
 
 export const workspaceRouterContract = router({
   create: workspaceRouterSchema.create.mutation(async () => {
-    const workspace = { id: '1', name: '', imageURL: '' };
+    const workspace = { id: '1', name: '', imageUrl: '' };
     return successResponse(workspace);
   }),
 

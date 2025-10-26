@@ -23,17 +23,13 @@ type SideBarListType = {
 
 export const useSidebarList = (): SideBarListType[] => {
   const applicationItems = useApplicationSideBarList();
-  const workspaceItems = useWorkspacesSideBarList();
+  //const workspaceItems = useWorkspacesSideBarList();
   const { getLabel } = useLanguage();
 
   return [
     {
       group: getLabel('grp_main_001'),
       items: applicationItems
-    },
-    {
-      group: getLabel('grp_main_002'),
-      items: workspaceItems
     }
   ];
 };
