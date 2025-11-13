@@ -1,4 +1,3 @@
-// pages/auth/google/callback.tsx
 import { useEffect } from 'react';
 import { trpc } from '@utils/trpc';
 import { useNavigate } from 'react-router-dom';

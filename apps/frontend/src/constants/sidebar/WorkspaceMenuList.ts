@@ -3,7 +3,7 @@ import { MenuItemType } from '.';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 export enum WorkspacesSideBarUrl {
-  WORKSPACE = '/workspace'
+  WORKSPACE = 'workspace'
 }
 
 export const useWorkspacesSideBarList = (): MenuItemType[] => {

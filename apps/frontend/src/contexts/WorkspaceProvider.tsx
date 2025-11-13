@@ -3,10 +3,12 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState
 } from 'react';
 import { trpc } from '@frontend/utils/trpc';
 import { useToast } from '@frontend/contexts/ToastProvider';
+import { useUserStore } from '@hooks/stores/useUserStore';
 
 type Workspace = {
   id: string;
@@ -27,21 +29,51 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({
   children
 }) => {
   const { showToastError } = useToast();
+  const { user } = useUserStore();
+
+  const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
+  const prevWorkspacesRef = useRef<Workspace[]>([]); // ref để track state cũ
 
   const {
     data: res,
     isLoading,
     refetch
   } = trpc.workspace.get.useQuery(undefined, {
-    staleTime: 5 * 60 * 1000,
-    refetchOnReconnect: false
+    enabled: !!user,
+    retry: false
   });
 
-  const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
   useEffect(() => {
-    if (res?.success) {
-      setWorkspaces(res.data);
-    } else if (res?.success === false) {
+    if (!user) {
+      setWorkspaces([]);
+      prevWorkspacesRef.current = [];
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (!res || res.success === undefined) return;
+
+    if (res.success) {
+      const newData: Workspace[] = res.data ?? [];
+
+      const isSame =
+        newData.length === prevWorkspacesRef.current.length &&
+        newData.every(
+          (item, i) =>
+            item.id === prevWorkspacesRef.current[i]?.id &&
+            item.name === prevWorkspacesRef.current[i]?.name &&
+            item.imageUrl === prevWorkspacesRef.current[i]?.imageUrl
+        );
+
+      if (!isSame) {
+        setWorkspaces(newData);
+        prevWorkspacesRef.current = newData;
+      }
+    } else {
+      if (prevWorkspacesRef.current.length > 0) {
+        setWorkspaces([]);
+        prevWorkspacesRef.current = [];
+      }
       showToastError('Workspace fetch error: ' + res.error);
     }
   }, [res]);
@@ -62,7 +94,6 @@ export const WorkspaceProvider: React.FC<{ children: React.ReactNode }> = ({
     </WorkspaceContext.Provider>
   );
 };
-
 export const useWorkspace = () => {
   const ctx = useContext(WorkspaceContext);
   if (!ctx)

@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { ChevronRight } from './Icon';
-
 import { tailwindMerge } from '@utils/merge';
+import { Slot } from './Slot';
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
-  React.ComponentPropsWithoutRef<'nav'> & {
-    separator?: React.ReactNode;
-  }
+  React.ComponentPropsWithoutRef<'nav'> & { separator?: React.ReactNode }
 >(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
 Breadcrumb.displayName = 'Breadcrumb';
 
@@ -38,15 +36,17 @@ const BreadcrumbItem = React.forwardRef<
 ));
 BreadcrumbItem.displayName = 'BreadcrumbItem';
 
+// ✅ BreadcrumbLink dùng Slot
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<'a'>
->(({ className, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<'a'> & { asChild?: boolean }
+>(({ className, asChild = false, ...props }, ref) => {
+  const Comp = asChild ? Slot : 'a'; // 👈 Slot sẽ “nhúng” prop vào phần tử con
   return (
-    <a
+    <Comp
       ref={ref}
       className={tailwindMerge(
-        'transition-colors hover:text-primary dark:hover:text-primary cursor-pointer',
+        'transition-colors hover:text-primary dark:hover:text-primary text-black dark:text-light-mode',
         className
       )}
       {...props}

@@ -7,9 +7,9 @@ import { MenuItemType } from '.';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
 
 export enum ApplicationSideBarUrl {
-  DASHBOARD = '/dashboard',
-  FOCUS = '/focus',
-  SETTING = '/setting'
+  DASHBOARD = 'dashboard',
+  FOCUS = 'focus',
+  SETTING = 'setting'
 }
 
 export const useApplicationSideBarList = (): MenuItemType[] => {

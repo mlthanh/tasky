@@ -12,7 +12,6 @@ import Input from '@frontend/components/common/Input';
 import { Label } from '@frontend/components/common/Label';
 import { Separator } from '@frontend/components/common/Separator';
 import { useLanguage } from '@frontend/contexts/language/LanguageProvider';
-import { useCreateWorkspace } from '@frontend/hooks/useCreateWorkspace';
 import { customResolver } from '@frontend/utils/customResolver';
 import {
   createWorkspaceDto,

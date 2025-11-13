@@ -8,6 +8,8 @@ export const useQueryTrpcClient = () => {
   const APP_URL = import.meta.env.VITE_APP_URL;
   if (!APP_URL) throw new Error('No app url env variable found');
 
+  const [error, setError] = useState<unknown>(null);
+
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -83,7 +85,8 @@ export const useQueryTrpcClient = () => {
                 throw new Error('Session expired, redirecting...');
               }
             } catch (error) {
-              throw new Error(`Something was wrong, ${error}`);
+              setError(error);
+              //throw new Error(`Something was wrong, ${error}`);
             }
 
             return response;
@@ -93,5 +96,5 @@ export const useQueryTrpcClient = () => {
     })
   );
 
-  return { queryClient, trpcClient };
+  return { queryClient, trpcClient, error };
 };

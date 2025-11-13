@@ -72,7 +72,7 @@ export const getWorkspace = async (ctx: Context) => {
     where: { userId: ctx.user.id }
   });
 
-  if (member.length === 0) return [];
+  if (member.length === 0) return successResponse([]);
 
   const workspaceIds = member.map((member) => member.workspaceId);
 

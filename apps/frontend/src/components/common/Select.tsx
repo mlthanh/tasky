@@ -63,20 +63,27 @@ export function Select({
 // ---- Trigger ----
 export function SelectTrigger({
   className,
-  children
+  children,
+  disabled = false
 }: {
   className?: string;
   children: ReactNode;
+  disabled?: boolean;
 }) {
   const { open, setOpen } = useSelect();
+
   return (
     <button
       type="button"
       className={tailwindMerge(
         'text-accent-foreground flex w-full items-center justify-between rounded-md border bg-background px-3 py-2 text-sm shadow-sm focus:outline-none',
+        disabled && 'opacity-50',
         className
       )}
-      onClick={() => setOpen((prev) => !prev)}
+      onClick={() => {
+        if (!disabled) setOpen((prev) => !prev);
+      }}
+      disabled={disabled} // disable thực sự
     >
       {children}
       <BaselineKeyboardArrowDown

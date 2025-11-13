@@ -11,13 +11,10 @@ interface WorkspaceFormProps {
 export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
   const { showToastSuccess, showToastError } = useToast();
   const { workspaces, setWorkspaces, refetch } = useWorkspace();
-  const trpcCtx = trpc.useUtils();
 
   const createWorkspaceMutation = trpc.workspace.create.useMutation({
     onSuccess(res) {
       showToastSuccess('Workspace created successfully!');
-
-      // Cập nhật context trực tiếp, không cần invalidate query
       setWorkspaces([...workspaces, res.data]);
 
       // Nếu muốn fetch lại server data thay vì update local:
