@@ -37,12 +37,8 @@ export function HeaderBreadcrumb() {
     <Breadcrumb className="hidden xl:block">
       <BreadcrumbList>
         {/* Home */}
-        <BreadcrumbItem className="text-base">
-          <BreadcrumbLink asChild>
-            <Link to="/" className="text-black dark:text-light-mode">
-              {getLabel('men_main_001')}
-            </Link>
-          </BreadcrumbLink>
+        <BreadcrumbItem className="text-base text-black dark:text-light-mode">
+          {getLabel('men_main_001')}
         </BreadcrumbItem>
 
         {pathnames.map((segment, index) => {

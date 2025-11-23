@@ -15,10 +15,7 @@ export const WorkspaceForm = ({ onCancel }: WorkspaceFormProps) => {
   const createWorkspaceMutation = trpc.workspace.create.useMutation({
     onSuccess(res) {
       showToastSuccess('Workspace created successfully!');
-      setWorkspaces([...workspaces, res.data]);
-
-      // Nếu muốn fetch lại server data thay vì update local:
-      // refetch();
+      refetch();
     },
     onError(error) {
       showToastError(error.message, 'manual');

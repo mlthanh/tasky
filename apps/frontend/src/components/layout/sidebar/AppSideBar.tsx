@@ -16,6 +16,7 @@ import { useSidebarList } from '@frontend/constants/sidebar';
 import { Link, NavLink } from 'react-router-dom';
 import { WorkspaceSwitcher } from './workspaceswitcher/WorkspaceSwitcher';
 import { Separator } from '@frontend/components/common/Separator';
+import { useUIStateStore } from '@frontend/hooks/stores';
 
 export function AppSidebar() {
   const { open } = useSidebar();

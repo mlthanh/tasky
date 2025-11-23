@@ -6,6 +6,7 @@ export type UIState = {
   isTimerDetail: boolean;
   isGoalOpen: boolean;
   isQuoteShow: boolean;
+  isWorkspaceModelOpen: boolean;
   background: string;
   videoVolume: number;
   quote: { quote: string; author: string } | undefined;
@@ -14,6 +15,8 @@ export type UIState = {
   setIsTimerDetail: (v: boolean) => void;
   setIsGoalOpen: (v: boolean) => void;
   setIsQuoteShow: (v: boolean) => void;
+  setIsWorkspaceModelOpen: (v: boolean) => void;
+
   setBackground: (img: string) => void;
   setVolume: (volumn: number) => void;
 
@@ -27,6 +30,7 @@ export const useUIStateStore = create<UIState>()(
       isTimerDetail: false,
       isGoalOpen: false,
       isQuoteShow: false,
+      isWorkspaceModelOpen: false,
       background: '/focus/anime1.jpg',
       videoVolume: 0,
       quote: { quote: '', author: '' },
@@ -35,6 +39,8 @@ export const useUIStateStore = create<UIState>()(
       setIsTimerDetail: (v: boolean) => set(() => ({ isTimerDetail: v })),
       setIsGoalOpen: (v: boolean) => set(() => ({ isGoalOpen: v })),
       setIsQuoteShow: (v: boolean) => set(() => ({ isQuoteShow: v })),
+      setIsWorkspaceModelOpen: (v: boolean) =>
+        set(() => ({ isWorkspaceModelOpen: v })),
       setBackground: (img: string) => set(() => ({ background: img })),
       setVolume: (volume: number) => set(() => ({ videoVolume: volume })),
       setQuote: (q: { quote: string; author: string } | undefined) =>

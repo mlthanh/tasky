@@ -5,6 +5,7 @@ import { AppSidebar } from '@frontend/components/layout/sidebar/AppSideBar';
 import Header from '@components/layout/header/Header';
 import { WorkspaceProvider } from '@frontend/contexts/WorkspaceProvider';
 import AuthVerify from '@frontend/components/auth/AuthVerify';
+import { WorkspaceModal } from '@frontend/components/page/workspace/WorkspaceModal';
 
 const PrivateLayout = () => {
   const isFocusPage = useMatch('/focus');
@@ -12,6 +13,7 @@ const PrivateLayout = () => {
   return (
     <WorkspaceProvider>
       <AuthVerify />
+      <WorkspaceModal />
       <div className="light-mode dark:dark-mode font-Quicksand">
         <SidebarProvider>
           <AppSidebar />
